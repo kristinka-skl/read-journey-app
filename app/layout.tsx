@@ -2,6 +2,7 @@ import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
+import Container from './Components/Shared/Container/Container';
 
 const gilroy = localFont({
   src: [
@@ -44,7 +45,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${gilroy.variable} ${sfPro.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Container>{children}</Container></body>
     </html>
   );
 }
