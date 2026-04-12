@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+.sidebar{
+    width: 30%;
+}
+
+.contentWrapper {
+    width: 70%;
+    background-color: aquamarine;
+}

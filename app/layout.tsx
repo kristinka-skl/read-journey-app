@@ -2,7 +2,7 @@ import 'modern-normalize/modern-normalize.css';
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
-import Container from './Components/Container/Container';
+import Container from './Components/Shared/Container/Container';
 
 const gilroy = localFont({
   src: [
