@@ -1,9 +1,5 @@
-
-
 import RegisterForm from '@/app/Components/Forms/Auth/RegisterForm';
 import css from './registerPage.module.css';
-
-
 
 export default function Register() {
   return (
