@@ -26,7 +26,13 @@
 height: 35px;
   border-radius: 100%;
   color: var(--input-background);
-  border: 1px solid rgba(249, 249, 249, 0.2);;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userName{
+    color: var(--foreground);
 }
 .burgerWrapper{
     width: 28px;

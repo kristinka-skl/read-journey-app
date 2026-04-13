@@ -3,15 +3,18 @@
 import Link from 'next/link';
 import css from './Header.module.css';
 import { useState } from 'react';
-import { logout } from '@/app/lib/clientApi';
+import {  logout } from '@/app/lib/clientApi';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useAuthStore } from '@/app/store/authStore';
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const closeDrawer = () => setIsDrawerOpen(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const router = useRouter();
+    const user = useAuthStore((state) => state.user);
+    console.log('user:', user);
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
@@ -23,8 +26,8 @@ export default function Header() {
       setIsLoggingOut(false);
     }
   };
-  //   const user = useAuthStore((state) => state.user);
-  const user = true;
+  
+//   const user = true;
   return (
     <section className={css.headerSection}>
       <Link href='/'><p>Logo</p></Link>
@@ -40,7 +43,7 @@ export default function Header() {
       </nav>
       <div className={css.userIconBurgerWrapper}>
         <div className={css.userIcon}>
-          <span>F</span>
+          <p className={css.userName}>{user?.name.charAt(0)}</p>
         </div>
 
         <button

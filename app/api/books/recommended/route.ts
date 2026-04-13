@@ -15,21 +15,24 @@ export async function GET(request: NextRequest) {
     // const tag = rawTag === 'All' ? '' : rawTag;
 const token = cookieStore.get('accessToken')?.value;
 
+
+
     // 2. Якщо токена немає, одразу повертаємо 401 (юзер не залогінений)
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+    const page = Number(request.nextUrl.searchParams.get('page')) || 1;
+    const limit = Number(request.nextUrl.searchParams.get('limit')) || 2;
     const res = await api('/books/recommend', {
       params: {
         // ...(search !== '' && { search }),
         // page,
         // perPage: 12,
         // ...(tag && { tag }),
-        page: 3,
-        limit: 2,
+        page,
+        limit,
       },
       headers: {
-        // 3. Передаємо токен у правильному форматі!
         Authorization: `Bearer ${token}`, 
       },
     });

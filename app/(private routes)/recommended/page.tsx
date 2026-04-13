@@ -13,8 +13,8 @@ export default function RecommendedPage() {
         </Dashboard>
       }
     >
-        <section className={css.recommendedSection}><h2>Recommended</h2>
-        <Recommended/></section>
+        
+        <Recommended/>
       
     </PageLayout>
   );

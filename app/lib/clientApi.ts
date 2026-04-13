@@ -34,12 +34,15 @@ interface FetchBooksResponse {
   perPage: number;
 }
 export async function getBooks(
+    page: number, limit: number,
 //   query: string,
 //   page: number,
   category?: string
 ): Promise<FetchBooksResponse> {
   const { data } = await nextServer.get<FetchBooksResponse>("/books/recommended", {
     params: {
+        page,
+      limit,
     //   search: query,
     //   page: page,
     //   perPage: PER_PAGE,
