@@ -1,0 +1,10 @@
+.loginSection{
+border-radius: 30px;
+width: 335px;
+background-color: var(--card-background);
+padding: 20px 20px 40px 20px;
+height: 411px;
+}
+.textAccent{
+    color: var(--text-accent);
+}

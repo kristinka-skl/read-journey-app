@@ -1,6 +1,12 @@
 :root {
-  --background: #141414;;
+  --background: #141414;
+  --card-background: #1f1f1f;
+  --input-background: #262626;
   --foreground: #f9f9f9;
+  --text-accent: #686868;
+  --hover: rgba(249, 249, 249, 0.1);
+  --error: #e90516;
+  --success: #30b94d;
   --font-main: var(--font-gilroy), sans-serif;
   --font-secondary: var(--font-sf-pro), sans-serif;
 }
