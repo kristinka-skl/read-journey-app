@@ -1,15 +1,16 @@
-'use client'
+'use client';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-
+import { login as loginUser } from '../../../lib/clientApi';
 import css from './AuthForm.module.css';
-import { LoginFormData } from '@/app/types/auth'; 
+import { LoginFormData } from '@/app/types/auth';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import { ApiError } from '@/app/api/api';
+import toast from 'react-hot-toast';
 
 const schema = yup
   .object({
@@ -21,54 +22,77 @@ const schema = yup
     password: yup
       .string()
       .min(7, 'Password must be at least 7 characters')
-      .required('Enter a valid Password')
+      .required('Enter a valid Password'),
   })
   .required();
 
 export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-
+  // const [error, setError] = useState('');
   const {
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm<LoginFormData>({
     resolver: yupResolver(schema),
-    mode: 'onChange', 
+    mode: 'onChange',
   });
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log('Login data:', data);   
-    router.push('/recommended');
+  const onSubmit = async (data: LoginFormData) => {
+    try {
+      console.log(data);
+      const res = await loginUser(data);
+      if (res) {
+        toast.success('Login successful!');
+        router.push('/recommended');
+      } else {
+        toast.error('Invalid email or password');
+      }
+    } catch (error) {
+    const errorMessage = (error as ApiError).response?.data?.error 
+      ?? (error as ApiError).message 
+      ?? 'Oops... some error';
+      
+    toast.error(errorMessage);
+  }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        
-   
       <div className={css.fieldWrapper}>
-        <div className={`${css.inputGroup} ${
-          errors.email ? css.hasError : dirtyFields.email ? css.isSuccess : ''
-        }`}>
-          <label htmlFor="email" className={css.label}>Mail:</label>
+        <div
+          className={`${css.inputGroup} ${
+            errors.email ? css.hasError : dirtyFields.email ? css.isSuccess : ''
+          }`}
+        >
+          <label htmlFor="email" className={css.label}>
+            Mail:
+          </label>
           <input
             id="email"
             className={css.input}
             {...register('email')}
             placeholder="Your@email.com"
           />
-          
+
           {errors.email && <p className={css.error}>{errors.email.message}</p>}
         </div>
       </div>
 
-     
       <div className={css.fieldWrapper}>
-        <div className={`${css.inputGroup} ${
-          errors.password ? css.hasError : dirtyFields.password ? css.isSuccess : ''
-        }`}>
-          <label htmlFor="password" className={css.label}>Password:</label>
+        <div
+          className={`${css.inputGroup} ${
+            errors.password
+              ? css.hasError
+              : dirtyFields.password
+                ? css.isSuccess
+                : ''
+          }`}
+        >
+          <label htmlFor="password" className={css.label}>
+            Password:
+          </label>
           <input
             id="password"
             type={showPassword ? 'text' : 'password'}
@@ -81,10 +105,9 @@ export default function LoginForm() {
             className={css.eyeButton}
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? <p>y</p> : <p>n</p> }
+            {showPassword ? <p>y</p> : <p>n</p>}
           </button>
-          
-         
+
           {errors.password ? (
             <p className={css.error}>{errors.password.message}</p>
           ) : dirtyFields.password ? (
@@ -93,7 +116,6 @@ export default function LoginForm() {
         </div>
       </div>
 
-     
       <div className={css.actions}>
         <button type="submit" className={css.submitBtn}>
           Log In
@@ -102,7 +124,6 @@ export default function LoginForm() {
           Don’t have an account?
         </Link>
       </div>
-
     </form>
   );
 }

@@ -1,0 +1,86 @@
+.headerSection {
+  border-radius: 15px;
+  width: 335px;
+  height: 57px;
+  background-color: var(--input-background);
+  padding: 10px 20px;
+}
+.desktopNav {
+  display: none;
+}
+.headerSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.userIconBurgerWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.userIcon {
+    width: 35px;
+height: 35px;
+  border-radius: 100%;
+  color: var(--input-background);
+  border: 1px solid rgba(249, 249, 249, 0.2);;
+}
+.burgerWrapper{
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: antiquewhite;
+}
+.drawerBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.6);;
+}
+
+.drawer {
+  width: min(200px);
+  height: 100dvh;
+  margin-left: auto;
+  background: var(--input-background);
+  padding: 34px 40px 40px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.drawerClose {
+  align-self: flex-end;
+  margin-top: -10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.drawerCloseIcon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+.drawerNav{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
