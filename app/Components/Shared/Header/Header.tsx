@@ -3,11 +3,26 @@
 import Link from 'next/link';
 import css from './Header.module.css';
 import { useState } from 'react';
+import { logout } from '@/app/lib/clientApi';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const closeDrawer = () => setIsDrawerOpen(false);
-  const handleLogout = () => {};
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const router = useRouter();
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await logout();
+      router.push('/register');
+    } catch {
+      toast.error('Logout failed, please try again');
+    } finally {
+      setIsLoggingOut(false);
+    }
+  };
   //   const user = useAuthStore((state) => state.user);
   const user = true;
   return (
@@ -87,14 +102,14 @@ export default function Header() {
                 <button
                   className={css.secondaryButton}
                   type="button"
-                  // disabled={isLoggingOut}
+                  disabled={isLoggingOut}
                   onClick={async () => {
                     await handleLogout();
                     closeDrawer();
                   }}
                 >
-                  {/* {isLoggingOut ? 'Logging out...' : 'Log out'} */}
-                  Log out
+                  {isLoggingOut ? 'Logging out...' : 'Log out'}
+                  
                 </button>
               ) : null}
             </div>
