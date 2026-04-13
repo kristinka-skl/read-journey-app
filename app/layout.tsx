@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Container from './Components/Shared/Container/Container';
 import ToasterProvider from './Components/Shared/Toaster/Toaster';
+import TanStackProvider from './Components/Shared/TanStackProvider/TanStackProvider';
 
 const gilroy = localFont({
   src: [
@@ -48,10 +49,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${gilroy.variable} ${sfPro.variable}`}>
       <body>
+        <TanStackProvider>
         <Container>
           {children}
           <ToasterProvider />
         </Container>
+        </TanStackProvider>
       </body>
     </html>
   );

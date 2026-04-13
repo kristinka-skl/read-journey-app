@@ -1,13 +1,17 @@
 .container{
     display: flex;
-    flex-direction: row;
-    gap: 24px;
+    flex-direction: column;
+    gap: 10px;
 }
 .sidebar{
-    width: 30%;
+    width: 335px;
 }
 
 .contentWrapper {
-    width: 70%;
-    background-color: aquamarine;
+    padding: 20px 40px;
+    border-radius: 30px;
+  width: 335px;
+  height: 478px;
+  background: var(--card-background);
+    
 }

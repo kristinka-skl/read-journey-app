@@ -27,7 +27,7 @@ export default function Header() {
   const user = true;
   return (
     <section className={css.headerSection}>
-      <p>Logo</p>
+      <Link href='/'><p>Logo</p></Link>
       <nav className={css.desktopNav}>
         <ul className={css.navLinks}>
           <li>

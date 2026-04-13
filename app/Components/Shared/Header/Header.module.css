@@ -4,6 +4,7 @@
   height: 57px;
   background-color: var(--input-background);
   padding: 10px 20px;
+  margin-bottom: 10px;
 }
 .desktopNav {
   display: none;
