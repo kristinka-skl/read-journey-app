@@ -1,13 +1,12 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
+import { Book, FiltersFormData } from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
-
 
 export const register = async (data: RegisterFormData) => {
   const res = await nextServer.post<User>('/users/signup', data);
   return res.data;
 };
-
 
 export const login = async (data: LoginFormData) => {
   const res = await nextServer.post<User>('/users/signin', data);
@@ -23,3 +22,29 @@ export const logout = async () => {
   const res = await nextServer.post('/users/signout');
   return res.data;
 };
+
+interface FetchBooksResponse {
+  results: Book[];
+  totalPages: number;
+  page: number;
+  perPage: number;
+}
+export async function getBooks(
+  page: number,
+  limit: number,
+  title?: string,
+  author?: string
+): Promise<FetchBooksResponse> {
+  const { data } = await nextServer.get<FetchBooksResponse>(
+    '/books/recommended',
+    {
+      params: {
+        page,
+        limit,
+        ...(title && { title }),
+        ...(author && { author }),
+      },
+    }
+  );
+  return data;
+}

@@ -1,17 +1,22 @@
 import css from './recommendedPage.module.css'
 import { Dashboard } from '../../Components/Shared/Dashboard/Dashboard';
-import { AddBookForm } from '../../Components/Forms/AddBookForm/AddBookForm';
+import { FiltersForm } from '../../Components/Forms/FiltersForm/FiltersForm';
 import { PageLayout } from '@/app/Components/Shared/PageLayout/PageLayout';
+import Recommended from '@/app/Components/Recommended/Recommended';
+import InfoBlock from '@/app/Components/InfoBlock/InfoBlock';
 
-export default function Recommended() {
+export default function RecommendedPage() {
   return (
     <PageLayout
       sidebar={
         <Dashboard>
-          <AddBookForm />
+          <FiltersForm />
+          <InfoBlock/>
         </Dashboard>
       }
-    ><p>Recommended</p>
+    >
+        
+        <Recommended/>
       
     </PageLayout>
   );

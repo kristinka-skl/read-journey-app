@@ -9,7 +9,6 @@ export default function PrivateLayout({
   return (
     <div className={css.appWrapper}>
       <Header />
-      {/* children - це будуть наші page.tsx (Library, Recommended, Reading) */}
       <main className={css.mainContent}>
         {children}
       </main>

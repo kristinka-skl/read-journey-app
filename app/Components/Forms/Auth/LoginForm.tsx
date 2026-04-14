@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ApiError } from '@/app/api/api';
 import toast from 'react-hot-toast';
+import { useAuthStore } from '@/app/store/authStore';
 
 const schema = yup
   .object({
@@ -29,6 +30,7 @@ const schema = yup
 export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const setUser = useAuthStore((state) => state.setUser);
   // const [error, setError] = useState('');
   const {
     register,
@@ -44,6 +46,7 @@ export default function LoginForm() {
       console.log(data);
       const res = await loginUser(data);
       if (res) {
+        setUser(res);
         toast.success('Login successful!');
         router.push('/recommended');
       } else {

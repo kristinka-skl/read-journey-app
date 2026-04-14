@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { ApiError } from '@/app/api/api';
 import toast from 'react-hot-toast';
 import { register as registerUser } from '../../../lib/clientApi';
+import { useAuthStore } from '@/app/store/authStore';
 
 const schema = yup
   .object({
@@ -31,6 +32,7 @@ export default function RegisterForm() {
   const router = useRouter();
   // const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const setUser = useAuthStore((state) => state.setUser);
   const {
     register,
     handleSubmit,
@@ -44,6 +46,7 @@ export default function RegisterForm() {
       console.log(data);
       const res = await registerUser(data);
       if (res) {
+        setUser(res);
         toast.success('Registration successful!');
         router.push('/recommended');
       } else {
