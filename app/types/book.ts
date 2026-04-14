@@ -6,3 +6,10 @@ export interface Book {
   totalPages: number;
   recommend: boolean;
 }
+export type FiltersFormData = {
+    page?: number,
+    limit?: number,
+    title?: string
+    author?: string
+    // pages?: number
+}

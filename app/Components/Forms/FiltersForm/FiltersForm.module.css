@@ -1,0 +1,105 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--input-background);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.inputGroup:focus-within {
+  border: 1px solid var(--hover);
+}
+
+.label {
+font-weight: 500;
+font-size: 12px;
+
+line-height: 1.33333;
+letter-spacing: -0.02em;
+
+color: var(--text-accent);
+
+
+
+  margin-right: 14px;
+  white-space: nowrap;
+}
+
+.input {
+  background: var(--input-background);
+  border: none;
+  color: var(--foreground);
+
+  width: 100%;
+  outline: none;
+  font-weight: 500;
+font-size: 12px;
+
+
+line-height: 1.33333;
+letter-spacing: -0.02em;
+
+}
+
+.input::placeholder {
+  color: var(--foreground);
+}
+.input:focus::placeholder {
+  color: transparent;
+}
+
+.inputGroup.hasError {
+  border: 1px solid var(--error);
+}
+.inputGroup.isSuccess {
+  border: 1px solid var(--success);
+}
+
+.error {
+  color: var(--error);
+  position: absolute;
+  right: 20px; 
+  bottom: 4px;  
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+.successText {
+  position: absolute; 
+  top: 100%;
+  left: 0;
+  margin-top: 4px;  
+  color: var(--success);
+  font-size: 12px;
+  padding-left: 20px;
+}
+.submitBtn {
+  background-color: #ffffff;
+  color: #1c1c1c;
+  border: none;
+  border-radius: 30px;
+  padding: 16px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.submitBtn:hover {
+  opacity: 0.8;
+}

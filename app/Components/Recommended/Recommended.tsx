@@ -4,10 +4,16 @@ import { usePageLimit } from '@/app/hooks/usePageLimit';
 import { getBooks } from '@/app/lib/clientApi';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 export default function Recommended() {
+    const searchParams = useSearchParams();
+    
+    const title = searchParams.get('title') || undefined;
+  const author = searchParams.get('author') || undefined;
+
   const [page, setPage] = useState(1);
   const { limit, isClient } = usePageLimit();
   const [prevLimit, setPrevLimit] = useState(limit);
@@ -15,9 +21,16 @@ export default function Recommended() {
     setPage(1);
     setPrevLimit(limit);
   }
+  const [prevTitle, setPrevTitle] = useState(title);
+  const [prevAuthor, setPrevAuthor] = useState(author);
+  if (title !== prevTitle || author !== prevAuthor) {
+    setPage(1);
+    setPrevTitle(title);
+    setPrevAuthor(author);
+  }
   const { data, isError, isSuccess, isFetching, isLoading } = useQuery({
-    queryKey: ['books', 'recommended', page, limit],
-    queryFn: () => getBooks(page, limit),
+    queryKey: ['books', 'recommended', page, limit, title, author],
+    queryFn: () => getBooks(page, limit, title, author),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
     enabled: isClient,

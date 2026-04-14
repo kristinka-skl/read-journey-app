@@ -105,11 +105,16 @@ height: 35px;
 }
 .drawerNavList>li{
     width: fit-content;
+    color: var(--text-accent);
+}
+.active{
+
+    color: var(--foreground);
 }
 .active:after{
     content: '';
     border-radius: 8px;
     display: block;    
     width: 100%;
-    border-bottom: 3px solid #4f92f7;
+    border-bottom: 3px solid #4f92f7;    
 }

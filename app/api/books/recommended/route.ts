@@ -3,35 +3,32 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isAxiosError } from 'axios';
 import { api } from '../../api';
+import { FiltersFormData } from '@/app/types/book';
 
 
 export async function GET(request: NextRequest) {
   try {
     const cookieStore = await cookies();
-    console.log('cookieStore:', cookieStore);
-    // const search = request.nextUrl.searchParams.get('search') ?? '';
-    // const page = Number(request.nextUrl.searchParams.get('page') ?? 1);
-    // const rawTag = request.nextUrl.searchParams.get('tag') ?? '';
-    // const tag = rawTag === 'All' ? '' : rawTag;
-const token = cookieStore.get('accessToken')?.value;
-
-
-
-    // 2. Якщо токена немає, одразу повертаємо 401 (юзер не залогінений)
+      const token = cookieStore.get('accessToken')?.value;
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
+    
     const page = Number(request.nextUrl.searchParams.get('page')) || 1;
     const limit = Number(request.nextUrl.searchParams.get('limit')) || 2;
+    const title = request.nextUrl.searchParams.get('title');
+    const author = request.nextUrl.searchParams.get('author');
+
+    const queryParams: FiltersFormData = {
+      page,
+      limit, 
+    };
+    if (title) queryParams.title = title;
+    if (author) queryParams.author = author;
+  
+   
     const res = await api('/books/recommend', {
-      params: {
-        // ...(search !== '' && { search }),
-        // page,
-        // perPage: 12,
-        // ...(tag && { tag }),
-        page,
-        limit,
-      },
+      params: queryParams,
       headers: {
         Authorization: `Bearer ${token}`, 
       },

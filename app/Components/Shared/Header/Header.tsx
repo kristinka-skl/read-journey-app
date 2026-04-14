@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import css from './Header.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { logout } from '@/app/lib/clientApi';
 import toast from 'react-hot-toast';
 import { usePathname, useRouter } from 'next/navigation';
@@ -27,6 +27,22 @@ export default function Header() {
       setIsLoggingOut(false);
     }
   };
+
+  useEffect(() => {
+    if (!isDrawerOpen) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeDrawer();
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isDrawerOpen]);
 
   return (
     <section className={css.headerSection}>
