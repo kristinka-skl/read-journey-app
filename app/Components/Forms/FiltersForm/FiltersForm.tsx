@@ -52,7 +52,7 @@ export const FiltersForm = () => {
   };
 
   return (
-    <section>
+    <section className={css.filtersSection}>
       <h2>Filters:</h2>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <div className={css.fieldWrapper}>

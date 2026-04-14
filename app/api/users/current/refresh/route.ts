@@ -3,7 +3,6 @@ import { isAxiosError } from 'axios';
 import { cookies } from 'next/headers';
 import { api } from '@/app/api/api';
 
-
 export async function GET() {
   try {
     const cookieStore = await cookies();
@@ -21,6 +20,8 @@ export async function GET() {
 
     const data = apiRes.data; 
 
+    const response = NextResponse.json(data);
+
     const cookieOptions = {
       httpOnly: true, 
       secure: process.env.NODE_ENV === 'production', 
@@ -28,13 +29,24 @@ export async function GET() {
     };
 
     if (data.token) {
-      cookieStore.set('accessToken', data.token, { ...cookieOptions, maxAge: 60 * 60 });
+      response.cookies.set({
+        name: 'accessToken',
+        value: data.token,
+        ...cookieOptions,
+        maxAge: 60 * 60,
+      });
     }
+    
     if (data.refreshToken) {
-      cookieStore.set('refreshToken', data.refreshToken, { ...cookieOptions, maxAge: 30 * 24 * 60 * 60 });
+      response.cookies.set({
+        name: 'refreshToken',
+        value: data.refreshToken,
+        ...cookieOptions,
+        maxAge: 30 * 24 * 60 * 60,
+      });
     }
 
-    return NextResponse.json(data);
+    return response;
 
   } catch (error: unknown) {
     if (isAxiosError(error)) {

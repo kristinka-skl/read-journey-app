@@ -1,0 +1,79 @@
+.infoBlock{
+
+    border-radius: 12px;
+width: 295px;
+height: 244px;
+background-color: var(--input-background);
+margin: 0 auto;
+padding: 20px;
+}
+
+.infoBlock h2 {
+
+    font-weight: 700;
+font-size: 18px;
+line-height: 1;
+letter-spacing: -0.02em;
+
+color: var(--foreground);
+margin-bottom: 20px;
+}
+.infoList{
+    display: flex;
+flex-direction: column;
+gap: 20px;
+margin-bottom: 20px;
+}
+.infoItemWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: start;
+}
+.roundNumber{
+    width: 40px;
+height: 40px;
+border-radius: 100%;
+background-color: var(--foreground);
+display: flex;
+justify-content: center;
+align-items: center;
+color: var(--background);
+flex-shrink: 0;
+font-weight: 700;
+font-size: 18px;
+line-height: 1;
+letter-spacing: -0.02em;
+
+}
+.accent{
+    font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+color: var(--foreground);
+}
+.text{
+    font-weight: 500;
+font-size: 14px;
+
+/* line-height: 18px; */ 
+line-height: 1.28571;
+letter-spacing: -0.02em;
+color: var(--text-accent);
+}
+.link{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.link p{
+font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+text-decoration: underline;
+text-decoration-skip-ink: none;
+color: var(--text-accent);
+}
