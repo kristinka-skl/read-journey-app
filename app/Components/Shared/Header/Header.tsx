@@ -3,18 +3,19 @@
 import Link from 'next/link';
 import css from './Header.module.css';
 import { useState } from 'react';
-import {  logout } from '@/app/lib/clientApi';
+import { logout } from '@/app/lib/clientApi';
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuthStore } from '@/app/store/authStore';
 
 export default function Header() {
+  const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const closeDrawer = () => setIsDrawerOpen(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const router = useRouter();
-    const user = useAuthStore((state) => state.user);
-    console.log('user:', user);
+  const user = useAuthStore((state) => state.user);
+  console.log('user:', user);
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
@@ -26,18 +27,29 @@ export default function Header() {
       setIsLoggingOut(false);
     }
   };
-  
-//   const user = true;
+
   return (
     <section className={css.headerSection}>
-      <Link href='/'><p>Logo</p></Link>
+      <Link href="/">
+        <p>Logo</p>
+      </Link>
       <nav className={css.desktopNav}>
         <ul className={css.navLinks}>
           <li>
-            <Link href="/recommended">Home</Link>
+            <Link
+              href="/recommended"
+              className={pathname === '/recommended' ? css.active : ''}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/library">My library</Link>
+            <Link
+              href="/library"
+              className={pathname === '/library' ? css.active : ''}
+            >
+              My library
+            </Link>
           </li>
         </ul>
       </nav>
@@ -64,26 +76,25 @@ export default function Header() {
       </div>
 
       {/* drawer */}
-      {isDrawerOpen ? (
-        <div
-          className={css.drawerBackdrop}
-          onClick={closeDrawer}
-          role="presentation"
+
+      <div
+        className={`${css.drawerBackdrop} ${isDrawerOpen ? css.isOpen : ''}`}
+        onClick={closeDrawer}
+        role="presentation"
+      >
+        <aside
+          className={`${css.drawer} ${isDrawerOpen ? css.isOpen : ''}`}
+          onClick={(event) => event.stopPropagation()}
+          aria-label="Mobile menu"
         >
-          <aside
-            // id={drawerId}
-            className={css.drawer}
-            onClick={(event) => event.stopPropagation()}
-            aria-label="Mobile menu"
+          <button
+            className={css.drawerClose}
+            type="button"
+            onClick={closeDrawer}
+            aria-label="Close menu"
           >
-            <button
-              className={css.drawerClose}
-              type="button"
-              onClick={closeDrawer}
-              aria-label="Close menu"
-            >
-              X
-              {/* <svg
+            X
+            {/* <svg
                 className={css.drawerCloseIcon}
                 width="20"
                 height="20"
@@ -91,35 +102,46 @@ export default function Header() {
               >
                 <use href="/sprite.svg#icon-close" />
               </svg> */}
-            </button>
-            <nav className={css.drawerNav} aria-label="Mobile navigation">
-              <Link href="/recommended" onClick={closeDrawer}>
-                Home
-              </Link>
-              <Link href="/library" onClick={closeDrawer}>
-                My library
-              </Link>
-            </nav>
-            <div className={css.drawerAction}>
-              {user ? (
-                <button
-                  className={css.secondaryButton}
-                  type="button"
-                  disabled={isLoggingOut}
-                  onClick={async () => {
-                    await handleLogout();
-                    closeDrawer();
-                  }}
+          </button>
+          <nav className={css.drawerNav} aria-label="Mobile navigation">
+            <ul className={css.drawerNavList}>
+              <li>
+                <Link
+                  href="/recommended"
+                  onClick={closeDrawer}
+                  className={pathname === '/recommended' ? css.active : ''}
                 >
-                  {isLoggingOut ? 'Logging out...' : 'Log out'}
-                  
-                </button>
-              ) : null}
-            </div>
-          </aside>
-        </div>
-      ) : null}
-      {/* end drawer*/}
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/library"
+                  onClick={closeDrawer}
+                  className={pathname === '/library' ? css.active : ''}
+                >
+                  My library
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className={css.drawerAction}>
+            {user ? (
+              <button
+                className={css.secondaryButton}
+                type="button"
+                disabled={isLoggingOut}
+                onClick={async () => {
+                  await handleLogout();
+                  closeDrawer();
+                }}
+              >
+                {isLoggingOut ? 'Logging out...' : 'Log out'}
+              </button>
+            ) : null}
+          </div>
+        </aside>
+      </div>   
     </section>
   );
 }

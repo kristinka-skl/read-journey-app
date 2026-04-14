@@ -46,9 +46,16 @@ height: 35px;
 .drawerBackdrop {
   position: fixed;
   inset: 0;
-  background: rgba(20, 20, 20, 0.6);;
+  background: rgba(20, 20, 20, 0.6);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden; 
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
+.drawerBackdrop.isOpen {
+  opacity: 1;
+  visibility: visible;
+}
 .drawer {
   width: min(200px);
   height: 100dvh;
@@ -58,6 +65,11 @@ height: 35px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.drawer.isOpen {
+  transform: translateX(0);
 }
 
 .drawerClose {
@@ -86,8 +98,18 @@ height: 35px;
   pointer-events: none;
 }
 
-.drawerNav{
+.drawerNavList{
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+.drawerNavList>li{
+    width: fit-content;
+}
+.active:after{
+    content: '';
+    border-radius: 8px;
+    display: block;    
+    width: 100%;
+    border-bottom: 3px solid #4f92f7;
 }
