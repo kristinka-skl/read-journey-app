@@ -48,3 +48,8 @@ export async function getBooks(
   );
   return data;
 }
+
+export async function addBookFromRecommended(book_id : string)  {
+    const {data} = await nextServer.post<Book>(`/books/add/${book_id}`);
+    return data;
+}

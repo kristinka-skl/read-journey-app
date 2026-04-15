@@ -1,4 +1,5 @@
 import Header from '../Components/Shared/Header/Header';
+
 import css from './privateLayout.module.css'; 
 
 export default function PrivateLayout({
@@ -11,6 +12,7 @@ export default function PrivateLayout({
       <Header />
       <main className={css.mainContent}>
         {children}
+        
       </main>
     </div>
   );

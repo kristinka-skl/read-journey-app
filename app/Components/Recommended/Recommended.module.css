@@ -45,6 +45,7 @@ flex-direction: column;
 gap: 8px;
 width: 137px;
 height: 248px;
+cursor: pointer;
 }
 .bookTitle{
     font-weight: 700;
