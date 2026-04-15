@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { isAxiosError } from 'axios';
 import { api } from '../../api';
-import { FiltersFormData } from '@/app/types/book';
+import { BookFormData } from '@/app/types/book';
 
 
 export async function GET(request: NextRequest) {
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const title = request.nextUrl.searchParams.get('title');
     const author = request.nextUrl.searchParams.get('author');
 
-    const queryParams: FiltersFormData = {
+    const queryParams: BookFormData = {
       page,
       limit, 
     };

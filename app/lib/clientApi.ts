@@ -1,5 +1,5 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
-import { Book } from '../types/book';
+import { Book, BookFormData } from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
 
@@ -51,5 +51,10 @@ export async function getBooks(
 
 export async function addBookFromRecommended(book_id : string)  {
     const {data} = await nextServer.post<Book>(`/books/add/${book_id}`);
+    return data;
+}
+
+export async function addBook(newBook: BookFormData): Promise<Book>  {
+    const {data} = await nextServer.post<Book>('/books/add', newBook);
     return data;
 }
