@@ -31,20 +31,24 @@ export default function BookDetailsModal({
   };
   return (
     <>
-      <Modal isOpen onClose={onClose}>
-        <Image
-          src={book.imageUrl}
-          alt={book.title}
-          width={137}
-          height={208}
-          className={css.bookCover}
-        />
-
-        <h3 className={css.bookTitle}>{book.title}</h3>
-        <p className={css.bookAuthor}>{book.author}</p>
-        <button type="button" onClick={handleAddToLibrary}>
-          Add to library
-        </button>
+      <Modal isOpen onClose={onClose} size="large">
+        <div className={css.bookDetails}>
+          <Image
+            src={book.imageUrl}
+            alt={book.title}
+            width={140}
+            height={213}
+            className={css.bookCover}
+          />
+<div className={css.bookInfo}>
+          <h3 className={css.bookTitle}>{book.title}</h3>
+          <p className={css.bookAuthor}>{book.author}</p>
+          <p className={css.bookPages}>{book.totalPages} pages</p>
+          </div>
+          <button type="button" onClick={handleAddToLibrary}>
+            Add to library
+          </button>
+        </div>
       </Modal>
     </>
   );

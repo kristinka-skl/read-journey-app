@@ -1,5 +1,5 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
-import { Book, FiltersFormData } from '../types/book';
+import { Book } from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
 

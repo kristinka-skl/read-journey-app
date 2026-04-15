@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import Modal from '../Shared/Modal/Modal';
+
 import { Book } from '@/app/types/book';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
 
@@ -80,7 +80,7 @@ export default function Recommended() {
           </div>
         </div>
 
-        {/* СПИСОК КНИГ */}
+       
         <ul className={css.booksGrid}>
           {data?.results?.map((book) => (
             <li key={book._id} className={css.bookCard} onClick={() => handleOpenModal(book)}>

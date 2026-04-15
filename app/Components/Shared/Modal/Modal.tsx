@@ -6,7 +6,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;  
   children: ReactNode;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'large';
 };
 export default function Modal({
     isOpen,
@@ -39,12 +39,12 @@ useEffect(() => {
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {    
     if (e.target === e.currentTarget) onClose();
   };
-  const className = `dialog ${size}`;
+  const modalClasses = `${css.modal} ${size ? css[size] : ''}`;
   return createPortal(
   <>
-      <div className={css.backdrop} onClick={handleBackdropClick}><div className={css.modal}>
-        <button className="close-button" onClick={onClose}>
-          Close
+      <div className={css.backdrop} onClick={handleBackdropClick}><div className={modalClasses}>
+        <button className={css.closeBtn} onClick={onClose}>
+          X
         </button>
        
         {children}
@@ -54,17 +54,3 @@ useEffect(() => {
     </>, document.body)
 }
     
-//   );
-  
-//   (
-//     <>
-//       <button onClick={() => setShowModal(true)}>
-//         Show modal using a portal
-//       </button>
-//       {showModal && createPortal(
-//         <ModalContent onClose={() => setShowModal(false)} />,
-//         document.body
-//       )}
-//     </>
-//   );
-// }
