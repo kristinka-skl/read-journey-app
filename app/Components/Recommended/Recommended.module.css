@@ -45,6 +45,8 @@ flex-direction: column;
 gap: 8px;
 width: 137px;
 height: 248px;
+cursor: pointer;
+
 }
 .bookTitle{
     font-weight: 700;
@@ -52,6 +54,10 @@ font-size: 14px;
 line-height: 1.28571;
 letter-spacing: -0.02em;
 color: var(--foreground);
+white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;  
+  width: 100%;
 }
 .bookAuthor{
     font-weight: 500;

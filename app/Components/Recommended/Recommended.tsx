@@ -8,7 +8,14 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
+import { Book } from '@/app/types/book';
+import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
+
 export default function Recommended() {
+    const [bookDetails, setBookDetails] = useState<Book | null>(null);
+    const handleOpenModal = (book: Book) => setBookDetails(book);
+    const handleCloseModal = () => setBookDetails(null);
+    
     const searchParams = useSearchParams();
     
     const title = searchParams.get('title') || undefined;
@@ -47,6 +54,7 @@ export default function Recommended() {
   }
 
   const totalPages = data?.totalPages || 1;
+  
   return (
     <>
       
@@ -72,10 +80,10 @@ export default function Recommended() {
           </div>
         </div>
 
-        {/* СПИСОК КНИГ */}
+       
         <ul className={css.booksGrid}>
           {data?.results?.map((book) => (
-            <li key={book._id} className={css.bookCard}>
+            <li key={book._id} className={css.bookCard} onClick={() => handleOpenModal(book)}>
            
               <Image src={book.imageUrl}
                 alt={book.title}
@@ -88,6 +96,10 @@ export default function Recommended() {
             </li>
           ))}
         </ul>
+        
+        {bookDetails &&         
+        <BookDetailsModal book={bookDetails} onClose={handleCloseModal}/>
+        }
       </section>
       
     </>
