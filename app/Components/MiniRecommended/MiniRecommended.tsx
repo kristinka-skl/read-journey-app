@@ -2,8 +2,8 @@
 import css from './MiniRecommended.module.css';
 import { getBooks } from '@/app/lib/clientApi';
 import { useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
 import Link from 'next/link';
+import BookCard from '../Shared/BookCard/BookCard';
 
 export default function MiniRecommended() {
   const { data, isLoading, isError } = useQuery({
@@ -22,15 +22,8 @@ export default function MiniRecommended() {
       <ul className={css.booksGrid}>
         {data?.results?.map((book) => (
           <li key={book._id} className={css.bookCard}>
-            <Image src={book.imageUrl}
-                alt={book.title}
-                width={71}
-                height={107}
-                className={css.bookCover}/>
-              
-              <h3 className={css.bookTitle}>{book.title}</h3>
-              <p className={css.bookAuthor}>{book.author}</p>
-              </li>
+            <BookCard book={book} size='small'/>
+          </li> 
         ))}
       </ul>
 

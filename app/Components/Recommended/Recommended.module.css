@@ -48,7 +48,9 @@ height: 248px;
 cursor: pointer;
 
 }
-.bookTitle{
+
+
+/* .bookTitle{
     font-weight: 700;
 font-size: 14px;
 line-height: 1.28571;
@@ -68,4 +70,4 @@ color: var(--text-accent);
 }
 .bookCover{
     border-radius: 8px;
-}
+} */

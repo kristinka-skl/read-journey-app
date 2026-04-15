@@ -1,0 +1,87 @@
+.bookDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.bookDetails.large {
+  gap: 16px;
+}
+
+.bookCover {
+  border-radius: 8px;
+}
+
+.bookInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.bookTitle {
+  width: 100%;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.bookAuthor {
+  width: 100%;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-accent);
+}
+
+.bookPages {
+  text-align: center;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.small .bookTitle {
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.small .bookAuthor {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.medium .bookTitle {
+  font-size: 14px;
+  line-height: 1.28571;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.medium .bookAuthor {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.large .bookTitle {
+  font-size: 18px;
+  line-height: 1;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-align: center; 
+}
+
+.large .bookAuthor {
+  font-size: 12px;
+  line-height: 1.16667;
+  text-align: center; 
+}

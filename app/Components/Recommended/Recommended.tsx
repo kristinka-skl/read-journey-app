@@ -10,6 +10,7 @@ import toast from 'react-hot-toast';
 
 import { Book } from '@/app/types/book';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
+import BookCard from '../Shared/BookCard/BookCard';
 
 export default function Recommended() {
     const [bookDetails, setBookDetails] = useState<Book | null>(null);
@@ -84,15 +85,15 @@ export default function Recommended() {
         <ul className={css.booksGrid}>
           {data?.results?.map((book) => (
             <li key={book._id} className={css.bookCard} onClick={() => handleOpenModal(book)}>
-           
-              <Image src={book.imageUrl}
+           <BookCard book={book} size='medium'/>
+              {/* <Image src={book.imageUrl}
                 alt={book.title}
                 width={137}
                 height={208}
                 className={css.bookCover}/>
               
               <h3 className={css.bookTitle}>{book.title}</h3>
-              <p className={css.bookAuthor}>{book.author}</p>
+              <p className={css.bookAuthor}>{book.author}</p> */}
             </li>
           ))}
         </ul>
