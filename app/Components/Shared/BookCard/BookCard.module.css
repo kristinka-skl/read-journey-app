@@ -85,3 +85,32 @@
   line-height: 1.16667;
   text-align: center; 
 }
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--input-background); 
+  border: 1px solid var(--hover); 
+  border-radius: 8px; 
+  
+  color: var(--text-accent);
+  overflow: hidden;
+  padding: 4px;
+}
+
+.placeholder .icon {
+  font-size: 28px;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.placeholder .text {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  opacity: 0.8;
+}

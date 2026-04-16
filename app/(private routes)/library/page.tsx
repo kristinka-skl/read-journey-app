@@ -4,6 +4,7 @@ import { Dashboard } from '@/app/Components/Shared/Dashboard/Dashboard'
 import Recommended from '@/app/Components/Recommended/Recommended'
 import AddBookForm from '@/app/Components/Forms/AddBookForm/AddBookForm'
 import MiniRecommended from '@/app/Components/MiniRecommended/MiniRecommended'
+import MyLibrary from '@/app/Components/MyLibrary/MyLibrary'
 
 export default function Library(){
     return <>
@@ -17,7 +18,7 @@ export default function Library(){
             </Dashboard>
           }
         >
-          <p>My library</p>
+          <MyLibrary/>
         </PageLayout>
       </>
 }
