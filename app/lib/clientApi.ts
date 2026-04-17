@@ -1,5 +1,5 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
-import { Book, BookFormData, OwnBook } from '../types/book';
+import { Book, BookFormData, OwnBook, ReadingRequest } from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
 
@@ -74,3 +74,19 @@ export async function deleteBookFromLibrary(book_id : string)  {
     const {data} = await nextServer.delete<Book>(`/books/remove/${book_id}`);
     return data;
 }
+
+export async function getBookDetails(id: string): Promise<OwnBook> {
+  const { data } = await nextServer.get<OwnBook>(`/books/${id}`);
+  return data; 
+}
+
+export async function startReading(body: ReadingRequest): Promise<OwnBook> {
+    const { data } = await nextServer.post<OwnBook>(`/books/reading/start`, body);
+  return data; 
+}
+
+export async function finishReading(body: ReadingRequest): Promise<OwnBook> {
+    const { data } = await nextServer.post<OwnBook>(`/books/reading/finish`, body);
+  return data; 
+}
+
