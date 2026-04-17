@@ -6,10 +6,38 @@ export interface Book {
   totalPages: number;
   recommend: boolean;
 }
-export type FiltersFormData = {
+export interface BookFormData  {
     page?: number,
     limit?: number,
     title?: string
     author?: string
-    // pages?: number
+    totalPages?: number
+}
+export type BookStatus = 'unread' | 'in-progress' | 'done';
+
+export enum ProgressFilter {
+  unread = 'unread',
+  inProgress = 'in-progress',
+  done = 'done',
+  allBooks = 'allBooks',
+}
+
+export interface ReadingProgress {
+  startPage: number;
+  startReading: string;  
+  finishPage: number;
+  finishReading: string;
+  speed: number;
+  status: 'inactive' | 'active'; 
+}
+
+export interface OwnBook {
+  _id: string;
+  title: string;
+  author: string;
+  imageUrl: string;
+  totalPages: number;
+  status: BookStatus; 
+  owner: string;
+  progress: ReadingProgress[]; 
 }

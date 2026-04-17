@@ -1,51 +1,5 @@
-.bookDetails{
+.modalContent{
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;     
-  max-width: 100%;
-}
-.bookCover{
-    border-radius: 8px;
-width: 140px;
-height: 213px;
-}
-.bookInfo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4;
-    width: 100%;
-}
-.bookTitle{
-    width: 100%;
-    font-weight: 700;
-font-size: 18px;
-line-height: 1;
-letter-spacing: -0.02em;
-text-align: center;
-color: var(--foreground);
-  white-space: normal; 
-  overflow-wrap: break-word; 
-  text-overflow: ellipsis;  
-}
-
-.bookAuthor{
-    font-weight: 500;
-font-size: 12px;
-line-height: 1.16667;
-letter-spacing: -0.02em;
-text-align: center;
-color: var(--text-accent);
-}
-.bookPages{
-    font-weight: 500;
-font-size: 10px;
-line-height: 1.2;
-letter-spacing: -0.02em;
-text-align: center;
-color: var(--foreground);
+    gap: 20px;
 }

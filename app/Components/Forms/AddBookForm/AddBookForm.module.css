@@ -1,4 +1,4 @@
-.filtersSection h2 {
+.addBookSection h2 {
   font-weight: 500;
   font-size: 10px;
   line-height: 1.2;
@@ -97,8 +97,8 @@
   flex-direction: row;
   border: 1px solid var(--hover);
   border-radius: 30px;
-  padding: 10px 16px;
-  width: 98px;
+  padding: 10px 14px;
+  width: 105px;
   height: 38px;
   background-color: transparent;
   color: var(--foreground);
@@ -114,4 +114,37 @@
 
 .submitBtn:hover {
   opacity: 0.8;
+}
+.confModal {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+}
+.confTitle {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--foreground);
+}
+.text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--text-accent);
+}
+.accent {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--foreground);
 }

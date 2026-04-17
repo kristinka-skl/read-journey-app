@@ -1,6 +1,6 @@
 'use client';
 
-import { FiltersFormData } from '@/app/types/book';
+import { BookFormData } from '@/app/types/book';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import css from './FiltersForm.module.css';
@@ -8,7 +8,7 @@ import css from './FiltersForm.module.css';
 import * as yup from 'yup';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
-type FormInputs = Pick<FiltersFormData, 'title' | 'author'>;
+type FormInputs = Pick<BookFormData, 'title' | 'author'>;
 
 const schema: yup.ObjectSchema<FormInputs> = yup.object({
   title: yup.string().trim().max(100, 'Title is too long').default(''),
@@ -21,7 +21,7 @@ export const FiltersForm = () => {
   const searchParams = useSearchParams();
   const {
     register,
-    handleSubmit,
+    handleSubmit,    
     formState: { errors, dirtyFields },
   } = useForm<FormInputs>({
     resolver: yupResolver(schema),
@@ -92,7 +92,7 @@ export const FiltersForm = () => {
             }`}
           >
             <label htmlFor="author" className={css.label}>
-              Author:
+              The author:
             </label>
             <input
               id="author"

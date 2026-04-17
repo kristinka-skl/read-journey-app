@@ -3,13 +3,13 @@ import css from './Recommended.module.css';
 import { usePageLimit } from '@/app/hooks/usePageLimit';
 import { getBooks } from '@/app/lib/clientApi';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import { Book } from '@/app/types/book';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
+import BookCard from '../Shared/BookCard/BookCard';
 
 export default function Recommended() {
     const [bookDetails, setBookDetails] = useState<Book | null>(null);
@@ -84,15 +84,7 @@ export default function Recommended() {
         <ul className={css.booksGrid}>
           {data?.results?.map((book) => (
             <li key={book._id} className={css.bookCard} onClick={() => handleOpenModal(book)}>
-           
-              <Image src={book.imageUrl}
-                alt={book.title}
-                width={137}
-                height={208}
-                className={css.bookCover}/>
-              
-              <h3 className={css.bookTitle}>{book.title}</h3>
-              <p className={css.bookAuthor}>{book.author}</p>
+           <BookCard book={book} size='medium'/>              
             </li>
           ))}
         </ul>

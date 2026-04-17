@@ -56,8 +56,6 @@ color: var(--foreground);
 .text{
     font-weight: 500;
 font-size: 14px;
-
-/* line-height: 18px; */ 
 line-height: 1.28571;
 letter-spacing: -0.02em;
 color: var(--text-accent);
