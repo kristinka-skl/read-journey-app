@@ -29,6 +29,7 @@ export interface ReadingProgress {
   finishReading: string;
   speed: number;
   status: 'inactive' | 'active';
+  _id?: string
 }
 
 export interface OwnBook {

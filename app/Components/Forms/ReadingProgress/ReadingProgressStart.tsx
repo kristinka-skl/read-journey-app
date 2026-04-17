@@ -17,10 +17,12 @@ type FormInput = {
 interface ReadingProgressProps {
   totalPages: number;
   bookId: string;
+  minPage: number;
 }
 export default function ReadingProgressStart({
   totalPages,
   bookId,
+  minPage
 }: ReadingProgressProps) {
   const schema = useMemo(() => {
     return yup.object({
@@ -30,10 +32,10 @@ export default function ReadingProgressStart({
         .required('Number of pages is required')
         .positive('Pages must be a positive number')
         .integer('Pages must be a whole number')
-        .min(1, 'A book must have at least 1 page')
+        .min(minPage, `Page cannot be less than ${minPage}`)
         .max(totalPages, `Maximum page limit is ${totalPages}`),
     });
-  }, [totalPages]);
+  }, [totalPages, minPage]);
 
   const {
     register,
