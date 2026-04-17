@@ -8,6 +8,8 @@ import { addBook } from '@/app/lib/clientApi';
 import toast from 'react-hot-toast';
 import Modal from '../../Shared/Modal/Modal';
 import { useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ApiError } from '@/app/api/api';
 
 type FormInputs = Pick<BookFormData, 'title' | 'author' | 'totalPages'>;
 
@@ -56,17 +58,38 @@ export default function AddBookForm() {
     },
   });
 
-  const onSubmit = async (data: FormInputs) => {
-    try {
-      const res = await addBook(data);
-      if (res) {
-        setIsModalOpen(true);
+  const queryClient = useQueryClient();
+const { mutate, isPending } = useMutation({
+    mutationFn: async (data: FormInputs) =>
+      await addBook(data),
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ["books"],
+      });
+      toast("Successfully added!");
+      setIsModalOpen(true);
         reset();
-      } else throw Error;
-    } catch (error) {
-      toast.error('Oops! Something went wrong');
-    }
-  };
+    //   setErrors({});
+      
+      
+    },
+    onError: (error: ApiError) => {
+      const serverMessage = 
+        error?.response?.data?.response?.message || 
+        error?.response?.data?.message ||           
+        error?.message;                   
+
+      if (serverMessage === 'Such book already exists') {
+        toast.error('This book is already in your library!');
+      } else {        
+        toast.error('Sorry, something went wrong. Please try again.');
+      }
+    },
+  })
+  
+
+  const onSubmit = async (data: FormInputs) => {    
+        mutate(data)}
 
   return (
     <section className={css.addBookSection}>

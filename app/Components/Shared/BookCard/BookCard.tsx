@@ -5,8 +5,9 @@ import { Book, OwnBook } from '@/app/types/book';
 interface BookCardProps {
   book: Book | OwnBook;
   size?: 'small' | 'medium' | 'large';
+  onDeleteClick?: ()=> void;
 }
-export default function BookCard({ book, size = 'medium' }: BookCardProps) {
+export default function BookCard({ book, size = 'medium', onDeleteClick }: BookCardProps) {
   const dimensions = {
     small: { width: 71, height: 107 },
     medium: { width: 137, height: 208 },
@@ -42,6 +43,7 @@ const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
         {size === 'large' && (
           <p className={css.bookPages}>{book.totalPages} pages</p>
         )}
+        {onDeleteClick && <button type='button' onClick={onDeleteClick}>Delete</button>}
       </div>
     </div>
   );

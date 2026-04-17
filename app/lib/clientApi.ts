@@ -69,3 +69,8 @@ export async function getOwnBooks(status?: string): Promise<OwnBook[]> {
 
   return data; 
 }
+
+export async function deleteBookFromLibrary(book_id : string)  {
+    const {data} = await nextServer.delete<Book>(`/books/remove/${book_id}`);
+    return data;
+}

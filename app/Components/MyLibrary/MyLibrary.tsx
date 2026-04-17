@@ -3,12 +3,19 @@ import { useForm } from 'react-hook-form';
 import css from './MyLibrary.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { usePageLimit } from '@/app/hooks/usePageLimit';
 import BookCard from '../Shared/BookCard/BookCard';
-import { ProgressFilter } from '@/app/types/book';
-import { getOwnBooks } from '@/app/lib/clientApi';
+import { OwnBook, ProgressFilter } from '@/app/types/book';
+import { deleteBookFromLibrary, getOwnBooks } from '@/app/lib/clientApi';
+import { ApiError } from '@/app/api/api';
+import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
 
 interface FormInput {
   progress: ProgressFilter;
@@ -20,7 +27,11 @@ export default function MyLibrary() {
   const searchParams = useSearchParams();
   const currentProgress =
     (searchParams.get('status') as ProgressFilter) || ProgressFilter.allBooks;
- 
+
+const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
+    const handleOpenModal = (book: OwnBook) => setBookDetails(book);
+    const handleCloseModal = () => setBookDetails(null);
+
   const { register, watch } = useForm<FormInput>({
     defaultValues: {
       progress: currentProgress,
@@ -43,22 +54,47 @@ export default function MyLibrary() {
 
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [selectedProgress, pathname, router, searchParams]);
-const status = searchParams.get('status') || undefined;
+
+  const status = searchParams.get('status') || undefined;
   const { data, isError, isSuccess, isFetching, isLoading } = useQuery({
     queryKey: ['books', 'own', status],
     queryFn: () => getOwnBooks(status),
     placeholderData: keepPreviousData,
-    refetchOnMount: false,    
+    refetchOnMount: false,
   });
   useEffect(() => {
     if (isError) {
       toast.error('Sorry, something went wrong, please try again');
     }
   }, [isError]);
+  
+
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (id: string) => await deleteBookFromLibrary(id),
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['books'],
+      });
+      toast('Successfully deleted from the library!');
+
+      //   setErrors({});
+    },
+    onError: (error: ApiError) => {
+     
+        toast.error('Sorry, something went wrong. Please try again.');
+      
+    },
+  });
+
+  const handleDeleteBook = async (id: string) => {
+    console.log('book id to delete:', id);
+    mutate(id);
+  };
+  
   if (isLoading) {
     return <p>Loading recommendations...</p>;
   }
-
 
   return (
     <section className={css.myLibrarySection}>
@@ -72,22 +108,28 @@ const status = searchParams.get('status') || undefined;
             <option value={ProgressFilter.done}>Done</option>
           </select>
         </form>
-        
+
         <ul className={css.booksGrid}>
           {data?.map((book) => (
-            <li key={book._id} className={css.bookCard} 
-            // onClick={() => handleOpenModal(book)
+            <li
+              key={book._id}
+              className={css.bookCard}
+              onClick={() => handleOpenModal(book)
 
-            // }
+              }
             >
-           <BookCard book={book} size='medium'/>              
+              <BookCard
+                book={book}
+                size="medium"
+                onDeleteClick={() => handleDeleteBook(book._id)}
+              />
             </li>
           ))}
         </ul>
-        
-        {/* {bookDetails &&         
-        <BookDetailsModal book={bookDetails} onClose={handleCloseModal}/>
-        } */}
+
+        {bookDetails &&         
+        <BookDetailsModal book={bookDetails} onClose={handleCloseModal} startReading/>
+        }
       </div>
     </section>
   );

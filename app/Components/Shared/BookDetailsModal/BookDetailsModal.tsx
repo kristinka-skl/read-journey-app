@@ -1,20 +1,23 @@
 'use client';
-import { Book } from '@/app/types/book';
+import { Book, OwnBook } from '@/app/types/book';
 import css from './BookDetailsModal.module.css';
 import Image from 'next/image';
 import Modal from '../Modal/Modal';
 import toast from 'react-hot-toast';
 import { addBookFromRecommended } from '@/app/lib/clientApi';
 import BookCard from '../BookCard/BookCard';
+import Link from 'next/link';
 
 interface BookDetailsModalProps {
-  book: Book;
+  book: Book | OwnBook;
   onClose: () => void;
+  startReading?: boolean;
 }
 
 export default function BookDetailsModal({
   book,
   onClose,
+  startReading,
 }: BookDetailsModalProps) {
   const handleAddToLibrary = async () => {
     try {
@@ -35,9 +38,13 @@ export default function BookDetailsModal({
       <Modal isOpen onClose={onClose} size="large">
         <div className={css.modalContent}>
           <BookCard book={book} size="large" />
-          <button type="button" onClick={handleAddToLibrary}>
-            Add to library
-          </button>
+          {startReading ? (
+            <Link href={`/reading/${book._id}`}>Start reading</Link>
+          ) : (
+            <button type="button" onClick={handleAddToLibrary}>
+              Add to library
+            </button>
+          )}
         </div>
       </Modal>
     </>
