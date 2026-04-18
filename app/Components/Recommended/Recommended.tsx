@@ -67,7 +67,8 @@ export default function Recommended() {
               onClick={() => setPage((p) => p - 1)}
               disabled={page === 1}
             >
-              {'<'}
+              <svg className={css.arrowForward} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
+             
             </button>
 
             <button
@@ -75,7 +76,8 @@ export default function Recommended() {
               onClick={() => setPage((p) => p + 1)}
               disabled={page >= totalPages || isFetching} 
             >
-              {'>'}
+              <svg className={css.arrowBack} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
+             
             </button>
           </div>
         </div>

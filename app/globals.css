@@ -8,7 +8,6 @@
   --error: #e90516;
   --success: #30b94d;
   --font-main: var(--font-gilroy), sans-serif;
-  --font-secondary: var(--font-sf-pro), sans-serif;
 }
 
 
@@ -24,11 +23,9 @@ body {
 
 body {
   min-height: 100%;
-  /* display: flex;
-  flex-direction: column; */
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-main), var(--font-secondary), sans-serif;
+  font-family: var(--font-main), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -86,10 +83,7 @@ button {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-  /* color: currentColor; */
   border: none;
-
-  /* display: block; */
   cursor: pointer;
 }
 
@@ -99,8 +93,3 @@ svg {
   display: block;
   max-width: 100%;
 }
-/* @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-} */
