@@ -127,7 +127,6 @@
 .speedIcon {
   width: 44px;
   height: 18px;
-  background-color: var(--success);
 }
 .speedIconAndText {
   display: flex;
@@ -137,7 +136,17 @@
 }
 .delBtn {
   display: block;
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 18px;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.trashIcon {
+  stroke: var(--text-accent);
+  fill: none;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.trashIcon:hover {
+  stroke: var(--foreground);
 }

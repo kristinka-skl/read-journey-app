@@ -70,7 +70,6 @@ letter-spacing: -0.02em;
   border: 1px solid var(--success);
 }
 
-/* Кнопка показати/сховати пароль */
 .eyeButton {
   background: transparent;
   border: none;
@@ -79,7 +78,13 @@ letter-spacing: -0.02em;
   display: flex;
   align-items: center;
   padding: 0;
-  margin-left: 8px;
+  
+  width: 18px;
+  height: 18px;
+  
+}
+.eye{
+  stroke: var(--foreground);
 }
 
 .error {

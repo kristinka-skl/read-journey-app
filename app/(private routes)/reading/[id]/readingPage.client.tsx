@@ -20,6 +20,7 @@ import Statistics from '@/app/Components/Statistics/Statistics';
 import { ApiError } from '@/app/api/api';
 import { deleteReadingSessionRequest } from '@/app/types/book';
 import Modal from '@/app/Components/Shared/Modal/Modal';
+import { Loader } from '@/app/Components/Shared/Loader/Loader';
 
 enum Tabs {
   statistics = 'statistics',
@@ -31,7 +32,7 @@ export default function ReadingPageClient() {
   console.log('params:', params);
   const bookId = params.id as string;
   const [openTab, setOpenTab] = useState<Tabs>(Tabs.statistics);
-const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: book,
     isError,
@@ -90,13 +91,18 @@ const [isModalOpen, setIsModalOpen] = useState(false);
       const serverMessage =
         error?.response?.data?.response?.message ||
         error?.response?.data?.message ||
-        error?.message;     
-        toast.error(serverMessage || 'Sorry, something went wrong. Please try again.');      
+        error?.message;
+      toast.error(
+        serverMessage || 'Sorry, something went wrong. Please try again.'
+      );
     },
   });
 
   const handleDeleteReadingSession = (readingId: string) => {
-    const delReq :deleteReadingSessionRequest  = {bookId: bookId, readingId: readingId} 
+    const delReq: deleteReadingSessionRequest = {
+      bookId: bookId,
+      readingId: readingId,
+    };
     mutate(delReq);
   };
 
@@ -111,7 +117,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                   startPage={startPage}
                   totalPages={book.totalPages}
                   bookId={book._id}
-                  onFinishReading={()=>setIsModalOpen(true)}
+                  onFinishReading={() => setIsModalOpen(true)}
                 />
               ) : (
                 <ReadingProgressStart
@@ -139,8 +145,16 @@ const [isModalOpen, setIsModalOpen] = useState(false);
               <div className={css.header}>
                 <h3>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
                 <div className={css.tabIcons}>
-                  <p onClick={() => setOpenTab(Tabs.diary)}>D</p>
-                  <p onClick={() => setOpenTab(Tabs.statistics)}>S</p>
+                  <div onClick={() => setOpenTab(Tabs.diary)}>
+                    <svg className={`${css.iconTab} ${openTab === Tabs.diary ? css.tabActive : ''}`} width={16} height={16}>
+                      <use href="/sprite.svg#icon-hourglass"></use>
+                    </svg>
+                  </div>
+                  <div onClick={() => setOpenTab(Tabs.statistics)}>
+                    <svg className={`${css.iconTab} ${openTab === Tabs.statistics ? css.tabActive : ''}`} width={16} height={16}>
+                      <use href="/sprite.svg#icon-pie-chart"></use>
+                    </svg>
+                  </div>
                 </div>
               </div>
 
@@ -148,7 +162,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
                 <Diary
                   sessionList={book.progress}
                   totalPages={totalPages}
-                  onClick={handleDeleteReadingSession}                  
+                  onClick={handleDeleteReadingSession}
                 />
               ) : (
                 <Statistics
@@ -171,7 +185,7 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             </p>
           )}
         </div>
-
+{isLoading && <Loader/>}
         {book && (
           <>
             <BookCard book={book} size="large" />
@@ -181,7 +195,23 @@ const [isModalOpen, setIsModalOpen] = useState(false);
           </>
         )}
       </section>
-      {isModalOpen && <Modal isOpen onClose={()=>setIsModalOpen(false)} size='small'>{<p>Finish</p>}</Modal>}
+      {isModalOpen && (
+        <Modal isOpen onClose={() => setIsModalOpen(false)} size="small">
+          {
+            <div className={css.confModal}>
+              <div className={css.icon}>
+                <p>&#128077;</p>
+              </div>
+              <p className={css.confModalTitle}>The book is read</p>
+              <p className={css.confModalText}>
+                It was an <span className={css.accent}>exiting journey</span>,
+                where each page revealed new horizons, and the characters become
+                inseparable friends
+              </p>
+            </div>
+          }
+        </Modal>
+      )}
     </PageLayout>
   );
 }

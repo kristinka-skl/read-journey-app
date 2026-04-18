@@ -9,11 +9,23 @@
 .desktopNav {
   display: none;
 }
+.logoText{
+  font-weight: 700;
+font-size: 18px;
+line-height: 1;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+color: var(--foreground);
+}
 .headerSection{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+.logoIcon{
+  stroke: var(--foreground);
+  fill: var(--foreground);
 }
 .userIconBurgerWrapper{
     display: flex;
@@ -42,6 +54,9 @@ height: 35px;
     justify-content: center;
     background-color: transparent;
     color: antiquewhite;
+}
+.burgerIcon{
+  stroke: var(--foreground);
 }
 .drawerBackdrop {
   position: fixed;

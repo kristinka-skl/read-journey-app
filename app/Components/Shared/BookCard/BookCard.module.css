@@ -18,12 +18,17 @@
 
 .bookInfo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  gap: 4px;
+  gap: 14px;
   width: 100%;
 }
-
+.large .bookInfo{
+  flex-direction: column;
+  justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
 .bookTitle {
   width: 100%;
   font-weight: 700;
@@ -114,4 +119,32 @@
   letter-spacing: 0.05em;
   text-align: center;
   opacity: 0.8;
+}
+.titleAndAuthor{
+
+  display: flex;
+align-items: flex-start;
+justify-content: flex-start;
+flex-direction: column;
+gap: 2px;
+width: 95px;
+/* height: 32px; */
+
+}
+.trashBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+height: 28px;
+border-radius: 100%;
+background-color: rgba(232, 80, 80, 0.1);
+border: 1px solid rgba(232, 80, 80, 0.2);
+
+}
+.trashIcon{
+  width: 14px;
+  height: 14px;
+  stroke-width: 1px;
+stroke: #e85050;
 }

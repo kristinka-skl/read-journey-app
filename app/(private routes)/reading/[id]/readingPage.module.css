@@ -28,7 +28,7 @@
     transform: scale(0.9);
   }
   100% {
-    transform: scale(1); 
+    transform: scale(1);
   }
 }
 
@@ -61,37 +61,81 @@
   transition: all 0.2s ease-in-out;
   animation: buttonClick 0.2s ease-in-out 1;
 }
-.progressEmpty{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.progressEmpty {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .progressEmpty h3 {
-    font-weight: 700;
-font-size: 18px;
-line-height: 1;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+.text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: var(--text-accent);
+}
+.progressEmptyIcon {
+  border-radius: 100%;
+  background-color: var(--input-background);
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tabIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.confModal {
+  padding: 20px 30px;
+}
+.icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+  
+}
+.icon p{
+font-weight: 500;
+  font-family: "Noto Color Emoji";
+font-size: 68px;
+line-height: 1.02941;
 letter-spacing: -0.02em;
-color: var(--foreground);
+
 }
-.text{
-    font-weight: 500;
-font-size: 14px;
-line-height: 1.28571;
-letter-spacing: -0.02em;
-color: var(--text-accent);
+.confModalTitle {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--foreground);
+  margin-bottom: 10px;
 }
-.progressEmptyIcon{
-    border-radius: 100%;
-background-color: var(--input-background);
-width: 80px;
-height: 80px;
-margin: 0 auto;
-display: flex;
-justify-content: center;
-align-items: center;
+.confModalText {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--text-accent);
 }
-.tabIcons{
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
+.accent {
+  color: var(--foreground);
+}
+.iconTab{
+  stroke: var(--text-accent);
+  cursor: pointer;
+}
+.tabActive{
+  stroke: var(--foreground);
 }

@@ -5,20 +5,23 @@ import { Book, OwnBook } from '@/app/types/book';
 interface BookCardProps {
   book: Book | OwnBook;
   size?: 'small' | 'medium' | 'large';
-  onDeleteClick?: ()=> void;
+  onDeleteClick?: () => void;
 }
-export default function BookCard({ book, size = 'medium', onDeleteClick }: BookCardProps) {
+export default function BookCard({
+  book,
+  size = 'medium',
+  onDeleteClick,
+}: BookCardProps) {
   const dimensions = {
     small: { width: 71, height: 107 },
     medium: { width: 137, height: 208 },
     large: { width: 140, height: 213 },
   };
   const { width, height } = dimensions[size];
-const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
+  const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
   const cardClasses = `${css.bookDetails} ${css[size]}`;
-  return (    
+  return (
     <div className={cardClasses}>
-      
       {hasImage ? (
         <Image
           src={book.imageUrl}
@@ -28,24 +31,37 @@ const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
           className={css.bookCover}
         />
       ) : (
-        <div 
-          className={css.placeholder} 
+        <div
+          className={css.placeholder}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
-          <span className={css.icon}>📖</span>
-          {size !== 'small' && <span className={css.text}>No cover</span>}
+          <span className={css.icon}>
+            <Image width={111} height={72} alt='No image' src='/images/no-cover.png'/>
+          </span>
+          
         </div>
       )}
 
       <div className={css.bookInfo}>
+        <div className={css.titleAndAuthor}>
         <h3 className={css.bookTitle}>{book.title}</h3>
-        <p className={css.bookAuthor}>{book.author}</p>
+        <p className={css.bookAuthor}>{book.author}</p></div>
         {size === 'large' && (
           <p className={css.bookPages}>{book.totalPages} pages</p>
         )}
-        {onDeleteClick && <button type='button' onClick={onDeleteClick}>Delete</button>}
+        {onDeleteClick && (
+          <button
+          className={css.trashBtn}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteClick();
+            }}
+          >
+            <svg className={css.trashIcon}><use href='/sprite.svg#icon-trash'></use></svg>
+          </button>
+        )}
       </div>
     </div>
   );
 }
-

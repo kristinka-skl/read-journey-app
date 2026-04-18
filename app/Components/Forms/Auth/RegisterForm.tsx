@@ -125,7 +125,10 @@ export default function RegisterForm() {
             className={css.eyeButton}
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? <p>y</p> : <p>n</p>}
+            {showPassword ? 
+            <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye'></use></svg>
+            
+             : <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye-off'></use></svg>}
           </button>
           {errors.password ? (
             <p className={css.error}>{errors.password.message}</p>
