@@ -35,7 +35,7 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors, dirtyFields, isSubmitting },
   } = useForm<LoginFormData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -120,8 +120,8 @@ export default function LoginForm() {
       </div>
 
       <div className={css.actions}>
-        <button type="submit" className={css.submitBtn}>
-          Log In
+        <button type="submit" className={css.submitBtn} disabled={isSubmitting}>
+          {isSubmitting ? 'Logging in...' : 'Log in'}
         </button>
         <Link href="/register" className={css.loginLink}>
           Don’t have an account?

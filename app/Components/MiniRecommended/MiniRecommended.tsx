@@ -4,6 +4,7 @@ import { getBooks } from '@/app/lib/clientApi';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import BookCard from '../Shared/BookCard/BookCard';
+import { Loader } from '../Shared/Loader/Loader';
 
 export default function MiniRecommended() {
   const { data, isLoading, isError } = useQuery({
@@ -12,7 +13,7 @@ export default function MiniRecommended() {
     refetchOnMount: false,
   });
 
-  if (isLoading) return <p>Loading suggestions...</p>;
+  if (isLoading) return <Loader/>;
   if (isError) return null; 
 
   return (

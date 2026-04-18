@@ -11,12 +11,12 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { usePageLimit } from '@/app/hooks/usePageLimit';
 import BookCard from '../Shared/BookCard/BookCard';
 import { OwnBook, ProgressFilter } from '@/app/types/book';
 import { deleteBookFromLibrary, getOwnBooks } from '@/app/lib/clientApi';
 import { ApiError } from '@/app/api/api';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
+import { Loader } from '../Shared/Loader/Loader';
 
 interface FormInput {
   progress: ProgressFilter;
@@ -66,7 +66,7 @@ export default function MyLibrary() {
   }, [selectedProgress, pathname, router, searchParams]);
 
   const status = searchParams.get('status') || undefined;
-  const { data, isError, isSuccess, isFetching, isLoading } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: ['books', 'own', status],
     queryFn: () => getOwnBooks(status),
     placeholderData: keepPreviousData,
@@ -79,7 +79,7 @@ export default function MyLibrary() {
   }, [isError]);
 
   const queryClient = useQueryClient();
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, variables } = useMutation({
     mutationFn: async (id: string) => await deleteBookFromLibrary(id),
     onSuccess() {
       queryClient.invalidateQueries({
@@ -97,7 +97,7 @@ export default function MyLibrary() {
   };
 
   if (isLoading) {
-    return <p>Loading recommendations...</p>;
+    return <Loader/>;
   }
 
   return (
@@ -151,7 +151,10 @@ export default function MyLibrary() {
       </div>
       
       <ul className={css.booksGrid}>
-        {data?.map((book) => (
+        {data?.map((book) => {
+          const isDeletingThisBook = isPending && variables === book._id;
+        
+        return (
           <li
             key={book._id}
             className={css.bookCard}
@@ -161,9 +164,10 @@ export default function MyLibrary() {
               book={book}
               size="medium"
               onDeleteClick={() => handleDeleteBook(book._id)}
+              isDeleting={isDeletingThisBook}
             />
           </li>
-        ))}
+        )})}
       </ul>
 
       {bookDetails && (

@@ -112,7 +112,14 @@ height: 35px;
   height: 20px;
   pointer-events: none;
 }
+.closeIcon{
+  stroke: var(--foreground);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.closeIcon:hover{
+  transform: scale(1.1);
 
+}
 .drawerNavList{
     display: flex;
     flex-direction: column;

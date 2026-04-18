@@ -69,9 +69,6 @@ const { mutate, isPending } = useMutation({
       toast("Successfully added!");
       setIsModalOpen(true);
         reset();
-    //   setErrors({});
-      
-      
     },
     onError: (error: ApiError) => {
       const serverMessage = 
@@ -85,8 +82,7 @@ const { mutate, isPending } = useMutation({
         toast.error('Sorry, something went wrong. Please try again.');
       }
     },
-  })
-  
+  })  
 
   const onSubmit = async (data: FormInputs) => {    
         mutate(data)}
@@ -175,7 +171,7 @@ const { mutate, isPending } = useMutation({
         </div>
         <div className={css.actions}>
           <button type="submit" className={css.submitBtn}>
-            Add book
+            {isPending ? 'Adding...' : 'Add book'}            
           </button>
         </div>
       </form>

@@ -148,3 +148,17 @@ border: 1px solid rgba(232, 80, 80, 0.2);
   stroke-width: 1px;
 stroke: #e85050;
 }
+
+.trashBtn:disabled {
+  cursor: wait; 
+  opacity: 0.5; 
+}
+
+.trashBtn:disabled .trashIcon {
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(0.8); }
+}

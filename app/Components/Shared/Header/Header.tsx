@@ -92,12 +92,6 @@ export default function Header() {
           <svg className={css.burgerIcon} width={28} height={28}><use href='/sprite.svg#icon-burger-menu'></use></svg>
           
         </button>
-
-        {/* <svg> */}
-        {/* <use href=''> */}
-
-        {/* </use> */}
-        {/* </svg> */}
       </div>
 
       {/* drawer */}
@@ -118,15 +112,7 @@ export default function Header() {
             onClick={closeDrawer}
             aria-label="Close menu"
           >
-            X
-            {/* <svg
-                className={css.drawerCloseIcon}
-                width="20"
-                height="20"
-                aria-hidden="true"
-              >
-                <use href="/sprite.svg#icon-close" />
-              </svg> */}
+            <svg className={css.closeIcon} width={22} height={22}><use href='/sprite.svg#icon-close'></use></svg>
           </button>
           <nav className={css.drawerNav} aria-label="Mobile navigation">
             <ul className={css.drawerNavList}>

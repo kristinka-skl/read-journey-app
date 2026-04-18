@@ -35,9 +35,7 @@ export default function ReadingPageClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: book,
-    isError,
-    isSuccess,
-    isFetching,
+    isError,       
     isLoading,
   } = useQuery({
     queryKey: ['book', bookId],
@@ -76,7 +74,7 @@ export default function ReadingPageClient() {
   const readPercentage = Number(((lastReadPage / totalPages) * 100).toFixed(2));
 
   const queryClient = useQueryClient();
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, variables } = useMutation({
     mutationFn: async (data: deleteReadingSessionRequest) =>
       await deleteReadingSession(data),
     onSuccess() {
@@ -84,8 +82,6 @@ export default function ReadingPageClient() {
         queryKey: ['book', bookId],
       });
       toast('Successfully deleted!');
-
-      //   setErrors({});
     },
     onError: (error: ApiError) => {
       const serverMessage =
@@ -97,7 +93,7 @@ export default function ReadingPageClient() {
       );
     },
   });
-
+const deletingSessionId = isPending ? variables?.readingId : null;
   const handleDeleteReadingSession = (readingId: string) => {
     const delReq: deleteReadingSessionRequest = {
       bookId: bookId,
@@ -163,6 +159,7 @@ export default function ReadingPageClient() {
                   sessionList={book.progress}
                   totalPages={totalPages}
                   onClick={handleDeleteReadingSession}
+                  deletingSessionId={deletingSessionId}                  
                 />
               ) : (
                 <Statistics

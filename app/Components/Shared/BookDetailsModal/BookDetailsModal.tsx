@@ -30,8 +30,6 @@ export default function BookDetailsModal({
       });
       toast.success('Book added to library');
       onClose();
-
-      //   setErrors({});
     },
     onError: (error: ApiError) => {
       toast.error('Sorry, something went wrong. Please try again.');
@@ -51,7 +49,7 @@ export default function BookDetailsModal({
             <Link href={`/reading/${book._id}`}>Start reading</Link>
           ) : (
             <button type="button" onClick={handleAddToLibrary}>
-              Add to library
+              {isPending ? 'Adding...' : 'Add to library'}
             </button>
           )}
         </div>

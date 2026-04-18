@@ -30,13 +30,12 @@ const schema = yup
 
 export default function RegisterForm() {
   const router = useRouter();
-  // const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const setUser = useAuthStore((state) => state.setUser);
   const {
     register,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors, dirtyFields, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -139,8 +138,8 @@ export default function RegisterForm() {
       </div>
 
       <div className={css.actions}>
-        <button type="submit" className={css.submitBtn}>
-          Registration
+        <button type="submit" className={css.submitBtn} disabled={isSubmitting}>
+          {isSubmitting ? 'Registering...' : 'Registration'}
         </button>
         <Link href="/login" className={css.loginLink}>
           Already have an account?
