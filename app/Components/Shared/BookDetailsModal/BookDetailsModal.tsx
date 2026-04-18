@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 import { addBookFromRecommended } from '@/app/lib/clientApi';
 import BookCard from '../BookCard/BookCard';
 import Link from 'next/link';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ApiError } from '@/app/api/api';
 
 interface BookDetailsModalProps {
   book: Book | OwnBook;
@@ -19,20 +21,27 @@ export default function BookDetailsModal({
   onClose,
   startReading,
 }: BookDetailsModalProps) {
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (id: string) => await addBookFromRecommended(id),
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['books'],
+      });
+      toast.success('Book added to library');
+      onClose();
+
+      //   setErrors({});
+    },
+    onError: (error: ApiError) => {
+      toast.error('Sorry, something went wrong. Please try again.');
+    },
+  });
+
   const handleAddToLibrary = async () => {
-    try {
-      console.log('book._id:', book._id);
-      const res = await addBookFromRecommended(book._id);
-      if (res) {
-        toast.success('Book added to library');
-        onClose();
-      } else {
-        throw Error;
-      }
-    } catch (error) {
-      toast.error('Oops! Something went wrong');
-    }
+    mutate(book._id);
   };
+
   return (
     <>
       <Modal isOpen onClose={onClose} size="large">

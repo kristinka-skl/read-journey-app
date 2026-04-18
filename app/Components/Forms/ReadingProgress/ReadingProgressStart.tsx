@@ -52,7 +52,7 @@ export default function ReadingProgressStart({
 
 
 const queryClient = useQueryClient();
-const { mutate, isPending } = useMutation({
+const startReadingMutation = useMutation({
     mutationFn: async (data: ReadingRequest) =>
       await startReading(data),
     onSuccess() {
@@ -78,7 +78,7 @@ const { mutate, isPending } = useMutation({
       id: bookId,
       page: data.page,
     };
-    mutate(progressRequest);
+    startReadingMutation.mutate(progressRequest);
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>

@@ -28,9 +28,9 @@ export default function MyLibrary() {
   const currentProgress =
     (searchParams.get('status') as ProgressFilter) || ProgressFilter.allBooks;
 
-const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
-    const handleOpenModal = (book: OwnBook) => setBookDetails(book);
-    const handleCloseModal = () => setBookDetails(null);
+  const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
+  const handleOpenModal = (book: OwnBook) => setBookDetails(book);
+  const handleCloseModal = () => setBookDetails(null);
 
   const { register, watch } = useForm<FormInput>({
     defaultValues: {
@@ -60,14 +60,12 @@ const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
     queryKey: ['books', 'own', status],
     queryFn: () => getOwnBooks(status),
     placeholderData: keepPreviousData,
-    refetchOnMount: false,
   });
   useEffect(() => {
     if (isError) {
       toast.error('Sorry, something went wrong, please try again');
     }
   }, [isError]);
-  
 
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
@@ -81,9 +79,7 @@ const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
       //   setErrors({});
     },
     onError: (error: ApiError) => {
-     
-        toast.error('Sorry, something went wrong. Please try again.');
-      
+      toast.error('Sorry, something went wrong. Please try again.');
     },
   });
 
@@ -91,7 +87,7 @@ const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
     console.log('book id to delete:', id);
     mutate(id);
   };
-  
+
   if (isLoading) {
     return <p>Loading recommendations...</p>;
   }
@@ -114,9 +110,7 @@ const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
             <li
               key={book._id}
               className={css.bookCard}
-              onClick={() => handleOpenModal(book)
-
-              }
+              onClick={() => handleOpenModal(book)}
             >
               <BookCard
                 book={book}
@@ -127,9 +121,13 @@ const [bookDetails, setBookDetails] = useState<OwnBook | null>(null);
           ))}
         </ul>
 
-        {bookDetails &&         
-        <BookDetailsModal book={bookDetails} onClose={handleCloseModal} startReading/>
-        }
+        {bookDetails && (
+          <BookDetailsModal
+            book={bookDetails}
+            onClose={handleCloseModal}
+            startReading
+          />
+        )}
       </div>
     </section>
   );

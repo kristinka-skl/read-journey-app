@@ -19,6 +19,7 @@ import Diary from '@/app/Components/Diary/Diary';
 import Statistics from '@/app/Components/Statistics/Statistics';
 import { ApiError } from '@/app/api/api';
 import { deleteReadingSessionRequest } from '@/app/types/book';
+import Modal from '@/app/Components/Shared/Modal/Modal';
 
 enum Tabs {
   statistics = 'statistics',
@@ -30,7 +31,7 @@ export default function ReadingPageClient() {
   console.log('params:', params);
   const bookId = params.id as string;
   const [openTab, setOpenTab] = useState<Tabs>(Tabs.statistics);
-
+const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: book,
     isError,
@@ -61,7 +62,7 @@ export default function ReadingPageClient() {
   }
   const minStartPage = lastReadPage === 0 ? 1 : lastReadPage;
 
-  const progress = book?.status === 'in-progress';
+  const progress = book && book.status !== 'unread';
   const activeSession = book?.progress?.find(
     (session) => session.status === 'active'
   );
@@ -110,6 +111,7 @@ export default function ReadingPageClient() {
                   startPage={startPage}
                   totalPages={book.totalPages}
                   bookId={book._id}
+                  onFinishReading={()=>setIsModalOpen(true)}
                 />
               ) : (
                 <ReadingProgressStart
@@ -179,6 +181,7 @@ export default function ReadingPageClient() {
           </>
         )}
       </section>
+      {isModalOpen && <Modal isOpen onClose={()=>setIsModalOpen(false)} size='small'>{<p>Finish</p>}</Modal>}
     </PageLayout>
   );
 }
