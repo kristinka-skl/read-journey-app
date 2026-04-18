@@ -35,26 +35,30 @@ export default function BookCard({
           className={css.placeholder}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
-          <span className={css.icon}>📖</span>
-          {size !== 'small' && <span className={css.text}>No cover</span>}
+          <span className={css.icon}>
+            <Image width={111} height={72} alt='No image' src='/images/no-cover.png'/>
+          </span>
+          
         </div>
       )}
 
       <div className={css.bookInfo}>
+        <div className={css.titleAndAuthor}>
         <h3 className={css.bookTitle}>{book.title}</h3>
-        <p className={css.bookAuthor}>{book.author}</p>
+        <p className={css.bookAuthor}>{book.author}</p></div>
         {size === 'large' && (
           <p className={css.bookPages}>{book.totalPages} pages</p>
         )}
         {onDeleteClick && (
           <button
+          className={css.trashBtn}
             type="button"
             onClick={(e) => {
               e.stopPropagation();
               onDeleteClick();
             }}
           >
-            Delete
+            <svg className={css.trashIcon}><use href='/sprite.svg#icon-trash'></use></svg>
           </button>
         )}
       </div>

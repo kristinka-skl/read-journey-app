@@ -1,5 +1,6 @@
 'use client';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/react';
 import css from './MyLibrary.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -21,6 +22,13 @@ interface FormInput {
   progress: ProgressFilter;
 }
 
+const OPTIONS = [
+  { value: ProgressFilter.allBooks, label: 'All books' },
+  { value: ProgressFilter.unread, label: 'Unread' },
+  { value: ProgressFilter.inProgress, label: 'In progress' },
+  { value: ProgressFilter.done, label: 'Done' },
+];
+
 export default function MyLibrary() {
   const router = useRouter();
   const pathname = usePathname();
@@ -32,12 +40,14 @@ export default function MyLibrary() {
   const handleOpenModal = (book: OwnBook) => setBookDetails(book);
   const handleCloseModal = () => setBookDetails(null);
 
-  const { register, watch } = useForm<FormInput>({
+  const { watch, control } = useForm<FormInput>({
     defaultValues: {
       progress: currentProgress,
     },
   });
+  
   const selectedProgress = watch('progress');
+  
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     const currentStatusInUrl = params.get('status') || ProgressFilter.allBooks;
@@ -61,6 +71,7 @@ export default function MyLibrary() {
     queryFn: () => getOwnBooks(status),
     placeholderData: keepPreviousData,
   });
+  
   useEffect(() => {
     if (isError) {
       toast.error('Sorry, something went wrong, please try again');
@@ -75,8 +86,6 @@ export default function MyLibrary() {
         queryKey: ['books'],
       });
       toast('Successfully deleted from the library!');
-
-      //   setErrors({});
     },
     onError: (error: ApiError) => {
       toast.error('Sorry, something went wrong. Please try again.');
@@ -84,7 +93,6 @@ export default function MyLibrary() {
   });
 
   const handleDeleteBook = async (id: string) => {
-    console.log('book id to delete:', id);
     mutate(id);
   };
 
@@ -97,38 +105,74 @@ export default function MyLibrary() {
       <div className={css.header}>
         <h2>My Library</h2>
         <form>
-          <select {...register('progress')} className={css.dropdown}>
-            <option value={ProgressFilter.allBooks}>All books</option>
-            <option value={ProgressFilter.unread}>Unread</option>
-            <option value={ProgressFilter.inProgress}>In progress</option>
-            <option value={ProgressFilter.done}>Done</option>
-          </select>
-        </form>
+          <Controller
+            control={control}
+            name="progress"
+            render={({ field: { value, onChange } }) => {
+             
+              const selectedOption = OPTIONS.find((opt) => opt.value === value);
 
-        <ul className={css.booksGrid}>
-          {data?.map((book) => (
-            <li
-              key={book._id}
-              className={css.bookCard}
-              onClick={() => handleOpenModal(book)}
-            >
-              <BookCard
-                book={book}
-                size="medium"
-                onDeleteClick={() => handleDeleteBook(book._id)}
-              />
-            </li>
-          ))}
-        </ul>
+              return (
+                <Listbox value={value} onChange={onChange}>
+                  <div className={css.selectContainer}>
+                    <ListboxButton className={css.dropdownButton}>
+                      {selectedOption?.label}
+                      <svg
+                        width="16"
+                        height="16"
+                        
+                        className={css.chevron}
+                      >
+                        <use href='/sprite.svg#icon-chevron-down'></use>
+                      </svg>
+                    </ListboxButton>
 
-        {bookDetails && (
-          <BookDetailsModal
-            book={bookDetails}
-            onClose={handleCloseModal}
-            startReading
+                    <ListboxOptions className={css.optionsList}>
+                      {OPTIONS.map((option) => (
+                        <ListboxOption
+                          key={option.value}
+                          value={option.value}
+                          className={({ active, selected }) =>
+                            `${css.option} ${
+                              active || selected ? css.optionActive : ''
+                            }`
+                          }
+                        >
+                          {option.label}
+                        </ListboxOption>
+                      ))}
+                    </ListboxOptions>
+                  </div>
+                </Listbox>
+              );
+            }}
           />
-        )}
+        </form>
       </div>
+      
+      <ul className={css.booksGrid}>
+        {data?.map((book) => (
+          <li
+            key={book._id}
+            className={css.bookCard}
+            onClick={() => handleOpenModal(book)}
+          >
+            <BookCard
+              book={book}
+              size="medium"
+              onDeleteClick={() => handleDeleteBook(book._id)}
+            />
+          </li>
+        ))}
+      </ul>
+
+      {bookDetails && (
+        <BookDetailsModal
+          book={bookDetails}
+          onClose={handleCloseModal}
+          startReading
+        />
+      )}
     </section>
   );
 }

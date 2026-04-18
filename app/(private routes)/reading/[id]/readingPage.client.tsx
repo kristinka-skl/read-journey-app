@@ -144,8 +144,16 @@ export default function ReadingPageClient() {
               <div className={css.header}>
                 <h3>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
                 <div className={css.tabIcons}>
-                  <p onClick={() => setOpenTab(Tabs.diary)}>D</p>
-                  <p onClick={() => setOpenTab(Tabs.statistics)}>S</p>
+                  <div onClick={() => setOpenTab(Tabs.diary)}>
+                    <svg className={`${css.iconTab} ${openTab === Tabs.diary ? css.tabActive : ''}`} width={16} height={16}>
+                      <use href="/sprite.svg#icon-hourglass"></use>
+                    </svg>
+                  </div>
+                  <div onClick={() => setOpenTab(Tabs.statistics)}>
+                    <svg className={`${css.iconTab} ${openTab === Tabs.statistics ? css.tabActive : ''}`} width={16} height={16}>
+                      <use href="/sprite.svg#icon-pie-chart"></use>
+                    </svg>
+                  </div>
                 </div>
               </div>
 
@@ -190,11 +198,14 @@ export default function ReadingPageClient() {
         <Modal isOpen onClose={() => setIsModalOpen(false)} size="small">
           {
             <div className={css.confModal}>
-              <div className={css.icon}></div>
+              <div className={css.icon}>
+                <p>&#128077;</p>
+              </div>
               <p className={css.confModalTitle}>The book is read</p>
               <p className={css.confModalText}>
-                It was an <span className={css.accent}>exiting journey</span>, where each page revealed
-                new horizons, and the characters become inseparable friends
+                It was an <span className={css.accent}>exiting journey</span>,
+                where each page revealed new horizons, and the characters become
+                inseparable friends
               </p>
             </div>
           }

@@ -26,12 +26,20 @@ border-radius: 12px;
 }
 .closeBtn{
     position: absolute;
-    top: 16px;
-    right: 16px;
-    background-color: transparent;
-
-    color: var(--foreground);
+    top: 22px;
+    right: 22px;
+    background-color: transparent;    
 }
+
+.closeIcon{
+  stroke: var(--foreground);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.closeIcon:hover{
+  transform: scale(1.1);
+
+}
+
 @media screen and (min-width: 768px) {  
   .small {
     width: 342px; 

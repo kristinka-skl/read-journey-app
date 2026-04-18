@@ -1,0 +1,73 @@
+.booksGrid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 21px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+.selectContainer {
+  position: relative;
+  width: 140px; 
+}
+
+.dropdownButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  border: 1px solid var(--hover);
+  border-radius: 12px;
+  padding: 12px 14px;
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.dropdownButton:hover {
+  border-color: var(--foreground);
+}
+
+.chevron {
+  stroke: var(--foreground);
+}
+
+.optionsList {
+  position: absolute;
+  top: calc(100% + 8px); 
+  left: 0;
+  width: 100%;
+  background-color: var(--input-background); 
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  list-style: none;
+  z-index: 10;
+}
+
+.option {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: var(--text-accent); 
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.optionActive {
+  color: var(--foreground); 
+}

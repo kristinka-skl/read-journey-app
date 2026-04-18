@@ -28,7 +28,7 @@ export default function MiniRecommended() {
       </ul>
 
       <Link href="/recommended" className={css.link}>
-        <p>Home</p><p>{'=>'}</p>
+        <p>Home</p><svg className={css.redirect} width={20} height={20}><use href='/sprite.svg#icon-redirect'></use></svg>
       </Link>
 
      

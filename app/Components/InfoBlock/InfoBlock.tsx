@@ -26,7 +26,9 @@ export default function InfoBlock() {
         </li>
       </ul>
       {/* <div className={css.link}> */}
-        <Link href="/library" className={css.link}><p>My library</p><p>{'=>'}</p></Link>
+        <Link href="/library" className={css.link}><p>My library</p>
+        <svg className={css.redirect} width={20} height={20}><use href='/sprite.svg#icon-redirect'></use></svg>
+        </Link>
         
       {/* </div> */}
     </section>

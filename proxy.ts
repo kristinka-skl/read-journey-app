@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { parse } from 'cookie';
-import { checkServerSession } from './app/lib/serverApi';
-
+import { refreshServerSession } from './app/lib/serverApi';
 
 const privateRoutes = ['/recommended', '/library', '/reading'];
 const publicRoutes = ['/login', '/register'];
@@ -13,40 +12,40 @@ export async function proxy(request: NextRequest) {
   const accessToken = cookieStore.get('accessToken')?.value;
   const refreshToken = cookieStore.get('refreshToken')?.value;
 
-  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
-  const isPrivateRoute = privateRoutes.some((route) => pathname.startsWith(route));
+  const isPublicRoute = publicRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
+  const isPrivateRoute = privateRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
 
   if (!accessToken) {
     if (refreshToken) {
-      const data = await checkServerSession();
-      const setCookie = data.headers['set-cookie'];
+      try {
+        const data = await refreshServerSession(refreshToken);
+        const newToken = data.data.token;
+        const newRefreshToken = data.data.refreshToken;
 
-      if (setCookie) {
-        const cookieArray = Array.isArray(setCookie) ? setCookie : [setCookie];
-        for (const cookieStr of cookieArray) {
-          const parsed = parse(cookieStr);
-          const options = {
-            expires: parsed.Expires ? new Date(parsed.Expires) : undefined,
-            path: parsed.Path,
-            maxAge: Number(parsed['Max-Age']),
-          };
-          if (parsed.accessToken) cookieStore.set('accessToken', parsed.accessToken, options);
-          if (parsed.refreshToken) cookieStore.set('refreshToken', parsed.refreshToken, options);
+        if (newToken && newRefreshToken) {
+          cookieStore.set('accessToken', newToken);
+          cookieStore.set('refreshToken', newRefreshToken);
+          if (isPublicRoute) {
+            return NextResponse.redirect(new URL('/recommended', request.url), {
+              headers: {
+                Authorization: `Bearer ${newToken}`,
+              },
+            });
+          }
+          if (isPrivateRoute) {
+            return NextResponse.next({
+              headers: {
+                Authorization: `Bearer ${newToken}`,
+              },
+            });
+          }
         }
-        if (isPublicRoute) {
-          return NextResponse.redirect(new URL('/recommended', request.url), {
-            headers: {
-              Cookie: cookieStore.toString(),
-            },
-          });
-        }
-        if (isPrivateRoute) {
-          return NextResponse.next({
-            headers: {
-              Cookie: cookieStore.toString(),
-            },
-          });
-        }
+      } catch {
+        return NextResponse.redirect(new URL('/', request.url), {});
       }
     }
     if (isPublicRoute) {
@@ -67,5 +66,11 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/recommended/:path*', '/library/:path*', '/reading/:path*', '/login', '/register'],
+  matcher: [
+    '/recommended/:path*',
+    '/library/:path*',
+    '/reading/:path*',
+    '/login',
+    '/register',
+  ],
 };

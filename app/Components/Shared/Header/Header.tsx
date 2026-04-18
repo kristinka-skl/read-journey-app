@@ -48,9 +48,16 @@ export default function Header() {
   return (
     <section className={css.headerSection}>
       <Link href="/">
-        <p>Logo</p>
+      <div>
+      <svg className={css.logoIcon} width={42} height={17}><use href='/sprite.svg#icon-read-logo'></use></svg>
+      
+        </div>
       </Link>
       <nav className={css.desktopNav}>
+        <Link href="/"><div>
+      <svg className={css.logoIcon} width={42} height={17}><use href='/sprite.svg#icon-read-logo'></use></svg>
+      
+        <p className={css.logoText}>READ JOURNEY</p></div></Link>
         <ul className={css.navLinks}>
           <li>
             <Link
@@ -82,7 +89,8 @@ export default function Header() {
           aria-expanded={isDrawerOpen}
           onClick={() => setIsDrawerOpen(true)}
         >
-          <p>=</p>
+          <svg className={css.burgerIcon} width={28} height={28}><use href='/sprite.svg#icon-burger-menu'></use></svg>
+          
         </button>
 
         {/* <svg> */}

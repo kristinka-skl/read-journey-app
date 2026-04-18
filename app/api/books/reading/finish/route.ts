@@ -23,6 +23,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
+      console.log('next !!!!!!!', error);
     if (isAxiosError(error)) {
     //   logErrorResponse(error.response?.data);
       return NextResponse.json(
