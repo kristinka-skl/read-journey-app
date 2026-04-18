@@ -104,10 +104,12 @@ color: var(--foreground);
   letter-spacing: 0.02em;
   margin-top: 12px;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
   margin-bottom: 20px;
 }
 
 .submitBtn:hover {
-  opacity: 0.8;
+  background-color: var(--foreground);
+color: var(--input-background);
 }
+

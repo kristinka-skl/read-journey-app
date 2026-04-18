@@ -3,3 +3,27 @@
     flex-direction: column;
     gap: 20px;
 }
+.secondaryButton{
+  display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+gap: 10px;
+border: 1px solid var(--hover);
+border-radius: 30px;
+background-color: var(--input-background);
+padding: 10px 6px;
+width: 116px;
+height: 38px;
+font-weight: 700;
+font-size: 14px;
+color: var(--foreground);
+margin: 0 auto;
+line-height: 1.28571;
+letter-spacing: 0.02em;
+transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.secondaryButton:hover{
+background-color: var(--foreground);
+color: var(--input-background);
+}

@@ -2,40 +2,40 @@
   border-radius: 15px;
   width: 335px;
   height: 57px;
-  background-color: var(--input-background);
+  background-color: var(--card-background);
   padding: 10px 20px;
   margin-bottom: 10px;
 }
 .desktopNav {
   display: none;
 }
-.logoText{
+.logoText {
   font-weight: 700;
-font-size: 18px;
-line-height: 1;
-letter-spacing: 0.02em;
-text-transform: uppercase;
-color: var(--foreground);
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--foreground);
 }
-.headerSection{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.headerSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-.logoIcon{
+.logoIcon {
   stroke: var(--foreground);
   fill: var(--foreground);
 }
-.userIconBurgerWrapper{
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
+.userIconBurgerWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
 }
 .userIcon {
-    width: 35px;
-height: 35px;
+  width: 35px;
+  height: 35px;
   border-radius: 100%;
   color: var(--input-background);
   border: 1px solid rgba(249, 249, 249, 0.2);
@@ -43,19 +43,24 @@ height: 35px;
   justify-content: center;
   align-items: center;
 }
-.userName{
-    color: var(--foreground);
+.userName {
+  color: var(--foreground);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
 }
-.burgerWrapper{
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: transparent;
-    color: antiquewhite;
+.burgerWrapper {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: antiquewhite;
 }
-.burgerIcon{
+.burgerIcon {
   stroke: var(--foreground);
 }
 .drawerBackdrop {
@@ -64,8 +69,10 @@ height: 35px;
   background: rgba(20, 20, 20, 0.6);
   z-index: 100;
   opacity: 0;
-  visibility: hidden; 
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 .drawerBackdrop.isOpen {
   opacity: 1;
@@ -112,31 +119,56 @@ height: 35px;
   height: 20px;
   pointer-events: none;
 }
-.closeIcon{
+.closeIcon {
   stroke: var(--foreground);
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
-.closeIcon:hover{
+.closeIcon:hover {
   transform: scale(1.1);
-
 }
-.drawerNavList{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.drawerNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
-.drawerNavList>li{
-    width: fit-content;
-    color: var(--text-accent);
+.drawerNavList > li {
+  width: fit-content;
+  color: var(--text-accent);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
-.active{
-
-    color: var(--foreground);
+.drawerNavList > li:hover{
+  color: var(--foreground);
 }
-.active:after{
-    content: '';
-    border-radius: 8px;
-    display: block;    
-    width: 100%;
-    border-bottom: 3px solid #4f92f7;    
+.active {
+  color: var(--foreground);
+}
+.active:after {
+  content: '';
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  border-bottom: 3px solid #4f92f7;
+}
+.secondaryButton{
+  display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+gap: 10px;
+border: 1px solid var(--hover);
+border-radius: 30px;
+background-color: var(--input-background);
+padding: 10px 6px;
+width: 116px;
+height: 38px;
+font-weight: 700;
+font-size: 14px;
+color: var(--foreground);
+line-height: 1.28571;
+letter-spacing: 0.02em;
+transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.secondaryButton:hover{
+background-color: var(--foreground);
+color: var(--input-background);
 }

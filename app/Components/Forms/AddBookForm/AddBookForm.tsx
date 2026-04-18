@@ -10,6 +10,7 @@ import Modal from '../../Shared/Modal/Modal';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@/app/api/api';
+import Image from 'next/image';
 
 type FormInputs = Pick<BookFormData, 'title' | 'author' | 'totalPages'>;
 
@@ -177,7 +178,9 @@ const { mutate, isPending } = useMutation({
       </form>
       {isModalOpen && (
         <Modal size='small' isOpen onClose={handleModalClose}>
-          <div className={css.confModal}><p className={css.titleModal}>Good job</p>
+          <div className={css.confModal}>
+            <div className={css.icon}><Image alt='thumb up' width={50} height={50} src='/images/thumb-up.png'/></div>
+            <p className={css.titleModal}>Good job</p>
           <p className={css.text}>
             Your book is now in <span className={css.accent}>the library</span>! The joy knows no
             bounds and now you can start your training

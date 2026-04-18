@@ -21,6 +21,7 @@ import { ApiError } from '@/app/api/api';
 import { deleteReadingSessionRequest } from '@/app/types/book';
 import Modal from '@/app/Components/Shared/Modal/Modal';
 import { Loader } from '@/app/Components/Shared/Loader/Loader';
+import Image from 'next/image';
 
 enum Tabs {
   statistics = 'statistics',
@@ -197,7 +198,7 @@ const deletingSessionId = isPending ? variables?.readingId : null;
           {
             <div className={css.confModal}>
               <div className={css.icon}>
-                <p>&#128077;</p>
+                <Image alt='thumb up' width={50} height={50} src='/images/books.png'/>
               </div>
               <p className={css.confModalTitle}>The book is read</p>
               <p className={css.confModalText}>

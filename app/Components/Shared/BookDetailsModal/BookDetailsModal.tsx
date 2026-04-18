@@ -46,9 +46,9 @@ export default function BookDetailsModal({
         <div className={css.modalContent}>
           <BookCard book={book} size="large" />
           {startReading ? (
-            <Link href={`/reading/${book._id}`}>Start reading</Link>
+            <Link className={css.secondaryButton} href={`/reading/${book._id}`}>Start reading</Link>
           ) : (
-            <button type="button" onClick={handleAddToLibrary}>
+            <button type="button" onClick={handleAddToLibrary} className={css.secondaryButton}>
               {isPending ? 'Adding...' : 'Add to library'}
             </button>
           )}
