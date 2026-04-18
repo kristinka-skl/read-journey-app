@@ -20,6 +20,7 @@ import Statistics from '@/app/Components/Statistics/Statistics';
 import { ApiError } from '@/app/api/api';
 import { deleteReadingSessionRequest } from '@/app/types/book';
 import Modal from '@/app/Components/Shared/Modal/Modal';
+import { Loader } from '@/app/Components/Shared/Loader/Loader';
 
 enum Tabs {
   statistics = 'statistics',
@@ -184,7 +185,7 @@ export default function ReadingPageClient() {
             </p>
           )}
         </div>
-
+{isLoading && <Loader/>}
         {book && (
           <>
             <BookCard book={book} size="large" />
