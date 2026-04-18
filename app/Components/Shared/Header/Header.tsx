@@ -20,7 +20,8 @@ export default function Header() {
     setIsLoggingOut(true);
     try {
       await logout();
-      router.push('/register');
+      router.refresh();
+      router.push('/');
     } catch {
       toast.error('Logout failed, please try again');
     } finally {
