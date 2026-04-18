@@ -6,12 +6,12 @@ export interface Book {
   totalPages: number;
   recommend: boolean;
 }
-export interface BookFormData  {
-    page?: number,
-    limit?: number,
-    title?: string
-    author?: string
-    totalPages?: number
+export interface BookFormData {
+  page?: number;
+  limit?: number;
+  title?: string;
+  author?: string;
+  totalPages?: number;
 }
 export type BookStatus = 'unread' | 'in-progress' | 'done';
 
@@ -24,11 +24,12 @@ export enum ProgressFilter {
 
 export interface ReadingProgress {
   startPage: number;
-  startReading: string;  
+  startReading: string;
   finishPage: number;
   finishReading: string;
   speed: number;
-  status: 'inactive' | 'active'; 
+  status: 'inactive' | 'active';
+  _id?: string
 }
 
 export interface OwnBook {
@@ -37,7 +38,21 @@ export interface OwnBook {
   author: string;
   imageUrl: string;
   totalPages: number;
-  status: BookStatus; 
+  status: BookStatus;
   owner: string;
-  progress: ReadingProgress[]; 
+  progress: ReadingProgress[];
+  timeLeftToRead?: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+  };
+}
+
+export interface ReadingRequest {
+  id: string;
+  page: number;
+}
+export interface deleteReadingSessionRequest{
+  bookId: string
+  readingId: string
 }

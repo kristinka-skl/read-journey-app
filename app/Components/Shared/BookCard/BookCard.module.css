@@ -9,6 +9,7 @@
 
 .bookDetails.large {
   gap: 16px;
+  padding: 20px 40px;
 }
 
 .bookCover {
