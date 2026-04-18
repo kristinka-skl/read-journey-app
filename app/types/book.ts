@@ -52,3 +52,7 @@ export interface ReadingRequest {
   id: string;
   page: number;
 }
+export interface deleteReadingSessionRequest{
+  bookId: string
+  readingId: string
+}

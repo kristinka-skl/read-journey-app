@@ -6,16 +6,23 @@ import ReadingProgressStart from '@/app/Components/Forms/ReadingProgress/Reading
 import ReadingProgressFinish from '@/app/Components/Forms/ReadingProgress/ReadingProgressFinish';
 import BookCard from '@/app/Components/Shared/BookCard/BookCard';
 import { useParams } from 'next/navigation';
-import { getBookDetails } from '@/app/lib/clientApi';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
+import { deleteReadingSession, getBookDetails } from '@/app/lib/clientApi';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import Diary from '@/app/Components/Diary/Diary';
 import Statistics from '@/app/Components/Statistics/Statistics';
+import { ApiError } from '@/app/api/api';
+import { deleteReadingSessionRequest } from '@/app/types/book';
 
 enum Tabs {
-    statistics = 'statistics',
-    diary = 'diary'
+  statistics = 'statistics',
+  diary = 'diary',
 }
 
 export default function ReadingPageClient() {
@@ -64,16 +71,33 @@ export default function ReadingPageClient() {
     : css.progressIconStart;
 
   const totalPages = book?.totalPages || 1;
-  const readPercentage = Number(((lastReadPage / totalPages) * 100).toFixed(2));  
+  const readPercentage = Number(((lastReadPage / totalPages) * 100).toFixed(2));
 
-  console.log(
-    'Total:',
-    totalPages,
-    'Last page:',
-    lastReadPage,
-    'Percentage:',
-    readPercentage
-  );
+  const queryClient = useQueryClient();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: deleteReadingSessionRequest) =>
+      await deleteReadingSession(data),
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['book', bookId],
+      });
+      toast('Successfully deleted!');
+
+      //   setErrors({});
+    },
+    onError: (error: ApiError) => {
+      const serverMessage =
+        error?.response?.data?.response?.message ||
+        error?.response?.data?.message ||
+        error?.message;     
+        toast.error(serverMessage || 'Sorry, something went wrong. Please try again.');      
+    },
+  });
+
+  const handleDeleteReadingSession = (readingId: string) => {
+    const delReq :deleteReadingSessionRequest  = {bookId: bookId, readingId: readingId} 
+    mutate(delReq);
+  };
 
   return (
     <PageLayout
@@ -113,13 +137,23 @@ export default function ReadingPageClient() {
               <div className={css.header}>
                 <h3>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
                 <div className={css.tabIcons}>
-                  <p onClick={()=>setOpenTab(Tabs.diary)}>D</p>
-                  <p onClick={()=>setOpenTab(Tabs.statistics)}>S</p>
+                  <p onClick={() => setOpenTab(Tabs.diary)}>D</p>
+                  <p onClick={() => setOpenTab(Tabs.statistics)}>S</p>
                 </div>
               </div>
 
-              {openTab === 'diary' ? <Diary sessionList={book.progress} totalPages={totalPages} /> : <Statistics readPercentage={readPercentage} pagesRead={lastReadPage}/>}
-              
+              {openTab === 'diary' ? (
+                <Diary
+                  sessionList={book.progress}
+                  totalPages={totalPages}
+                  onClick={handleDeleteReadingSession}                  
+                />
+              ) : (
+                <Statistics
+                  readPercentage={readPercentage}
+                  pagesRead={lastReadPage}
+                />
+              )}
             </div>
           )}
         </Dashboard>

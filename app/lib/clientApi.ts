@@ -1,5 +1,5 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
-import { Book, BookFormData, OwnBook, ReadingRequest } from '../types/book';
+import { Book, BookFormData, deleteReadingSessionRequest, OwnBook, ReadingRequest } from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
 
@@ -90,3 +90,12 @@ export async function finishReading(body: ReadingRequest): Promise<OwnBook> {
   return data; 
 }
 
+export async function deleteReadingSession({readingId, bookId} : deleteReadingSessionRequest): Promise<OwnBook>  {
+    const {data} = await nextServer.delete<OwnBook>(`/books/reading`, {
+      params: {
+        readingId,
+        bookId,        
+      },
+    });
+    return data;
+}

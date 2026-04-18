@@ -5,9 +5,16 @@ import { formatDate, getSessionDuration } from '@/app/_utils/utils';
 interface DiaryProps {
   sessionList: ReadingProgress[];
   totalPages: number;
+  onClick: (id: string) => void;
+  
 }
 
-export default function Diary({ sessionList, totalPages }: DiaryProps) {
+export default function Diary({
+  sessionList,
+  totalPages,
+  onClick,
+  
+}: DiaryProps) {
   const completedSessions = sessionList.filter((s) => s.status === 'inactive');
 
   return (
@@ -19,18 +26,17 @@ export default function Diary({ sessionList, totalPages }: DiaryProps) {
             session.finishReading
           );
           const sessionPages = session.finishPage - session.startPage;
-          const sessionPercentage = totalPages > 0 
-            ? Number(((sessionPages / totalPages) * 100).toFixed(1)) 
-            : 0;
-
+          const sessionPercentage =
+            totalPages > 0
+              ? Number(((sessionPages / totalPages) * 100).toFixed(1))
+              : 0;
+          
           return (
             <li key={session._id} className={css.sessionItem}>
-              
-              <div 
+              <div
                 className={`${css.marker} ${index === 0 ? css.markerActive : ''}`}
               ></div>
-              
-              
+
               <div className={css.dateAndPages}>
                 <p className={css.date}>{formatDate(session.finishReading)}</p>
                 <p className={css.pagesRead}>{sessionPages} pages</p>
@@ -43,9 +49,15 @@ export default function Diary({ sessionList, totalPages }: DiaryProps) {
                 <div className={css.speed}>
                   <div className={css.speedIconAndText}>
                     <div className={css.speedIcon}></div>
-                    <div className={css.speedText}>{session.speed} pages per hour</div>
+                    <div className={css.speedText}>
+                      {session.speed} pages per hour
+                    </div>
                   </div>
-                  <button type="button" className={css.delBtn}>
+                  <button
+                    type="button"
+                    className={css.delBtn}
+                    onClick={() => onClick(session._id || '')}
+                  >
                     D
                   </button>
                 </div>
