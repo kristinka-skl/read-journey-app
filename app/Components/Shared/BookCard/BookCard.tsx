@@ -5,20 +5,23 @@ import { Book, OwnBook } from '@/app/types/book';
 interface BookCardProps {
   book: Book | OwnBook;
   size?: 'small' | 'medium' | 'large';
-  onDeleteClick?: ()=> void;
+  onDeleteClick?: () => void;
 }
-export default function BookCard({ book, size = 'medium', onDeleteClick }: BookCardProps) {
+export default function BookCard({
+  book,
+  size = 'medium',
+  onDeleteClick,
+}: BookCardProps) {
   const dimensions = {
     small: { width: 71, height: 107 },
     medium: { width: 137, height: 208 },
     large: { width: 140, height: 213 },
   };
   const { width, height } = dimensions[size];
-const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
+  const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
   const cardClasses = `${css.bookDetails} ${css[size]}`;
-  return (    
+  return (
     <div className={cardClasses}>
-      
       {hasImage ? (
         <Image
           src={book.imageUrl}
@@ -28,8 +31,8 @@ const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
           className={css.bookCover}
         />
       ) : (
-        <div 
-          className={css.placeholder} 
+        <div
+          className={css.placeholder}
           style={{ width: `${width}px`, height: `${height}px` }}
         >
           <span className={css.icon}>📖</span>
@@ -43,9 +46,18 @@ const hasImage = book.imageUrl && book.imageUrl.trim() !== '';
         {size === 'large' && (
           <p className={css.bookPages}>{book.totalPages} pages</p>
         )}
-        {onDeleteClick && <button type='button' onClick={onDeleteClick}>Delete</button>}
+        {onDeleteClick && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDeleteClick();
+            }}
+          >
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );
 }
-
