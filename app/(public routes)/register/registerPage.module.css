@@ -6,7 +6,7 @@
 
 .registerFormWrapper {
   border-radius: 30px;
-  width: 335px;
+  width: 100%;  
   background-color: var(--card-background);
   padding: 20px 20px 40px 20px;
   display: flex;
@@ -29,7 +29,7 @@
 }
 @media screen and (min-width: 768px) {
   .registerFormWrapper {
-    width: 704px;
+    max-width: 704px;
     height: 960px;
     padding: 40px 168px 214px 64px;
   }
@@ -63,7 +63,7 @@
     gap: 16px;
   }
   .registerFormWrapper {
-    width: 600px;
+    max-width: 600px;
     height: 736px;
     padding: 40px 64px;
   }

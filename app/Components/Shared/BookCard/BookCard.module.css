@@ -128,7 +128,8 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 2px;
-  width: 95px;
+  width: 100%;
+  max-width: 95px;
 }
 .trashBtn {
   display: flex;

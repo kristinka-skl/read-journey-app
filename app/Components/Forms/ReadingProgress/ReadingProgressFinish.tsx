@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form';
 import css from './ReadingProgress.module.css';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ReadingRequest } from '@/app/types/book';
 import toast from 'react-hot-toast';
 import { ApiError } from '@/app/api/api';
 import { finishReading } from '@/app/lib/clientApi';
-import Modal from '../../Shared/Modal/Modal';
+
 
 type FormInput = {
   page: number;

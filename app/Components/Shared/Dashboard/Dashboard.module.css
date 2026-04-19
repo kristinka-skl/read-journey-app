@@ -1,6 +1,7 @@
 .dashboardWrapper {
   border-radius: 30px;
-  width: 335px;
+  width: 100%;
+    /* max-width: 335px; */
   /* height: 478px; */
   background: var(--card-background);
   padding: 20px;

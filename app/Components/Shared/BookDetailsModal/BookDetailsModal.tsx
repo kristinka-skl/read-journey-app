@@ -1,14 +1,12 @@
 'use client';
 import { Book, OwnBook } from '@/app/types/book';
 import css from './BookDetailsModal.module.css';
-import Image from 'next/image';
 import Modal from '../Modal/Modal';
 import toast from 'react-hot-toast';
 import { addBookFromRecommended } from '@/app/lib/clientApi';
 import BookCard from '../BookCard/BookCard';
 import Link from 'next/link';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiError } from '@/app/api/api';
 
 interface BookDetailsModalProps {
   book: Book | OwnBook;
@@ -31,7 +29,7 @@ export default function BookDetailsModal({
       toast.success('Book added to library');
       onClose();
     },
-    onError: (error: ApiError) => {
+    onError: () => {
       toast.error('Sorry, something went wrong. Please try again.');
     },
   });
