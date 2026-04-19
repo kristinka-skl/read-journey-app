@@ -160,3 +160,35 @@
   from { transform: scale(1); }
   to { transform: scale(0.8); }
 }
+
+@media screen and (min-width: 768px) {
+  .diary{
+    width: 321px;
+height: 246px;
+  }
+  .date{
+    font-size: 16px;
+  }
+  .percentage{
+    font-size: 20px;
+  }
+  .time, .speedText{
+    font-size: 12px;
+  }
+  .speedIconAndText{
+    width: 58px;
+  }
+  .speedIcon{
+    width: 59px;
+    height: 24px;
+  }
+  .pagesRead{
+    font-size: 14px;
+  }
+  .marker{
+    width: 20px;
+    height: 20px;
+    left: -2px;
+  top: -4px;
+  }
+}

@@ -1,6 +1,11 @@
 'use client';
 import { useForm, Controller } from 'react-hook-form';
-import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/react';
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+} from '@headlessui/react';
 import css from './MyLibrary.module.css';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -17,6 +22,7 @@ import { deleteBookFromLibrary, getOwnBooks } from '@/app/lib/clientApi';
 import { ApiError } from '@/app/api/api';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
 import { Loader } from '../Shared/Loader/Loader';
+import Image from 'next/image';
 
 interface FormInput {
   progress: ProgressFilter;
@@ -45,9 +51,9 @@ export default function MyLibrary() {
       progress: currentProgress,
     },
   });
-  
+
   const selectedProgress = watch('progress');
-  
+
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     const currentStatusInUrl = params.get('status') || ProgressFilter.allBooks;
@@ -71,7 +77,7 @@ export default function MyLibrary() {
     queryFn: () => getOwnBooks(status),
     placeholderData: keepPreviousData,
   });
-  
+
   useEffect(() => {
     if (isError) {
       toast.error('Sorry, something went wrong, please try again');
@@ -97,7 +103,7 @@ export default function MyLibrary() {
   };
 
   if (isLoading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (
@@ -109,7 +115,6 @@ export default function MyLibrary() {
             control={control}
             name="progress"
             render={({ field: { value, onChange } }) => {
-             
               const selectedOption = OPTIONS.find((opt) => opt.value === value);
 
               return (
@@ -117,13 +122,8 @@ export default function MyLibrary() {
                   <div className={css.selectContainer}>
                     <ListboxButton className={css.dropdownButton}>
                       {selectedOption?.label}
-                      <svg
-                        width="16"
-                        height="16"
-                        
-                        className={css.chevron}
-                      >
-                        <use href='/sprite.svg#icon-chevron-down'></use>
+                      <svg width="16" height="16" className={css.chevron}>
+                        <use href="/sprite.svg#icon-chevron-down"></use>
                       </svg>
                     </ListboxButton>
 
@@ -149,26 +149,36 @@ export default function MyLibrary() {
           />
         </form>
       </div>
-      
-      <ul className={css.booksGrid}>
-        {data?.map((book) => {
-          const isDeletingThisBook = isPending && variables === book._id;
-        
-        return (
-          <li
-            key={book._id}
-            className={css.bookCard}
-            onClick={() => handleOpenModal(book)}
-          >
-            <BookCard
-              book={book}
-              size="medium"
-              onDeleteClick={() => handleDeleteBook(book._id)}
-              isDeleting={isDeletingThisBook}
-            />
-          </li>
-        )})}
-      </ul>
+
+      {data?.length !== 0 ? (
+        <ul className={css.booksGrid}>
+          {data?.map((book) => {
+            const isDeletingThisBook = isPending && variables === book._id;
+
+            return (
+              <li
+                key={book._id}
+                className={css.bookCard}
+                onClick={() => handleOpenModal(book)}
+              >
+                <BookCard
+                  book={book}
+                  size="medium"
+                  onDeleteClick={() => handleDeleteBook(book._id)}
+                  isDeleting={isDeletingThisBook}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <div className={css.emptyList}>
+          <div className={css.emptyIconWrapper}>
+            <Image width={70} height={70} alt="books" src="/images/books.png" />
+          </div>
+          <p>To start training, add <span className={css.accent}>some of your books</span> or from the recommended ones</p>
+        </div>
+      )}
 
       {bookDetails && (
         <BookDetailsModal

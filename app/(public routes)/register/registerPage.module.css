@@ -22,8 +22,10 @@
 margin-bottom: 40px;
 }
 .logoIcon{
-  fill: var(--foreground);
-  
+  fill: var(--foreground);  
+}
+.logoText{
+  display: none;
 }
 @media screen and (min-width: 768px) {    
   .registerFormWrapper{

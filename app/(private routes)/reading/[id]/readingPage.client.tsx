@@ -108,7 +108,7 @@ const deletingSessionId = isPending ? variables?.readingId : null;
       sidebar={
         <Dashboard>
           {book && (
-            <div>
+            <div className={css.progressForm}>
               {activeSession ? (
                 <ReadingProgressFinish
                   startPage={startPage}
@@ -134,13 +134,13 @@ const deletingSessionId = isPending ? variables?.readingId : null;
                 the page number and click To start above
               </p>
               <div className={css.progressEmptyIcon}>
-                <div>star</div>
+                <Image className={css.star} width={32} height={32} alt="books" src="/images/star.png" />
               </div>
             </div>
           ) : (
             <div className={css.progressTabs}>
-              <div className={css.header}>
-                <h3>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
+              <div className={css.progressHeader}>
+                <h3 className={css.progressTitle}>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
                 <div className={css.tabIcons}>
                   <div onClick={() => setOpenTab(Tabs.diary)}>
                     <svg className={`${css.iconTab} ${openTab === Tabs.diary ? css.tabActive : ''}`} width={16} height={16}>

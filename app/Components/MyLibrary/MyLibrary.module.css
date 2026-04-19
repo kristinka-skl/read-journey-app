@@ -71,3 +71,31 @@
 .optionActive {
   color: var(--foreground); 
 }
+.emptyList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 58px 215px;
+}
+.emptyIconWrapper{
+    width: 130px;
+height: 130px;
+border-radius: 100%;
+background-color: var(--input-background);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.emptyList p{
+    font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+text-align: center;
+color: var(--foreground);
+}
+.accent{
+    color: var(--text-accent);
+}

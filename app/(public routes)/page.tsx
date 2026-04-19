@@ -1,3 +1,4 @@
+import Image from "next/image";
 import css from "./page.module.css";
 
 import Link from 'next/link';
@@ -17,6 +18,9 @@ export default function Home() {
       <div className={css.navLinks}>
         <Link className={css.primaryBtn} href="./register">Get started</Link>
         <Link className={css.primaryBtn} href="./login">Sign in</Link>
+      </div>
+      <div >
+        <Image className={css.heroImage} width={1200} height={600} alt='cozy room with table and open book' src='/images/ReadJourneyOG.webp'/>
       </div>
     </div>
   );

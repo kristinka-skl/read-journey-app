@@ -194,10 +194,12 @@ margin-bottom: 16px;
   padding-top: 24px;
   padding-bottom: 32px;
 color: var(--text-accent);
+  
+}
+.navLinks li{
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
-
-.navLinks:hover{
+.navLinks li:hover{
   color: var(--foreground);
 }
 .desktopAuthNav{

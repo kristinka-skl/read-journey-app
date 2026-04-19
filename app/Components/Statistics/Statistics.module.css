@@ -1,27 +1,27 @@
-.statDiagram{
-    border-radius: 12px;
-width: 295px;
-height: 211px;
-background-color: var(--input-background);
-padding: 20px 40px;
-display: flex;
-flex-direction: column;
-gap: 20px;
-justify-content: center;
+.statDiagram {
+  border-radius: 12px;
+  width: 295px;
+  height: 211px;
+  background-color: var(--input-background);
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
   align-items: center;
 }
 .wrapper {
-  width: 116px; 
+  width: 116px;
   height: 116px;
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 }
 
 .svg {
   width: 100%;
   height: 100%;
-  user-select: none; 
+  user-select: none;
 }
 
 .progressCircle {
@@ -29,33 +29,51 @@ justify-content: center;
 }
 
 .text {
-  fill: var(--foreground); 
+  fill: var(--foreground);
   font-size: 18px;
-  font-weight: 700; 
+  font-weight: 700;
 }
-.greenIcon{
-    border-radius: 4px;
-width: 14px;
-height: 14px;
-background-color: var(--success);
+.greenIcon {
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--success);
 }
-.infoBlock{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
+.infoBlock {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
-.percentage{
-    font-weight: 500;
-font-size: 14px;
-line-height: 1.28571;
-letter-spacing: -0.02em;
-color: var(--foreground);
+.percentage {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
 }
-.pagesRead{
-    font-weight: 500;
-font-size: 10px;
-line-height: 1.2;
-letter-spacing: -0.02em;
+.pagesRead {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 
-color: var(--text-accent);
+  color: var(--text-accent);
+}
+
+@media screen and (min-width: 768px) {
+  .statDiagram {
+    width: 321px;
+    height: 246px;
+  }
+  .wrapper{
+    width: 128px;
+    height: 128px;
+  }
+  .text, .percentage{
+    font-size: 20px;
+  }
+  .pagesRead{
+    font-size: 12px;
+  }
+  
 }
