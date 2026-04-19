@@ -20,6 +20,9 @@
   letter-spacing: -0.02em;
   color: var(--foreground);
 }
+.statInfoText{
+  display: none;
+}
 .timeLeft {
   font-weight: 500;
   font-size: 12px;
@@ -198,5 +201,17 @@
   .icon{
     width: 70px;
     height: 70px;
+  }
+}
+@media screen and (min-width: 1440px){
+  .statInfoText{
+    display: block;
+    font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+color: var(--text-accent);
+width: 293px;
+margin-bottom: 20px;
   }
 }

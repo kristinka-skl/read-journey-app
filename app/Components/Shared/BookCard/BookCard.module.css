@@ -176,3 +176,21 @@
     font-size: 14px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .titleAndAuthor{
+    width: 137px;
+  }
+  .titleAndAuthor.delete{
+    width: 89px;
+  }
+  .bookInfo{
+    justify-content: space-between;
+  }
+  .large .bookCover{
+    width: 224px;
+height: 340px;
+  }
+  .large.bookDetails{
+    gap: 25px;
+  }
+}

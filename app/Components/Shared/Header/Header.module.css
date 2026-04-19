@@ -51,6 +51,9 @@
   letter-spacing: -0.02em;
   text-align: center;
 }
+.userNameDesktop{
+  display: none;
+}
 .burgerWrapper {
   width: 28px;
   height: 28px;
@@ -209,4 +212,48 @@ color: var(--text-accent);
   padding-top: 16px;
   padding-bottom: 16px;
 }
+}
+@media screen and (min-width: 1440px) {
+  .headerSection{
+    width: 1216px;
+height: 74px;
+  }
+  .logoIconDesktopWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+  .compactViewLogo{
+    display: none;
+  }
+  .logoIconDesktop{
+    display: block;
+    stroke: var(--foreground);
+  fill: var(--foreground);
+  width: 42px;
+  height: 17px;
+  }
+  .logoText{
+    display: block;
+    
+  }
+  .navLinks{
+    gap: 40px;
+  }
+  .userNameDesktop{
+    display: block;
+    font-weight: 700;
+font-size: 16px;
+line-height: 1.125;
+letter-spacing: -0.02em;
+text-align: center;
+color: var(--foreground);
+  }
+  .desktopAuthNavItem{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
 }

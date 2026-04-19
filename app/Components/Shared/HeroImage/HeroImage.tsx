@@ -7,8 +7,8 @@ export default function HeroImage(){
               className={css.heroImage}
               src='/images/Hero-image-2x.webp'
               alt='Phone with read journey app'
-              width={255}
-              height={331}
+              width={405}
+              height={834}
               priority
               quality={90}
             //   sizes='(min-width: 1440px) 464px, (min-width: 768px) 42vw, 92vw'

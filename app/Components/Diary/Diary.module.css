@@ -192,3 +192,9 @@ height: 246px;
   top: -4px;
   }
 }
+
+@media screen and (min-width: 1440px) {
+.diary{
+    width: 313px;
+  height: 373px;
+}}

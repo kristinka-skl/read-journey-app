@@ -60,3 +60,17 @@ letter-spacing: 0.02em;
 margin-bottom: 40px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .loginSection{
+            flex-direction: row;
+        gap: 16px;
+  }
+  .loginFormWrapper{
+    width: 600px;
+height: 736px;
+padding: 40px 64px;
+  }
+  .loginIconWrapper{
+    margin-bottom: 107px;
+  }
+}

@@ -77,3 +77,13 @@
   }
   
 }
+@media screen and (min-width: 1440px) {
+.statDiagram{
+  width: 313px;
+height: 281px;
+}
+.wrapper{
+    width: 168px;
+    height: 168px;
+  }
+}

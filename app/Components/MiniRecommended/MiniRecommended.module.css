@@ -75,3 +75,8 @@ height: 272px;
         margin-bottom: 20px;
     }
 }
+@media screen and (min-width: 1440px) {
+    .miniRecommendedSection{
+        margin-top: 60px;
+    }
+}

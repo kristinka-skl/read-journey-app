@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <section className={css.headerSection}>
-      <Link href="/">
+      <Link className={css.compactViewLogo} href="/">
         <div>
           <svg className={css.logoIcon} width={42} height={17}>
             <use href="/sprite.svg#icon-read-logo"></use>
@@ -60,7 +60,7 @@ export default function Header() {
             <svg className={css.logoIconDesktop} width={42} height={17}>
               <use href="/sprite.svg#icon-read-logo"></use>
             </svg>
-            <p className={css.logoText}>READ JOURNEY</p>
+            <p className={css.logoText}>Read journey</p>
           </div>
         </Link>
         <ul className={css.navLinks}>
@@ -87,6 +87,7 @@ export default function Header() {
               <div className={css.userIcon}>
                 <p className={css.userName}>{user?.name.charAt(0)}</p>
               </div>
+              <p className={css.userNameDesktop}>{user?.name}</p>
             </li>
             <li className={css.desktopAuthNavItem}>
               <button

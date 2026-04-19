@@ -5,6 +5,7 @@ import { PageLayout } from '@/app/Components/Shared/PageLayout/PageLayout';
 import Recommended from '@/app/Components/Recommended/Recommended';
 import InfoBlock from '@/app/Components/InfoBlock/InfoBlock';
 import { Metadata } from 'next';
+import QuoteBlock from '@/app/Components/InfoBlock/QuoteBlock/QuoteBlock';
 
 export const metadata: Metadata = {
   title: 'Recommended Books | Read Journey',
@@ -35,6 +36,7 @@ export default function RecommendedPage() {
         <Dashboard>
           <FiltersForm />
           <InfoBlock />
+          <QuoteBlock/>
         </Dashboard>
       }
     >

@@ -36,7 +36,7 @@ export default function ReadingPageClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: book,
-    isError,       
+    isError,
     isLoading,
   } = useQuery({
     queryKey: ['book', bookId],
@@ -94,7 +94,7 @@ export default function ReadingPageClient() {
       );
     },
   });
-const deletingSessionId = isPending ? variables?.readingId : null;
+  const deletingSessionId = isPending ? variables?.readingId : null;
   const handleDeleteReadingSession = (readingId: string) => {
     const delReq: deleteReadingSessionRequest = {
       bookId: bookId,
@@ -134,33 +134,55 @@ const deletingSessionId = isPending ? variables?.readingId : null;
                 the page number and click To start above
               </p>
               <div className={css.progressEmptyIcon}>
-                <Image className={css.star} width={32} height={32} alt="books" src="/images/star.png" />
+                <Image
+                  className={css.star}
+                  width={32}
+                  height={32}
+                  alt="books"
+                  src="/images/star.png"
+                />
               </div>
             </div>
           ) : (
             <div className={css.progressTabs}>
               <div className={css.progressHeader}>
-                <h3 className={css.progressTitle}>{openTab === 'diary' ? 'Diary' : 'Statistics'}</h3>
+                <h3 className={css.progressTitle}>
+                  {openTab === 'diary' ? 'Diary' : 'Statistics'}
+                </h3>
+
                 <div className={css.tabIcons}>
                   <div onClick={() => setOpenTab(Tabs.diary)}>
-                    <svg className={`${css.iconTab} ${openTab === Tabs.diary ? css.tabActive : ''}`} width={16} height={16}>
+                    <svg
+                      className={`${css.iconTab} ${openTab === Tabs.diary ? css.tabActive : ''}`}
+                      width={16}
+                      height={16}
+                    >
                       <use href="/sprite.svg#icon-hourglass"></use>
                     </svg>
                   </div>
                   <div onClick={() => setOpenTab(Tabs.statistics)}>
-                    <svg className={`${css.iconTab} ${openTab === Tabs.statistics ? css.tabActive : ''}`} width={16} height={16}>
+                    <svg
+                      className={`${css.iconTab} ${openTab === Tabs.statistics ? css.tabActive : ''}`}
+                      width={16}
+                      height={16}
+                    >
                       <use href="/sprite.svg#icon-pie-chart"></use>
                     </svg>
                   </div>
                 </div>
               </div>
-
+              {openTab === 'statistics' ? (<p className={css.statInfoText}>
+                Each page, each chapter is a new round of knowledge, a new step
+                towards understanding. By rewriting statistics, we create our
+                own reading history.
+              </p>) : null}
+              
               {openTab === 'diary' ? (
                 <Diary
                   sessionList={book.progress}
                   totalPages={totalPages}
                   onClick={handleDeleteReadingSession}
-                  deletingSessionId={deletingSessionId}                  
+                  deletingSessionId={deletingSessionId}
                 />
               ) : (
                 <Statistics
@@ -183,7 +205,7 @@ const deletingSessionId = isPending ? variables?.readingId : null;
             </p>
           )}
         </div>
-{isLoading && <Loader/>}
+        {isLoading && <Loader />}
         {book && (
           <>
             <BookCard book={book} size="large" />
@@ -198,7 +220,12 @@ const deletingSessionId = isPending ? variables?.readingId : null;
           {
             <div className={css.confModal}>
               <div className={css.icon}>
-                <Image alt='thumb up' width={50} height={50} src='/images/books.png'/>
+                <Image
+                  alt="thumb up"
+                  width={50}
+                  height={50}
+                  src="/images/books.png"
+                />
               </div>
               <p className={css.confModalTitle}>The book is read</p>
               <p className={css.confModalText}>

@@ -56,3 +56,18 @@ letter-spacing: 0.02em;
 margin-bottom: 40px;
   }
 }
+
+@media screen and (min-width: 1440px) {
+  .registerSection{
+flex-direction: row;
+gap: 16px;
+  }
+  .registerFormWrapper{
+    width: 600px;
+height: 736px;
+padding: 40px 64px;
+  }
+  .loginIconWrapper{
+    margin-bottom: 107px;
+  }
+}

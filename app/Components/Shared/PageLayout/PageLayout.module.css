@@ -26,3 +26,17 @@
     padding: 40px;
   }
 }
+@media screen and (min-width: 1440px) {
+    .container{
+        flex-direction: row;
+    }
+    .sidebar{
+        width: 353px;
+height: 651px;
+    }
+    .contentWrapper{
+        width: 847px;
+
+padding-bottom: 28px;
+    }
+}

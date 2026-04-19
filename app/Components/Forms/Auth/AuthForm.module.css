@@ -161,4 +161,21 @@ color: var(--card-background);
   .actions{
     margin-top: 82px;
   }
+  .input, .label{
+    font-size: 14px;
+  }
+  .submitBtn{
+    width: 225px;
+height: 52px;
+    font-size: 20px;
+  }
+  .eyeButton{
+    width: 20px;
+    height: 20px;
+  }
+}
+@media screen and (min-width: 1440px) {
+.loginLink{
+  font-size: 16px;
+}
 }

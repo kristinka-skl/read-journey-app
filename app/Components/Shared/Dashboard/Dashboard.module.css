@@ -4,14 +4,23 @@
   /* height: 478px; */
   background: var(--card-background);
   padding: 20px;
-  
 }
 @media screen and (min-width: 768px) {
   .dashboardWrapper {
     width: 704px;
-height: 336px;
-display: flex;
-flex-direction: row;
-gap: 32px;
-padding: 32px;
-  }}
+    height: 336px;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    padding: 32px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .dashboardWrapper {
+    width: 353px;
+    height: 651px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px 20px 20px;
+  }
+}

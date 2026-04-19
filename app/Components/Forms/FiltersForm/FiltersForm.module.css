@@ -127,3 +127,7 @@ color: var(--input-background);
     font-size: 16;
   }
 }
+@media screen and (min-width: 1440px) {
+.submitBtn{
+  margin-bottom: 0;
+}}
