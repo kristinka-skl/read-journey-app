@@ -6,6 +6,13 @@ import Recommended from '@/app/Components/Recommended/Recommended';
 import InfoBlock from '@/app/Components/InfoBlock/InfoBlock';
 import { Metadata } from 'next';
 import QuoteBlock from '@/app/Components/InfoBlock/QuoteBlock/QuoteBlock';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { getBooks } from '@/app/lib/clientApi';
+import RecommendedPageClient from './RecommendePage.client';
 
 export const metadata: Metadata = {
   title: 'Recommended Books | Read Journey',
@@ -28,19 +35,25 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
+interface RecommendedPageProps {
+  params: Promise<{ title: string; author: string }>;
+}
+export default async function RecommendedPage({
+  params,
+}: RecommendedPageProps) {
+  const { title, author } = await params;
+  const page = 1;
+  const limit = 10;
 
-export default function RecommendedPage() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['books', 'recommended', page, limit, title, author],
+    queryFn: () => getBooks(page, limit, title, author),
+  });
+
   return (
-    <PageLayout
-      sidebar={
-        <Dashboard>
-          <FiltersForm />
-          <InfoBlock />
-          <QuoteBlock />
-        </Dashboard>
-      }
-    >
-      <Recommended />
-    </PageLayout>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <RecommendedPageClient />
+    </HydrationBoundary>
   );
 }
