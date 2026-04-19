@@ -1,4 +1,4 @@
-import axios, { AxiosError, isAxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { cookies } from 'next/headers';
 
 export type ApiError = AxiosError<{

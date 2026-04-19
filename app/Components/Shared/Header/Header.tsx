@@ -45,7 +45,7 @@ export default function Header() {
   }, [isDrawerOpen]);
 
   return (
-    <section className={css.headerSection}>
+    <header className={css.headerSection}>
       <Link className={css.compactViewLogo} href="/">
         <div>
           <svg className={css.logoIcon} width={42} height={17}>
@@ -183,6 +183,6 @@ export default function Header() {
           </div>
         </aside>
       </div>
-    </section>
+    </header>
   );
 }

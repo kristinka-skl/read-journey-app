@@ -4,6 +4,10 @@
   flex-wrap: wrap;
   gap: 21px;
 }
+.bookCard{
+    flex-basis: calc((100% - 21px ) / 2);  
+  max-width: 137px;
+}
 .header {
   display: flex;
   flex-direction: row;

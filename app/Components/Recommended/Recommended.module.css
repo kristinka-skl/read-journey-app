@@ -66,7 +66,8 @@
   justify-content: flex-start;
   flex-direction: column;
   gap: 8px;
-  width: 137px;
+  flex-basis: calc((100% - 21px ) / 2);  
+  max-width: 137px;
   height: 248px;
   cursor: pointer;
 }

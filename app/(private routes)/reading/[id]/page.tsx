@@ -1,4 +1,3 @@
-import css from './readingPage.module.css';
 import ReadingPageClient from './readingPage.client';
 import { Metadata } from 'next';
 

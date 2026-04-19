@@ -19,7 +19,6 @@ import toast from 'react-hot-toast';
 import BookCard from '../Shared/BookCard/BookCard';
 import { OwnBook, ProgressFilter } from '@/app/types/book';
 import { deleteBookFromLibrary, getOwnBooks } from '@/app/lib/clientApi';
-import { ApiError } from '@/app/api/api';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
 import { Loader } from '../Shared/Loader/Loader';
 import Image from 'next/image';
@@ -93,7 +92,7 @@ export default function MyLibrary() {
       });
       toast('Successfully deleted from the library!');
     },
-    onError: (error: ApiError) => {
+    onError: () => {
       toast.error('Sorry, something went wrong. Please try again.');
     },
   });
