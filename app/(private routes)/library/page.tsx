@@ -13,11 +13,11 @@ export const metadata: Metadata = {
     title: 'My Personal Book Library | Read Journey',
     description:
       'Manage your book collection, organize titles by reading status, and start your next reading adventure.',
-    url: 'https://your-domain.com/library',
+    url: 'https://read-journey-app-gilt.vercel.app/library',
     siteName: 'Read Journey',
     images: [
       {
-        url: '/ReadJourneyOG.webp',
+        url: '/images/ReadJourneyOG.webp',
         width: 1200,
         height: 630,
         alt: 'Read Journey app - Personal book library management',

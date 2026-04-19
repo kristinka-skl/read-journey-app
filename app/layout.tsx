@@ -31,11 +31,11 @@ export const metadata: Metadata = {
     title: 'Read Journey',
     description:
       'Create your personal book collection and track reading progress with ease',
-    url: 'https://read-journey.example.com/',
+    url: 'https://read-journey-app-gilt.vercel.app/',
     siteName: 'Read Journey',
     images: [
       {
-        url: '/ReadJourneyOG.webp',
+        url: '/images/ReadJourneyOG.webp',
         width: 1200,
         height: 630,
         alt: 'Read Journey app dashboard showing reading progress',

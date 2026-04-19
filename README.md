@@ -67,13 +67,7 @@ yarn install
 # or
 pnpm install
 ```
-
-**4. Add Environment Variables:**
-Create a `.env` file in the root directory and add your necessary API variables (e.g., `NEXT_PUBLIC_API_URL=...`). 
-The base URL for client-side Axios requests (points to your local Next.js server)
-For local run: NEXT_PUBLIC_API_URL=http://localhost:3000
-
-**5. Run the development server:**
+**4. Run the development server:**
 ```bash
 npm run dev
 ```

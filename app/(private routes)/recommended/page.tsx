@@ -15,11 +15,11 @@ export const metadata: Metadata = {
     title: 'Discover Recommended Books | Read Journey',
     description:
       'Browse curated recommendations, apply custom filters, and add exciting new titles to your personal reading library.',
-    url: 'https://your-domain.com/recommended',
+    url: 'https://read-journey-app-gilt.vercel.app/recommended',
     siteName: 'Read Journey',
     images: [
       {
-        url: '/ReadJourneyOG.webp',
+        url: '/images/ReadJourneyOG.webp',
         width: 1200,
         height: 630,
         alt: 'Read Journey app - Recommended books dashboard',
