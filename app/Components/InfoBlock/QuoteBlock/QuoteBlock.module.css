@@ -1,0 +1,25 @@
+.quoteBlock {
+  display: none;
+}
+@media screen and (min-width: 1440px) {
+  .quoteBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    border-radius: 12px;
+    width: 313px;
+    height: 83px;
+    background: var(--input-background);
+    padding: 15px 20px;
+  }
+  .quoteBlock span {
+    color: var(--foreground);
+  }
+  .quoteBlock q {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    color: var(--text-accent);
+  }
+}

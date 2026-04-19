@@ -47,17 +47,22 @@ export default function Header() {
 
   return (
     <section className={css.headerSection}>
-      <Link href="/">
-      <div>
-      <svg className={css.logoIcon} width={42} height={17}><use href='/sprite.svg#icon-read-logo'></use></svg>
-      
+      <Link className={css.compactViewLogo} href="/">
+        <div>
+          <svg className={css.logoIcon} width={42} height={17}>
+            <use href="/sprite.svg#icon-read-logo"></use>
+          </svg>
         </div>
       </Link>
       <nav className={css.desktopNav}>
-        <Link href="/"><div>
-      <svg className={css.logoIcon} width={42} height={17}><use href='/sprite.svg#icon-read-logo'></use></svg>
-      
-        <p className={css.logoText}>READ JOURNEY</p></div></Link>
+        <Link href="/">
+          <div className={css.logoIconDesktopWrapper}>
+            <svg className={css.logoIconDesktop} width={42} height={17}>
+              <use href="/sprite.svg#icon-read-logo"></use>
+            </svg>
+            <p className={css.logoText}>Read journey</p>
+          </div>
+        </Link>
         <ul className={css.navLinks}>
           <li>
             <Link
@@ -76,6 +81,29 @@ export default function Header() {
             </Link>
           </li>
         </ul>
+        {user ? (
+          <ul className={css.desktopAuthNav}>
+            <li className={css.desktopAuthNavItem}>
+              <div className={css.userIcon}>
+                <p className={css.userName}>{user?.name.charAt(0)}</p>
+              </div>
+              <p className={css.userNameDesktop}>{user?.name}</p>
+            </li>
+            <li className={css.desktopAuthNavItem}>
+              <button
+                className={css.secondaryButton}
+                type="button"
+                disabled={isLoggingOut}
+                onClick={async () => {
+                  await handleLogout();
+                  closeDrawer();
+                }}
+              >
+                {isLoggingOut ? 'Logging out...' : 'Log out'}
+              </button>
+            </li>
+          </ul>
+        ) : null}
       </nav>
       <div className={css.userIconBurgerWrapper}>
         <div className={css.userIcon}>
@@ -89,8 +117,9 @@ export default function Header() {
           aria-expanded={isDrawerOpen}
           onClick={() => setIsDrawerOpen(true)}
         >
-          <svg className={css.burgerIcon} width={28} height={28}><use href='/sprite.svg#icon-burger-menu'></use></svg>
-          
+          <svg className={css.burgerIcon} width={28} height={28}>
+            <use href="/sprite.svg#icon-burger-menu"></use>
+          </svg>
         </button>
       </div>
 
@@ -112,7 +141,9 @@ export default function Header() {
             onClick={closeDrawer}
             aria-label="Close menu"
           >
-            <svg className={css.closeIcon} width={22} height={22}><use href='/sprite.svg#icon-close'></use></svg>
+            <svg className={css.closeIcon} width={22} height={22}>
+              <use href="/sprite.svg#icon-close"></use>
+            </svg>
           </button>
           <nav className={css.drawerNav} aria-label="Mobile navigation">
             <ul className={css.drawerNavList}>
@@ -152,7 +183,7 @@ export default function Header() {
             ) : null}
           </div>
         </aside>
-      </div>   
+      </div>
     </section>
   );
 }

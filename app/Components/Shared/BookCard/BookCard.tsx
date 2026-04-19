@@ -45,7 +45,7 @@ export default function BookCard({
       )}
 
       <div className={css.bookInfo}>
-        <div className={css.titleAndAuthor}>
+        <div className={`${css.titleAndAuthor} ${onDeleteClick ? css.delete : ''}`}>
         <h3 className={css.bookTitle}>{book.title}</h3>
         <p className={css.bookAuthor}>{book.author}</p></div>
         {size === 'large' && (

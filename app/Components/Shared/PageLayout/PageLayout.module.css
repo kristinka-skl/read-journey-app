@@ -1,17 +1,42 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.sidebar{
-    width: 335px;
+.sidebar {
+  width: 335px;
 }
 
 .contentWrapper {
-    padding: 40px 20px;
-    border-radius: 30px;
+  padding: 40px 20px;
+  border-radius: 30px;
   width: 335px;
-  
   background: var(--card-background);
-    
+}
+@media screen and (min-width: 768px) {
+    .container{
+        gap: 16px;
+    }
+  .sidebar {
+    width: 704px;
+    height: 336px;
+  }
+  .contentWrapper {
+    width: 704px;
+    padding: 40px;
+  }
+}
+@media screen and (min-width: 1440px) {
+    .container{
+        flex-direction: row;
+    }
+    .sidebar{
+        width: 353px;
+height: 651px;
+    }
+    .contentWrapper{
+        width: 847px;
+
+padding-bottom: 28px;
+    }
 }

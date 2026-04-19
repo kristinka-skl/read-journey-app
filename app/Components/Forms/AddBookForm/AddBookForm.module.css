@@ -151,3 +151,26 @@ color: var(--input-background);
   text-align: center;
   color: var(--foreground);
 }
+.icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .addBookSection{
+    width: 295px;
+  }
+  .addBookSection h2, .label, .input{
+    font-size: 14px;
+  }
+  .submitBtn{
+    font-size: 16;
+  }
+  .titleModal{
+    font-size: 20px;
+  }
+  .icon{
+    width: 70px;
+    height: 70px;
+  }
+}

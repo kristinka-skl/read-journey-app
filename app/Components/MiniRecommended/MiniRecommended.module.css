@@ -49,7 +49,34 @@ letter-spacing: -0.02em;
 text-decoration: underline;
 text-decoration-skip-ink: none;
 color: var(--text-accent);
+  transition: all 0.2ms ease-in;
 }
-.redirect{
-    stroke: var(--foreground);
+.link p:hover {
+  color: var(--foreground);
+}
+.redirect {
+  stroke: var(--foreground);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.redirect:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (min-width: 768px) {
+    .miniRecommendedSection{
+        width: 313px;
+height: 272px;
+    }
+    .miniRecommendedSection h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .booksGrid{
+        margin-bottom: 20px;
+    }
+}
+@media screen and (min-width: 1440px) {
+    .miniRecommendedSection{
+        margin-top: 60px;
+    }
 }

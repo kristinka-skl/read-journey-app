@@ -6,12 +6,22 @@
 
   margin-bottom: 20px;
 }
+.progressHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
 .header h2 {
   font-weight: 700;
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.02em;
   color: var(--foreground);
+}
+.statInfoText{
+  display: none;
 }
 .timeLeft {
   font-weight: 500;
@@ -31,7 +41,9 @@
     transform: scale(1);
   }
 }
-
+.progressForm {
+  width: 100%;
+}
 .progressIcon {
   border-radius: 100%;
   border: 2px solid var(--foreground);
@@ -105,15 +117,17 @@
 .icon {
   width: 50px;
   height: 50px;
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.icon p{
-font-weight: 500;
-  font-family: "Noto Color Emoji";
-font-size: 68px;
-line-height: 1.02941;
-letter-spacing: -0.02em;
-
+.icon p {
+  font-weight: 500;
+  font-family: 'Noto Color Emoji';
+  font-size: 68px;
+  line-height: 1.02941;
+  letter-spacing: -0.02em;
 }
 .confModalTitle {
   font-weight: 700;
@@ -135,10 +149,69 @@ letter-spacing: -0.02em;
 .accent {
   color: var(--foreground);
 }
-.iconTab{
+.iconTab {
   stroke: var(--text-accent);
   cursor: pointer;
 }
-.tabActive{
+.tabActive {
   stroke: var(--foreground);
+}
+@media screen and (min-width: 768px) {
+  .progressEmptyIcon {
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+  }
+  .progressEmpty h3{
+    font-size: 20px;
+  }
+  .star {
+    width: 50px;
+    height: 50px;
+  }
+  .header h2{
+    font-size: 28px;
+  }
+  .progressTitle{
+    font-size: 20px;
+    
+  }
+  .progressIcon{
+    width: 50px;
+    height: 50px;
+  }
+  .progressIconStart{
+    width: 40px;
+    height: 40px;
+  }
+  .progressIconFinish{
+    width: 20px;
+    height: 20px;
+  }
+  .iconTab{
+    width: 20px;
+    height: 20px;
+  }
+  .timeLeft{
+    font-size: 14px;
+  }
+  .confModalTitle{
+    font-size: 20px;
+  }
+  .icon{
+    width: 70px;
+    height: 70px;
+  }
+}
+@media screen and (min-width: 1440px){
+  .statInfoText{
+    display: block;
+    font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+color: var(--text-accent);
+width: 293px;
+margin-bottom: 20px;
+  }
 }

@@ -51,6 +51,9 @@
   letter-spacing: -0.02em;
   text-align: center;
 }
+.userNameDesktop{
+  display: none;
+}
 .burgerWrapper {
   width: 28px;
   height: 28px;
@@ -171,4 +174,86 @@ transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 .secondaryButton:hover{
 background-color: var(--foreground);
 color: var(--input-background);
+}
+@media screen and (min-width: 768px){
+.desktopNav{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.userIconBurgerWrapper, .drawerBackdrop, .logoText, .logoIconDesktop{
+  display: none;
+}
+.headerSection{
+  width: 704px;
+height: 74px;
+margin-bottom: 16px;
+}
+.navLinks{
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+color: var(--text-accent);
+  
+}
+.navLinks li{
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+.navLinks li:hover{
+  color: var(--foreground);
+}
+.desktopAuthNav{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+}
+@media screen and (min-width: 1440px) {
+  .headerSection{
+    width: 1216px;
+height: 74px;
+  }
+  .logoIconDesktopWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+  }
+  .compactViewLogo{
+    display: none;
+  }
+  .logoIconDesktop{
+    display: block;
+    stroke: var(--foreground);
+  fill: var(--foreground);
+  width: 42px;
+  height: 17px;
+  }
+  .logoText{
+    display: block;
+    
+  }
+  .navLinks{
+    gap: 40px;
+  }
+  .userNameDesktop{
+    display: block;
+    font-weight: 700;
+font-size: 16px;
+line-height: 1.125;
+letter-spacing: -0.02em;
+text-align: center;
+color: var(--foreground);
+  }
+  .desktopAuthNavItem{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+  }
 }
