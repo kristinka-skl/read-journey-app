@@ -172,3 +172,39 @@ transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 background-color: var(--foreground);
 color: var(--input-background);
 }
+@media screen and (min-width: 768px){
+.desktopNav{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.userIconBurgerWrapper, .drawerBackdrop, .logoText, .logoIconDesktop{
+  display: none;
+}
+.headerSection{
+  width: 704px;
+height: 74px;
+margin-bottom: 16px;
+}
+.navLinks{
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  padding-top: 24px;
+  padding-bottom: 32px;
+color: var(--text-accent);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+
+.navLinks:hover{
+  color: var(--foreground);
+}
+.desktopAuthNav{
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+}

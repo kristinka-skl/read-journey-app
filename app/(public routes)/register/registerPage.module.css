@@ -18,7 +18,39 @@
 .title{
   margin-bottom: 20px;
 }
+.loginIconWrapper{
+margin-bottom: 40px;
+}
 .logoIcon{
   fill: var(--foreground);
-  margin-bottom: 40px;
+  
+}
+@media screen and (min-width: 768px) {    
+  .registerFormWrapper{
+    width: 704px;
+    height: 960px;
+    padding: 40px 168px 214px 64px;
+  }
+  .loginIconWrapper{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    margin-bottom: 157px;
+  }
+  .logoText{
+    display: inline-block;
+    font-weight: 700;
+font-size: 18px;
+line-height: 1;
+letter-spacing: 0.02em;
+text-transform: uppercase;
+color: var(--foreground);
+  }
+  .title{
+    font-weight: 700;
+font-size: 64px;
+line-height: 0.9375;
+letter-spacing: 0.02em;
+margin-bottom: 40px;
+  }
 }

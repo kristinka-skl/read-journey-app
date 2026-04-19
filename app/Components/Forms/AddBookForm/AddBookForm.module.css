@@ -151,3 +151,14 @@ color: var(--input-background);
   text-align: center;
   color: var(--foreground);
 }
+@media screen and (min-width: 768px) {
+  .addBookSection{
+    width: 295px;
+  }
+  .addBookSection h2, .label, .input{
+    font-size: 14px;
+  }
+  .submitBtn{
+    font-size: 16;
+  }
+}
