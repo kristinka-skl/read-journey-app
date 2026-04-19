@@ -6,11 +6,13 @@ interface BookCardProps {
   book: Book | OwnBook;
   size?: 'small' | 'medium' | 'large';
   onDeleteClick?: () => void;
+  isDeleting?: boolean;
 }
 export default function BookCard({
   book,
   size = 'medium',
   onDeleteClick,
+  isDeleting = false,
 }: BookCardProps) {
   const dimensions = {
     small: { width: 71, height: 107 },
@@ -52,9 +54,11 @@ export default function BookCard({
         {onDeleteClick && (
           <button
           className={css.trashBtn}
+          disabled={isDeleting}
             type="button"
             onClick={(e) => {
               e.stopPropagation();
+              if (isDeleting) return;
               onDeleteClick();
             }}
           >

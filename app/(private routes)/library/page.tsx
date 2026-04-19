@@ -1,10 +1,31 @@
 import { PageLayout } from '@/app/Components/Shared/PageLayout/PageLayout';
-import css from './libraryPage.module.css';
 import { Dashboard } from '@/app/Components/Shared/Dashboard/Dashboard';
-import Recommended from '@/app/Components/Recommended/Recommended';
 import AddBookForm from '@/app/Components/Forms/AddBookForm/AddBookForm';
 import MiniRecommended from '@/app/Components/MiniRecommended/MiniRecommended';
 import MyLibrary from '@/app/Components/MyLibrary/MyLibrary';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'My Library | Read Journey',
+  description:
+    'Manage your personal book collection. Add new books, organize them by reading status, and keep track of everything you want to read, are currently reading, or have already finished.',
+  openGraph: {
+    title: 'My Personal Book Library | Read Journey',
+    description:
+      'Manage your book collection, organize titles by reading status, and start your next reading adventure.',
+    url: 'https://your-domain.com/library',
+    siteName: 'Read Journey',
+    images: [
+      {
+        url: '/ReadJourneyOG.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Read Journey app - Personal book library management',
+      },
+    ],
+    type: 'website',
+  },
+};
 
 export default function Library() {
   return (

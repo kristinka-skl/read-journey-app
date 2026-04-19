@@ -60,11 +60,7 @@ const startReadingMutation = useMutation({
         queryKey: ["book", bookId],
       });
       toast("Successfully started reading session!");
-    //   setIsModalOpen(true);
-        reset();
-    //   setErrors({});
-      
-      
+        reset();      
     },
     onError: (error: ApiError) => {
         const serverMessage = error.response?.data?.response?.message;        
@@ -104,7 +100,7 @@ const startReadingMutation = useMutation({
       </div>
       <div className={css.actions}>
         <button type="submit" className={css.submitBtn}>
-          To start
+          {startReadingMutation.isPending ? 'Starting...' : 'To start'}          
         </button>
       </div>
     </form>

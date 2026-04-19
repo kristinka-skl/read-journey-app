@@ -4,6 +4,29 @@ import { FiltersForm } from '../../Components/Forms/FiltersForm/FiltersForm';
 import { PageLayout } from '@/app/Components/Shared/PageLayout/PageLayout';
 import Recommended from '@/app/Components/Recommended/Recommended';
 import InfoBlock from '@/app/Components/InfoBlock/InfoBlock';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Recommended Books | Read Journey',
+  description:
+    'Discover your next favorite book. Browse our curated recommendations, apply custom filters to find exactly what you want, and easily add exciting new titles to your personal reading library.',
+  openGraph: {
+    title: 'Discover Recommended Books | Read Journey',
+    description:
+      'Browse curated recommendations, apply custom filters, and add exciting new titles to your personal reading library.',
+    url: 'https://your-domain.com/recommended', 
+    siteName: 'Read Journey',
+    images: [
+      {
+        url: '/ReadJourneyOG.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Read Journey app - Recommended books dashboard',
+      },
+    ],
+    type: 'website',
+  },
+};
 
 export default function RecommendedPage() {
   return (

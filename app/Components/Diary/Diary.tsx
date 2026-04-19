@@ -6,14 +6,14 @@ interface DiaryProps {
   sessionList: ReadingProgress[];
   totalPages: number;
   onClick: (id: string) => void;
-  
+  deletingSessionId?: string | null;
 }
 
 export default function Diary({
   sessionList,
   totalPages,
   onClick,
-  
+  deletingSessionId,
 }: DiaryProps) {
   const completedSessions = sessionList.filter((s) => s.status === 'inactive');
 
@@ -30,7 +30,7 @@ export default function Diary({
             totalPages > 0
               ? Number(((sessionPages / totalPages) * 100).toFixed(1))
               : 0;
-          
+          const isDeletingThisSession = session._id === deletingSessionId;
           return (
             <li key={session._id} className={css.sessionItem}>
               <div
@@ -59,6 +59,7 @@ export default function Diary({
                     type="button"
                     className={css.delBtn}
                     onClick={() => onClick(session._id || '')}
+                    disabled={isDeletingThisSession}
                   >
                     <svg className={css.trashIcon} width={16} height={18}><use href='/sprite.svg#icon-trash'></use></svg>
                   </button>

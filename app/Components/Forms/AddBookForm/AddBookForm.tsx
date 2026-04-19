@@ -10,6 +10,7 @@ import Modal from '../../Shared/Modal/Modal';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiError } from '@/app/api/api';
+import Image from 'next/image';
 
 type FormInputs = Pick<BookFormData, 'title' | 'author' | 'totalPages'>;
 
@@ -69,9 +70,6 @@ const { mutate, isPending } = useMutation({
       toast("Successfully added!");
       setIsModalOpen(true);
         reset();
-    //   setErrors({});
-      
-      
     },
     onError: (error: ApiError) => {
       const serverMessage = 
@@ -85,8 +83,7 @@ const { mutate, isPending } = useMutation({
         toast.error('Sorry, something went wrong. Please try again.');
       }
     },
-  })
-  
+  })  
 
   const onSubmit = async (data: FormInputs) => {    
         mutate(data)}
@@ -175,13 +172,15 @@ const { mutate, isPending } = useMutation({
         </div>
         <div className={css.actions}>
           <button type="submit" className={css.submitBtn}>
-            Add book
+            {isPending ? 'Adding...' : 'Add book'}            
           </button>
         </div>
       </form>
       {isModalOpen && (
         <Modal size='small' isOpen onClose={handleModalClose}>
-          <div className={css.confModal}><p className={css.titleModal}>Good job</p>
+          <div className={css.confModal}>
+            <div className={css.icon}><Image alt='thumb up' width={50} height={50} src='/images/thumb-up.png'/></div>
+            <p className={css.titleModal}>Good job</p>
           <p className={css.text}>
             Your book is now in <span className={css.accent}>the library</span>! The joy knows no
             bounds and now you can start your training

@@ -150,3 +150,13 @@
 .trashIcon:hover {
   stroke: var(--foreground);
 }
+.delBtn:disabled {
+  cursor: wait;
+  opacity: 0.5;
+  animation: pulse 1s infinite alternate; 
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(0.8); }
+}

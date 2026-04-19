@@ -21,6 +21,7 @@ import { ApiError } from '@/app/api/api';
 import { deleteReadingSessionRequest } from '@/app/types/book';
 import Modal from '@/app/Components/Shared/Modal/Modal';
 import { Loader } from '@/app/Components/Shared/Loader/Loader';
+import Image from 'next/image';
 
 enum Tabs {
   statistics = 'statistics',
@@ -35,9 +36,7 @@ export default function ReadingPageClient() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: book,
-    isError,
-    isSuccess,
-    isFetching,
+    isError,       
     isLoading,
   } = useQuery({
     queryKey: ['book', bookId],
@@ -76,7 +75,7 @@ export default function ReadingPageClient() {
   const readPercentage = Number(((lastReadPage / totalPages) * 100).toFixed(2));
 
   const queryClient = useQueryClient();
-  const { mutate, isPending } = useMutation({
+  const { mutate, isPending, variables } = useMutation({
     mutationFn: async (data: deleteReadingSessionRequest) =>
       await deleteReadingSession(data),
     onSuccess() {
@@ -84,8 +83,6 @@ export default function ReadingPageClient() {
         queryKey: ['book', bookId],
       });
       toast('Successfully deleted!');
-
-      //   setErrors({});
     },
     onError: (error: ApiError) => {
       const serverMessage =
@@ -97,7 +94,7 @@ export default function ReadingPageClient() {
       );
     },
   });
-
+const deletingSessionId = isPending ? variables?.readingId : null;
   const handleDeleteReadingSession = (readingId: string) => {
     const delReq: deleteReadingSessionRequest = {
       bookId: bookId,
@@ -163,6 +160,7 @@ export default function ReadingPageClient() {
                   sessionList={book.progress}
                   totalPages={totalPages}
                   onClick={handleDeleteReadingSession}
+                  deletingSessionId={deletingSessionId}                  
                 />
               ) : (
                 <Statistics
@@ -200,7 +198,7 @@ export default function ReadingPageClient() {
           {
             <div className={css.confModal}>
               <div className={css.icon}>
-                <p>&#128077;</p>
+                <Image alt='thumb up' width={50} height={50} src='/images/books.png'/>
               </div>
               <p className={css.confModalTitle}>The book is read</p>
               <p className={css.confModalText}>

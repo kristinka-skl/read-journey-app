@@ -89,16 +89,15 @@
   color: var(--success);
   font-size: 12px;
   padding-left: 20px;
-}
-.submitBtn {
+}.submitBtn {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   border: 1px solid var(--hover);
   border-radius: 30px;
-  padding: 10px 16px;
-  width: 98px;
+  padding: 10px 14px;
+  width: 105px;
   height: 38px;
   background-color: transparent;
   color: var(--foreground);
@@ -110,8 +109,10 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
   margin-bottom: 20px;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
 
 .submitBtn:hover {
-  opacity: 0.8;
+  background-color: var(--foreground);
+color: var(--input-background);
 }

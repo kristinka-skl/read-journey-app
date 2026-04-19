@@ -4,3 +4,56 @@
   gap: 24px;
   justify-content: center;
 }
+.primaryBtn {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
+gap: 10px;
+border-radius: 30px;
+border: 1px solid transparent;
+padding: 12px 18px;
+width: 140px;
+height: 42px;
+background-color: var(--foreground);
+font-weight: 700;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: 0.02em;
+color: var(--card-background);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primaryBtn:hover {
+  background-color: var(--card-background);
+  color: var(--foreground);
+  border-color: var(--text-accent);
+}
+.infoBlock{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 40px;
+}
+.navLinks{  
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+}
+.textAccent {
+  color: var(--text-accent);
+}
+.title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.text{
+  font-weight: 500;
+font-size: 14px;
+line-height: 1.28571;
+letter-spacing: -0.02em;
+color: var(--foreground);
+}

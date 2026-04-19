@@ -6,10 +6,10 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-
 import { Book } from '@/app/types/book';
 import BookDetailsModal from '../Shared/BookDetailsModal/BookDetailsModal';
 import BookCard from '../Shared/BookCard/BookCard';
+import { Loader } from '../Shared/Loader/Loader';
 
 export default function Recommended() {
     const [bookDetails, setBookDetails] = useState<Book | null>(null);
@@ -35,7 +35,7 @@ export default function Recommended() {
     setPrevTitle(title);
     setPrevAuthor(author);
   }
-  const { data, isError, isSuccess, isFetching, isLoading } = useQuery({
+  const { data, isError, isFetching, isLoading } = useQuery({
     queryKey: ['books', 'recommended', page, limit, title, author],
     queryFn: () => getBooks(page, limit, title, author),
     placeholderData: keepPreviousData,
@@ -50,7 +50,7 @@ export default function Recommended() {
   console.log('recommended books data:', data);
   
   if (!isClient || isLoading) {
-    return <p>Loading recommendations...</p>;
+    return <Loader/>;
   }
 
   const totalPages = data?.totalPages || 1;
@@ -67,7 +67,8 @@ export default function Recommended() {
               onClick={() => setPage((p) => p - 1)}
               disabled={page === 1}
             >
-              {'<'}
+              <svg className={css.arrowForward} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
+             
             </button>
 
             <button
@@ -75,7 +76,8 @@ export default function Recommended() {
               onClick={() => setPage((p) => p + 1)}
               disabled={page >= totalPages || isFetching} 
             >
-              {'>'}
+              <svg className={css.arrowBack} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
+             
             </button>
           </div>
         </div>

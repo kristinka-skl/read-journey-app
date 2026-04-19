@@ -65,8 +65,7 @@ export default function ReadingProgressFinish({
       if (data.page === totalPages) {
       onFinishReading();
       toast('Successfully finished reading book!');
-    }
-      //   setErrors({});
+    }     
     },
     onError: (error: ApiError) => {
       const serverMessage = error.response?.data?.response?.message;
@@ -116,7 +115,7 @@ export default function ReadingProgressFinish({
       </div>
       <div className={css.actions}>
         <button type="submit" className={css.submitBtn}>
-          To stop
+          {isPending ? 'Stopping...' : 'To stop'}          
         </button>
       </div>
     </form>

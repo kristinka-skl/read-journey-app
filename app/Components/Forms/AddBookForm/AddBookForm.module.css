@@ -110,11 +110,14 @@
   cursor: pointer;
   transition: opacity 0.3s ease;
   margin-bottom: 20px;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
 
 .submitBtn:hover {
-  opacity: 0.8;
+  background-color: var(--foreground);
+color: var(--input-background);
 }
+
 .confModal {
   display: flex;
   margin: 0 auto;
