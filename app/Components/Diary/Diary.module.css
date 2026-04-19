@@ -153,48 +153,54 @@
 .delBtn:disabled {
   cursor: wait;
   opacity: 0.5;
-  animation: pulse 1s infinite alternate; 
+  animation: pulse 1s infinite alternate;
 }
 
 @keyframes pulse {
-  from { transform: scale(1); }
-  to { transform: scale(0.8); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.8);
+  }
 }
 
 @media screen and (min-width: 768px) {
-  .diary{
+  .diary {
     width: 321px;
-height: 246px;
+    height: 246px;
   }
-  .date{
+  .date {
     font-size: 16px;
   }
-  .percentage{
+  .percentage {
     font-size: 20px;
   }
-  .time, .speedText{
+  .time,
+  .speedText {
     font-size: 12px;
   }
-  .speedIconAndText{
+  .speedIconAndText {
     width: 58px;
   }
-  .speedIcon{
+  .speedIcon {
     width: 59px;
     height: 24px;
   }
-  .pagesRead{
+  .pagesRead {
     font-size: 14px;
   }
-  .marker{
+  .marker {
     width: 20px;
     height: 20px;
     left: -2px;
-  top: -4px;
+    top: -4px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-.diary{
+  .diary {
     width: 313px;
-  height: 373px;
-}}
+    height: 373px;
+  }
+}

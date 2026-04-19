@@ -176,7 +176,11 @@ export default function MyLibrary() {
           <div className={css.emptyIconWrapper}>
             <Image width={70} height={70} alt="books" src="/images/books.png" />
           </div>
-          <p>To start training, add <span className={css.accent}>some of your books</span> or from the recommended ones</p>
+          <p>
+            To start training, add{' '}
+            <span className={css.accent}>some of your books</span> or from the
+            recommended ones
+          </p>
         </div>
       )}
 

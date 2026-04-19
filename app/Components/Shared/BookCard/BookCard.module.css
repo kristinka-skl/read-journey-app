@@ -45,7 +45,7 @@
   letter-spacing: -0.02em;
   color: var(--foreground);
 }
-.small .titleAndAuthor{
+.small .titleAndAuthor {
   width: 71px;
 }
 .small .bookTitle {
@@ -169,28 +169,28 @@
     width: 153px;
     height: 233px;
   }
-  .large .bookTitle{
+  .large .bookTitle {
     font-size: 20px;
   }
-  .large .bookAuthor{
+  .large .bookAuthor {
     font-size: 14px;
   }
 }
 @media screen and (min-width: 1440px) {
-  .titleAndAuthor{
+  .titleAndAuthor {
     width: 137px;
   }
-  .titleAndAuthor.delete{
+  .titleAndAuthor.delete {
     width: 89px;
   }
-  .bookInfo{
+  .bookInfo {
     justify-content: space-between;
   }
-  .large .bookCover{
+  .large .bookCover {
     width: 224px;
-height: 340px;
+    height: 340px;
   }
-  .large.bookDetails{
+  .large.bookDetails {
     gap: 25px;
   }
 }

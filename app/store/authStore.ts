@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { User } from "../types/user";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { User } from '../types/user';
+import { persist } from 'zustand/middleware';
 
 type AuthStore = {
   isAuthenticated: boolean;
@@ -22,8 +22,8 @@ export const useAuthStore = create<AuthStore>()(
       },
     }),
     {
-      name: "user", 
-      partialize: (state) => ({ user: state.user }), 
+      name: 'user',
+      partialize: (state) => ({ user: state.user }),
     }
   )
 );

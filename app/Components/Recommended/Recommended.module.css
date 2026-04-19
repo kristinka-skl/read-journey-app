@@ -87,13 +87,12 @@
     width: 20px;
     height: 20px;
   }
-  .booksGrid{
+  .booksGrid {
     gap: 25px;
   }
 }
 @media screen and (min-width: 1440px) {
-    .booksGrid{
+  .booksGrid {
     gap: 20px;
   }
-  
 }

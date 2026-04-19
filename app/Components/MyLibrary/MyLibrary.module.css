@@ -103,15 +103,15 @@
   .emptyList {
     padding: 58px 215px;
   }
-  .booksGrid{
-    gap: 25px;    
+  .booksGrid {
+    gap: 25px;
   }
 }
 @media screen and (min-width: 1440px) {
-    .emptyList {
+  .emptyList {
     padding: 147px 286px;
   }
-  .booksGrid{
-    gap: 20px;    
+  .booksGrid {
+    gap: 20px;
   }
 }

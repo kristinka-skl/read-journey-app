@@ -170,12 +170,14 @@ export default function ReadingPageClient() {
                   </div>
                 </div>
               </div>
-              {openTab === 'statistics' ? (<p className={css.statInfoText}>
-                Each page, each chapter is a new round of knowledge, a new step
-                towards understanding. By rewriting statistics, we create our
-                own reading history.
-              </p>) : null}
-              
+              {openTab === 'statistics' ? (
+                <p className={css.statInfoText}>
+                  Each page, each chapter is a new round of knowledge, a new
+                  step towards understanding. By rewriting statistics, we create
+                  our own reading history.
+                </p>
+              ) : null}
+
               {openTab === 'diary' ? (
                 <Diary
                   sessionList={book.progress}

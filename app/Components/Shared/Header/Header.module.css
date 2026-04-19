@@ -51,7 +51,7 @@
   letter-spacing: -0.02em;
   text-align: center;
 }
-.userNameDesktop{
+.userNameDesktop {
   display: none;
 }
 .burgerWrapper {
@@ -139,7 +139,7 @@
   color: var(--text-accent);
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
-.drawerNavList > li:hover{
+.drawerNavList > li:hover {
   color: var(--foreground);
 }
 .active {
@@ -152,105 +152,106 @@
   width: 100%;
   border-bottom: 3px solid #4f92f7;
 }
-.secondaryButton{
+.secondaryButton {
   display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: row;
-gap: 10px;
-border: 1px solid var(--hover);
-border-radius: 30px;
-background-color: var(--input-background);
-padding: 10px 6px;
-width: 116px;
-height: 38px;
-font-weight: 700;
-font-size: 14px;
-color: var(--foreground);
-line-height: 1.28571;
-letter-spacing: 0.02em;
-transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
-}
-.secondaryButton:hover{
-background-color: var(--foreground);
-color: var(--input-background);
-}
-@media screen and (min-width: 768px){
-.desktopNav{
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
   align-items: center;
-}
-.userIconBurgerWrapper, .drawerBackdrop, .logoText, .logoIconDesktop{
-  display: none;
-}
-.headerSection{
-  width: 704px;
-height: 74px;
-margin-bottom: 16px;
-}
-.navLinks{
-  display: flex;
+  justify-content: center;
   flex-direction: row;
-  gap: 32px;
-  padding-top: 24px;
-  padding-bottom: 32px;
-color: var(--text-accent);
-  
-}
-.navLinks li{
+  gap: 10px;
+  border: 1px solid var(--hover);
+  border-radius: 30px;
+  background-color: var(--input-background);
+  padding: 10px 6px;
+  width: 116px;
+  height: 38px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--foreground);
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
-.navLinks li:hover{
-  color: var(--foreground);
+.secondaryButton:hover {
+  background-color: var(--foreground);
+  color: var(--input-background);
 }
-.desktopAuthNav{
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
+@media screen and (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  .userIconBurgerWrapper,
+  .drawerBackdrop,
+  .logoText,
+  .logoIconDesktop {
+    display: none;
+  }
+  .headerSection {
+    width: 704px;
+    height: 74px;
+    margin-bottom: 16px;
+  }
+  .navLinks {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    padding-top: 24px;
+    padding-bottom: 32px;
+    color: var(--text-accent);
+  }
+  .navLinks li {
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+  }
+  .navLinks li:hover {
+    color: var(--foreground);
+  }
+  .desktopAuthNav {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
 }
 @media screen and (min-width: 1440px) {
-  .headerSection{
+  .headerSection {
     width: 1216px;
-height: 74px;
+    height: 74px;
   }
-  .logoIconDesktopWrapper{
+  .logoIconDesktopWrapper {
     display: flex;
     flex-direction: row;
     gap: 4px;
     align-items: center;
   }
-  .compactViewLogo{
+  .compactViewLogo {
     display: none;
   }
-  .logoIconDesktop{
+  .logoIconDesktop {
     display: block;
     stroke: var(--foreground);
-  fill: var(--foreground);
-  width: 42px;
-  height: 17px;
+    fill: var(--foreground);
+    width: 42px;
+    height: 17px;
   }
-  .logoText{
+  .logoText {
     display: block;
-    
   }
-  .navLinks{
+  .navLinks {
     gap: 40px;
   }
-  .userNameDesktop{
+  .userNameDesktop {
     display: block;
     font-weight: 700;
-font-size: 16px;
-line-height: 1.125;
-letter-spacing: -0.02em;
-text-align: center;
-color: var(--foreground);
+    font-size: 16px;
+    line-height: 1.125;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--foreground);
   }
-  .desktopAuthNavItem{
+  .desktopAuthNavItem {
     display: flex;
     flex-direction: row;
     gap: 8px;

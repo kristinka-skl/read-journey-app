@@ -25,10 +25,12 @@ const gilroy = localFont({
 
 export const metadata: Metadata = {
   title: 'Read Journey',
-  description: 'Application to create personal books collection and track reading progress',
+  description:
+    'Application to create personal books collection and track reading progress',
   openGraph: {
     title: 'Read Journey',
-    description: 'Create your personal book collection and track reading progress with ease',
+    description:
+      'Create your personal book collection and track reading progress with ease',
     url: 'https://read-journey.example.com/',
     siteName: 'Read Journey',
     images: [
@@ -52,10 +54,10 @@ export default function RootLayout({
     <html lang="en" className={`${gilroy.variable}`}>
       <body>
         <TanStackProvider>
-        <Container>
-          {children}
-          <ToasterProvider />
-        </Container>
+          <Container>
+            {children}
+            <ToasterProvider />
+          </Container>
         </TanStackProvider>
       </body>
     </html>

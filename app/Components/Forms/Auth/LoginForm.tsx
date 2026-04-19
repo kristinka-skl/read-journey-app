@@ -52,12 +52,13 @@ export default function LoginForm() {
         toast.error('Invalid email or password');
       }
     } catch (error) {
-    const errorMessage = (error as ApiError).response?.data?.error 
-      ?? (error as ApiError).message 
-      ?? 'Oops... some error';
-      
-    toast.error(errorMessage);
-  }
+      const errorMessage =
+        (error as ApiError).response?.data?.error ??
+        (error as ApiError).message ??
+        'Oops... some error';
+
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -107,10 +108,15 @@ export default function LoginForm() {
             className={css.eyeButton}
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? 
-            <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye'></use></svg>
-            
-             : <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye-off'></use></svg>}
+            {showPassword ? (
+              <svg className={css.eye} width={18} height={18}>
+                <use href="/sprite.svg#icon-eye"></use>
+              </svg>
+            ) : (
+              <svg className={css.eye} width={18} height={18}>
+                <use href="/sprite.svg#icon-eye-off"></use>
+              </svg>
+            )}
           </button>
 
           {errors.password ? (
@@ -120,9 +126,9 @@ export default function LoginForm() {
           ) : null}
         </div>
       </div>
-<div className={`${css.fieldWrapper} ${css.hidden}`}>
-  <div className={css.inputGroup}></div>
-</div>
+      <div className={`${css.fieldWrapper} ${css.hidden}`}>
+        <div className={css.inputGroup}></div>
+      </div>
       <div className={css.actions}>
         <button type="submit" className={css.submitBtn} disabled={isSubmitting}>
           {isSubmitting ? 'Logging in...' : 'Log in'}

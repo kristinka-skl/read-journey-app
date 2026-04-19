@@ -1,4 +1,4 @@
-import css from './readingPage.module.css'
+import css from './readingPage.module.css';
 import ReadingPageClient from './readingPage.client';
 import { Metadata } from 'next';
 
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Track Reading Progress | Read Journey',
     description:
       'Log your reading sessions, view your reading speed, and analyze your journey with detailed diaries and visual statistics.',
-    url: 'https://your-domain.com/reading', 
+    url: 'https://your-domain.com/reading',
     siteName: 'Read Journey',
     images: [
       {
@@ -24,9 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Reading(){
-    return <ReadingPageClient/>
+export default function Reading() {
+  return <ReadingPageClient />;
 }
-
-
-

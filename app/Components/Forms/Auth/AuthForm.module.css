@@ -26,15 +26,13 @@
 }
 
 .label {
-font-weight: 500;
-font-size: 12px;
+  font-weight: 500;
+  font-size: 12px;
 
-line-height: 1.33333;
-letter-spacing: -0.02em;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
 
-color: var(--text-accent);
-
-
+  color: var(--text-accent);
 
   margin-right: 14px;
   white-space: nowrap;
@@ -48,12 +46,10 @@ color: var(--text-accent);
   width: 100%;
   outline: none;
   font-weight: 500;
-font-size: 12px;
+  font-size: 12px;
 
-
-line-height: 1.33333;
-letter-spacing: -0.02em;
-
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
 }
 
 .input::placeholder {
@@ -69,7 +65,7 @@ letter-spacing: -0.02em;
 .inputGroup.isSuccess {
   border: 1px solid var(--success);
 }
-.hidden{
+.hidden {
   opacity: 0;
 }
 .eyeButton {
@@ -80,29 +76,28 @@ letter-spacing: -0.02em;
   display: flex;
   align-items: center;
   padding: 0;
-  
+
   width: 18px;
   height: 18px;
-  
 }
-.eye{
+.eye {
   stroke: var(--foreground);
 }
 
 .error {
   color: var(--error);
   position: absolute;
-  right: 20px; 
-  bottom: 4px;  
+  right: 20px;
+  bottom: 4px;
   font-size: 10px;
   margin: 0;
   padding: 0;
 }
 .successText {
-  position: absolute; 
+  position: absolute;
   top: 100%;
   left: 0;
-  margin-top: 4px;  
+  margin-top: 4px;
   color: var(--success);
   font-size: 12px;
   padding-left: 20px;
@@ -116,22 +111,22 @@ letter-spacing: -0.02em;
 }
 
 .submitBtn {
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: row;
-gap: 10px;
-border-radius: 30px;
-border: 1px solid transparent;
-padding: 12px 18px;
-width: 140px;
-height: 42px;
-background-color: var(--foreground);
-font-weight: 700;
-font-size: 14px;
-line-height: 1.28571;
-letter-spacing: 0.02em;
-color: var(--card-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+  padding: 12px 18px;
+  width: 140px;
+  height: 42px;
+  background-color: var(--foreground);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: var(--card-background);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -158,24 +153,25 @@ color: var(--card-background);
   color: #ffffff;
 }
 @media screen and (min-width: 768px) {
-  .actions{
+  .actions {
     margin-top: 82px;
   }
-  .input, .label{
+  .input,
+  .label {
     font-size: 14px;
   }
-  .submitBtn{
+  .submitBtn {
     width: 225px;
-height: 52px;
+    height: 52px;
     font-size: 20px;
   }
-  .eyeButton{
+  .eyeButton {
     width: 20px;
     height: 20px;
   }
 }
 @media screen and (min-width: 1440px) {
-.loginLink{
-  font-size: 16px;
-}
+  .loginLink {
+    font-size: 16px;
+  }
 }

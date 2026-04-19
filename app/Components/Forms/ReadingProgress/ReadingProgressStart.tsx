@@ -22,7 +22,7 @@ interface ReadingProgressProps {
 export default function ReadingProgressStart({
   totalPages,
   bookId,
-  minPage
+  minPage,
 }: ReadingProgressProps) {
   const schema = useMemo(() => {
     return yup.object({
@@ -50,24 +50,23 @@ export default function ReadingProgressStart({
     },
   });
 
-
-const queryClient = useQueryClient();
-const startReadingMutation = useMutation({
-    mutationFn: async (data: ReadingRequest) =>
-      await startReading(data),
+  const queryClient = useQueryClient();
+  const startReadingMutation = useMutation({
+    mutationFn: async (data: ReadingRequest) => await startReading(data),
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ["book", bookId],
+        queryKey: ['book', bookId],
       });
-      toast("Successfully started reading session!");
-        reset();      
+      toast('Successfully started reading session!');
+      reset();
     },
     onError: (error: ApiError) => {
-        const serverMessage = error.response?.data?.response?.message;        
-        toast.error(serverMessage || 'Sorry, something went wrong. Please try again.');      
+      const serverMessage = error.response?.data?.response?.message;
+      toast.error(
+        serverMessage || 'Sorry, something went wrong. Please try again.'
+      );
     },
-  })
-  
+  });
 
   const onSubmit = async (data: FormInput) => {
     const progressRequest: ReadingRequest = {
@@ -100,7 +99,7 @@ const startReadingMutation = useMutation({
       </div>
       <div className={css.actions}>
         <button type="submit" className={css.submitBtn}>
-          {startReadingMutation.isPending ? 'Starting...' : 'To start'}          
+          {startReadingMutation.isPending ? 'Starting...' : 'To start'}
         </button>
       </div>
     </form>

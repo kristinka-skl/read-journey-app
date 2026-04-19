@@ -1,7 +1,7 @@
-.registerSection{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.registerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .registerFormWrapper {
@@ -10,64 +10,64 @@
   background-color: var(--card-background);
   padding: 20px 20px 40px 20px;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 .textAccent {
   color: var(--text-accent);
 }
-.title{
+.title {
   margin-bottom: 20px;
 }
-.loginIconWrapper{
-margin-bottom: 40px;
+.loginIconWrapper {
+  margin-bottom: 40px;
 }
-.logoIcon{
-  fill: var(--foreground);  
+.logoIcon {
+  fill: var(--foreground);
 }
-.logoText{
+.logoText {
   display: none;
 }
-@media screen and (min-width: 768px) {    
-  .registerFormWrapper{
+@media screen and (min-width: 768px) {
+  .registerFormWrapper {
     width: 704px;
     height: 960px;
     padding: 40px 168px 214px 64px;
   }
-  .loginIconWrapper{
+  .loginIconWrapper {
     display: flex;
     flex-direction: row;
     gap: 4px;
     margin-bottom: 157px;
   }
-  .logoText{
+  .logoText {
     display: inline-block;
     font-weight: 700;
-font-size: 18px;
-line-height: 1;
-letter-spacing: 0.02em;
-text-transform: uppercase;
-color: var(--foreground);
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--foreground);
   }
-  .title{
+  .title {
     font-weight: 700;
-font-size: 64px;
-line-height: 0.9375;
-letter-spacing: 0.02em;
-margin-bottom: 40px;
+    font-size: 64px;
+    line-height: 0.9375;
+    letter-spacing: 0.02em;
+    margin-bottom: 40px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .registerSection{
-flex-direction: row;
-gap: 16px;
+  .registerSection {
+    flex-direction: row;
+    gap: 16px;
   }
-  .registerFormWrapper{
+  .registerFormWrapper {
     width: 600px;
-height: 736px;
-padding: 40px 64px;
+    height: 736px;
+    padding: 40px 64px;
   }
-  .loginIconWrapper{
+  .loginIconWrapper {
     margin-bottom: 107px;
   }
 }

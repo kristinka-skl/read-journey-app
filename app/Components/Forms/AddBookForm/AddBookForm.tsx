@@ -40,10 +40,10 @@ const schema: yup.ObjectSchema<FormInputs> = yup.object({
 });
 
 export default function AddBookForm() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const handleModalClose = () => {
-        setIsModalOpen(false);
-    }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
   const {
     register,
     handleSubmit,
@@ -60,33 +60,33 @@ export default function AddBookForm() {
   });
 
   const queryClient = useQueryClient();
-const { mutate, isPending } = useMutation({
-    mutationFn: async (data: FormInputs) =>
-      await addBook(data),
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (data: FormInputs) => await addBook(data),
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ["books"],
+        queryKey: ['books'],
       });
-      toast("Successfully added!");
+      toast('Successfully added!');
       setIsModalOpen(true);
-        reset();
+      reset();
     },
     onError: (error: ApiError) => {
-      const serverMessage = 
-        error?.response?.data?.response?.message || 
-        error?.response?.data?.message ||           
-        error?.message;                   
+      const serverMessage =
+        error?.response?.data?.response?.message ||
+        error?.response?.data?.message ||
+        error?.message;
 
       if (serverMessage === 'Such book already exists') {
         toast.error('This book is already in your library!');
-      } else {        
+      } else {
         toast.error('Sorry, something went wrong. Please try again.');
       }
     },
-  })  
+  });
 
-  const onSubmit = async (data: FormInputs) => {    
-        mutate(data)}
+  const onSubmit = async (data: FormInputs) => {
+    mutate(data);
+  };
 
   return (
     <section className={css.addBookSection}>
@@ -172,19 +172,28 @@ const { mutate, isPending } = useMutation({
         </div>
         <div className={css.actions}>
           <button type="submit" className={css.submitBtn}>
-            {isPending ? 'Adding...' : 'Add book'}            
+            {isPending ? 'Adding...' : 'Add book'}
           </button>
         </div>
       </form>
       {isModalOpen && (
-        <Modal size='small' isOpen onClose={handleModalClose}>
+        <Modal size="small" isOpen onClose={handleModalClose}>
           <div className={css.confModal}>
-            <div className={css.icon}><Image alt='thumb up' width={50} height={50} src='/images/thumb-up.png'/></div>
+            <div className={css.icon}>
+              <Image
+                alt="thumb up"
+                width={50}
+                height={50}
+                src="/images/thumb-up.png"
+              />
+            </div>
             <p className={css.titleModal}>Good job</p>
-          <p className={css.text}>
-            Your book is now in <span className={css.accent}>the library</span>! The joy knows no
-            bounds and now you can start your training
-          </p></div>
+            <p className={css.text}>
+              Your book is now in{' '}
+              <span className={css.accent}>the library</span>! The joy knows no
+              bounds and now you can start your training
+            </p>
+          </div>
         </Modal>
       )}
     </section>

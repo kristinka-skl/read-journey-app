@@ -65,24 +65,24 @@
     width: 321px;
     height: 246px;
   }
-  .wrapper{
+  .wrapper {
     width: 128px;
     height: 128px;
   }
-  .text, .percentage{
+  .text,
+  .percentage {
     font-size: 20px;
   }
-  .pagesRead{
+  .pagesRead {
     font-size: 12px;
   }
-  
 }
 @media screen and (min-width: 1440px) {
-.statDiagram{
-  width: 313px;
-height: 281px;
-}
-.wrapper{
+  .statDiagram {
+    width: 313px;
+    height: 281px;
+  }
+  .wrapper {
     width: 168px;
     height: 168px;
   }

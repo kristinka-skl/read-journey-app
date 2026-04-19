@@ -1,8 +1,8 @@
-import css from "./PageLayout.module.css";
+import css from './PageLayout.module.css';
 
 interface Props {
-  sidebar: React.ReactNode; 
-  children: React.ReactNode; 
+  sidebar: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const PageLayout = ({ sidebar, children }: Props) => {

@@ -89,7 +89,8 @@
   color: var(--success);
   font-size: 12px;
   padding-left: 20px;
-}.submitBtn {
+}
+.submitBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,20 +115,23 @@
 
 .submitBtn:hover {
   background-color: var(--foreground);
-color: var(--input-background);
+  color: var(--input-background);
 }
 @media screen and (min-width: 768px) {
-  .filtersSection{
+  .filtersSection {
     width: 100%;
   }
-  .filtersSection h2, .label, .input{
+  .filtersSection h2,
+  .label,
+  .input {
     font-size: 14px;
   }
-  .submitBtn{
+  .submitBtn {
     font-size: 16;
   }
 }
 @media screen and (min-width: 1440px) {
-.submitBtn{
-  margin-bottom: 0;
-}}
+  .submitBtn {
+    margin-bottom: 0;
+  }
+}

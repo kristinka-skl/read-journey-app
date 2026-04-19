@@ -48,8 +48,9 @@ export default function Diary({
                 </div>
                 <div className={css.speed}>
                   <div className={css.speedIconAndText}>
-                    <svg className={css.speedIcon} width={44} height={18}><use href='/sprite.svg#icon-graphic'></use></svg>
-
+                    <svg className={css.speedIcon} width={44} height={18}>
+                      <use href="/sprite.svg#icon-graphic"></use>
+                    </svg>
 
                     <div className={css.speedText}>
                       {session.speed} pages per hour
@@ -61,7 +62,9 @@ export default function Diary({
                     onClick={() => onClick(session._id || '')}
                     disabled={isDeletingThisSession}
                   >
-                    <svg className={css.trashIcon} width={16} height={18}><use href='/sprite.svg#icon-trash'></use></svg>
+                    <svg className={css.trashIcon} width={16} height={18}>
+                      <use href="/sprite.svg#icon-trash"></use>
+                    </svg>
                   </button>
                 </div>
               </div>

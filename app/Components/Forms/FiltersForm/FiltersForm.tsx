@@ -21,7 +21,7 @@ export const FiltersForm = () => {
   const searchParams = useSearchParams();
   const {
     register,
-    handleSubmit,    
+    handleSubmit,
     formState: { errors, dirtyFields },
   } = useForm<FormInputs>({
     resolver: yupResolver(schema),
@@ -43,8 +43,6 @@ export const FiltersForm = () => {
       else params.delete('author');
 
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-
-
     } catch (error) {
       console.error(error);
     }

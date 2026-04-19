@@ -1,5 +1,11 @@
 import { LoginFormData, RegisterFormData } from '../types/auth';
-import { Book, BookFormData, deleteReadingSessionRequest, OwnBook, ReadingRequest } from '../types/book';
+import {
+  Book,
+  BookFormData,
+  deleteReadingSessionRequest,
+  OwnBook,
+  ReadingRequest,
+} from '../types/book';
 import { User } from '../types/user';
 import { nextServer } from './api';
 
@@ -49,16 +55,15 @@ export async function getBooks(
   return data;
 }
 
-export async function addBookFromRecommended(book_id : string)  {
-    const {data} = await nextServer.post<Book>(`/books/add/${book_id}`);
-    return data;
+export async function addBookFromRecommended(book_id: string) {
+  const { data } = await nextServer.post<Book>(`/books/add/${book_id}`);
+  return data;
 }
 
-export async function addBook(newBook: BookFormData): Promise<Book>  {
-    const {data} = await nextServer.post<Book>('/books/add', newBook);
-    return data;
+export async function addBook(newBook: BookFormData): Promise<Book> {
+  const { data } = await nextServer.post<Book>('/books/add', newBook);
+  return data;
 }
-
 
 export async function getOwnBooks(status?: string): Promise<OwnBook[]> {
   const { data } = await nextServer.get<OwnBook[]>('/books/own', {
@@ -67,35 +72,41 @@ export async function getOwnBooks(status?: string): Promise<OwnBook[]> {
     },
   });
 
-  return data; 
+  return data;
 }
 
-export async function deleteBookFromLibrary(book_id : string)  {
-    const {data} = await nextServer.delete<Book>(`/books/remove/${book_id}`);
-    return data;
+export async function deleteBookFromLibrary(book_id: string) {
+  const { data } = await nextServer.delete<Book>(`/books/remove/${book_id}`);
+  return data;
 }
 
 export async function getBookDetails(id: string): Promise<OwnBook> {
   const { data } = await nextServer.get<OwnBook>(`/books/${id}`);
-  return data; 
+  return data;
 }
 
 export async function startReading(body: ReadingRequest): Promise<OwnBook> {
-    const { data } = await nextServer.post<OwnBook>(`/books/reading/start`, body);
-  return data; 
+  const { data } = await nextServer.post<OwnBook>(`/books/reading/start`, body);
+  return data;
 }
 
 export async function finishReading(body: ReadingRequest): Promise<OwnBook> {
-    const { data } = await nextServer.post<OwnBook>(`/books/reading/finish`, body);
-  return data; 
+  const { data } = await nextServer.post<OwnBook>(
+    `/books/reading/finish`,
+    body
+  );
+  return data;
 }
 
-export async function deleteReadingSession({readingId, bookId} : deleteReadingSessionRequest): Promise<OwnBook>  {
-    const {data} = await nextServer.delete<OwnBook>(`/books/reading`, {
-      params: {
-        readingId,
-        bookId,        
-      },
-    });
-    return data;
+export async function deleteReadingSession({
+  readingId,
+  bookId,
+}: deleteReadingSessionRequest): Promise<OwnBook> {
+  const { data } = await nextServer.delete<OwnBook>(`/books/reading`, {
+    params: {
+      readingId,
+      bookId,
+    },
+  });
+  return data;
 }

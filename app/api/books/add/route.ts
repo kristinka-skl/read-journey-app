@@ -1,7 +1,7 @@
-import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
-import { api } from "../../api";
-import { isAxiosError } from "axios";
+import { cookies } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
+import { api } from '../../api';
+import { isAxiosError } from 'axios';
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,20 +16,23 @@ export async function POST(request: NextRequest) {
 
     const res = await api.post('/books/add', body, {
       headers: {
-        Authorization: `Bearer ${token}`, 
+        Authorization: `Bearer ${token}`,
       },
     });
 
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
     if (isAxiosError(error)) {
-    //   logErrorResponse(error.response?.data);
+      //   logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
         { status: error.status }
       );
     }
     // logErrorResponse({ message: (error as Error).message });
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 }

@@ -12,13 +12,13 @@ import BookCard from '../Shared/BookCard/BookCard';
 import { Loader } from '../Shared/Loader/Loader';
 
 export default function Recommended() {
-    const [bookDetails, setBookDetails] = useState<Book | null>(null);
-    const handleOpenModal = (book: Book) => setBookDetails(book);
-    const handleCloseModal = () => setBookDetails(null);
-    
-    const searchParams = useSearchParams();
-    
-    const title = searchParams.get('title') || undefined;
+  const [bookDetails, setBookDetails] = useState<Book | null>(null);
+  const handleOpenModal = (book: Book) => setBookDetails(book);
+  const handleCloseModal = () => setBookDetails(null);
+
+  const searchParams = useSearchParams();
+
+  const title = searchParams.get('title') || undefined;
   const author = searchParams.get('author') || undefined;
 
   const [page, setPage] = useState(1);
@@ -47,16 +47,15 @@ export default function Recommended() {
       toast.error('Sorry, something went wrong, please try again');
     }
   }, [isError]);
-  
+
   if (!isClient || isLoading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   const totalPages = data?.totalPages || 1;
-  
+
   return (
     <>
-      
       <section className={css.recommendedSection}>
         <div className={css.header}>
           <h2 className={css.sectionTitle}>Recommended</h2>
@@ -66,35 +65,39 @@ export default function Recommended() {
               onClick={() => setPage((p) => p - 1)}
               disabled={page === 1}
             >
-              <svg className={css.arrowForward} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
-             
+              <svg className={css.arrowForward} width={16} height={16}>
+                <use href="/sprite.svg#icon-chevron-up"></use>
+              </svg>
             </button>
 
             <button
               className={css.arrowBtn}
               onClick={() => setPage((p) => p + 1)}
-              disabled={page >= totalPages || isFetching} 
+              disabled={page >= totalPages || isFetching}
             >
-              <svg className={css.arrowBack} width={16} height={16}><use href='/sprite.svg#icon-chevron-up'></use></svg>
-             
+              <svg className={css.arrowBack} width={16} height={16}>
+                <use href="/sprite.svg#icon-chevron-up"></use>
+              </svg>
             </button>
           </div>
         </div>
 
-       
         <ul className={css.booksGrid}>
           {data?.results?.map((book) => (
-            <li key={book._id} className={css.bookCard} onClick={() => handleOpenModal(book)}>
-           <BookCard book={book} size='medium'/>              
+            <li
+              key={book._id}
+              className={css.bookCard}
+              onClick={() => handleOpenModal(book)}
+            >
+              <BookCard book={book} size="medium" />
             </li>
           ))}
         </ul>
-        
-        {bookDetails &&         
-        <BookDetailsModal book={bookDetails} onClose={handleCloseModal}/>
-        }
+
+        {bookDetails && (
+          <BookDetailsModal book={bookDetails} onClose={handleCloseModal} />
+        )}
       </section>
-      
     </>
   );
 }

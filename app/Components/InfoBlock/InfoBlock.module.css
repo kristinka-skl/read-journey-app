@@ -61,9 +61,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
 }
-
 
 .link p {
   font-weight: 500;

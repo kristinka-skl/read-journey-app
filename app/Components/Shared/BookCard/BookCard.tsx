@@ -38,23 +38,30 @@ export default function BookCard({
           style={{ width: `${width}px`, height: `${height}px` }}
         >
           <span className={css.icon}>
-            <Image width={111} height={72} alt='No image' src='/images/no-cover.png'/>
+            <Image
+              width={111}
+              height={72}
+              alt="No image"
+              src="/images/no-cover.png"
+            />
           </span>
-          
         </div>
       )}
 
       <div className={css.bookInfo}>
-        <div className={`${css.titleAndAuthor} ${onDeleteClick ? css.delete : ''}`}>
-        <h3 className={css.bookTitle}>{book.title}</h3>
-        <p className={css.bookAuthor}>{book.author}</p></div>
+        <div
+          className={`${css.titleAndAuthor} ${onDeleteClick ? css.delete : ''}`}
+        >
+          <h3 className={css.bookTitle}>{book.title}</h3>
+          <p className={css.bookAuthor}>{book.author}</p>
+        </div>
         {size === 'large' && (
           <p className={css.bookPages}>{book.totalPages} pages</p>
         )}
         {onDeleteClick && (
           <button
-          className={css.trashBtn}
-          disabled={isDeleting}
+            className={css.trashBtn}
+            disabled={isDeleting}
             type="button"
             onClick={(e) => {
               e.stopPropagation();
@@ -62,7 +69,9 @@ export default function BookCard({
               onDeleteClick();
             }}
           >
-            <svg className={css.trashIcon}><use href='/sprite.svg#icon-trash'></use></svg>
+            <svg className={css.trashIcon}>
+              <use href="/sprite.svg#icon-trash"></use>
+            </svg>
           </button>
         )}
       </div>

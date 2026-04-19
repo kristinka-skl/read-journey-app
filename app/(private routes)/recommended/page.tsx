@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Discover Recommended Books | Read Journey',
     description:
       'Browse curated recommendations, apply custom filters, and add exciting new titles to your personal reading library.',
-    url: 'https://your-domain.com/recommended', 
+    url: 'https://your-domain.com/recommended',
     siteName: 'Read Journey',
     images: [
       {
@@ -36,7 +36,7 @@ export default function RecommendedPage() {
         <Dashboard>
           <FiltersForm />
           <InfoBlock />
-          <QuoteBlock/>
+          <QuoteBlock />
         </Dashboard>
       }
     >

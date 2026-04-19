@@ -1,8 +1,8 @@
 .toast {
   background-color: var(--input-background, #1c1c1c) !important;
-  color: var(--foreground, ) !important;
+  color: var(--foreground,) !important;
   border: 1px solid var(--text-accent) !important;
-  font-family: inherit !important; 
+  font-family: inherit !important;
 }
 
 .errorToast {

@@ -9,12 +9,12 @@ export default function ToasterProvider() {
       position="top-right"
       toastOptions={{
         duration: 4000,
-        className: css.toast,         
+        className: css.toast,
         error: {
-          className: `${css.toast} ${css.errorToast}`, 
+          className: `${css.toast} ${css.errorToast}`,
         },
         success: {
-          className: `${css.toast} ${css.successToast}`, 
+          className: `${css.toast} ${css.successToast}`,
         },
       }}
     />

@@ -51,12 +51,13 @@ export default function RegisterForm() {
         toast.error('Invalid email or password');
       }
     } catch (error) {
-    const errorMessage = (error as ApiError).response?.data?.error 
-      ?? (error as ApiError).message 
-      ?? 'Oops... some error';
-      
-    toast.error(errorMessage);
-  }
+      const errorMessage =
+        (error as ApiError).response?.data?.error ??
+        (error as ApiError).message ??
+        'Oops... some error';
+
+      toast.error(errorMessage);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
@@ -123,10 +124,15 @@ export default function RegisterForm() {
             className={css.eyeButton}
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? 
-            <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye'></use></svg>
-            
-             : <svg className={css.eye} width={18} height={18}><use href='/sprite.svg#icon-eye-off'></use></svg>}
+            {showPassword ? (
+              <svg className={css.eye} width={18} height={18}>
+                <use href="/sprite.svg#icon-eye"></use>
+              </svg>
+            ) : (
+              <svg className={css.eye} width={18} height={18}>
+                <use href="/sprite.svg#icon-eye-off"></use>
+              </svg>
+            )}
           </button>
           {errors.password ? (
             <p className={css.error}>{errors.password.message}</p>

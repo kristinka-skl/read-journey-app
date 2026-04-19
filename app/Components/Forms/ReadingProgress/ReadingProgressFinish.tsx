@@ -18,16 +18,15 @@ interface ReadingProgressProps {
   totalPages: number;
   bookId: string;
   startPage: number;
-  onFinishReading: ()=>void
+  onFinishReading: () => void;
 }
 
 export default function ReadingProgressFinish({
   totalPages,
   bookId,
   startPage,
-  onFinishReading
+  onFinishReading,
 }: ReadingProgressProps) {
-  
   const schema = useMemo(() => {
     return yup.object({
       page: yup
@@ -63,9 +62,9 @@ export default function ReadingProgressFinish({
       toast('Successfully finished reading session!');
       reset();
       if (data.page === totalPages) {
-      onFinishReading();
-      toast('Successfully finished reading book!');
-    }     
+        onFinishReading();
+        toast('Successfully finished reading book!');
+      }
     },
     onError: (error: ApiError) => {
       const serverMessage = error.response?.data?.response?.message;
@@ -88,38 +87,37 @@ export default function ReadingProgressFinish({
       page: data.page,
     };
     mutate(progressRequest);
-    
   };
 
-  return (<>
-    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-      <legend className={css.formTitle}>Finish page:</legend>
-      <div className={css.fieldWrapper}>
-        <div
-          className={`${css.inputGroup} ${
-            errors.page ? css.hasError : dirtyFields.page ? css.isSuccess : ''
-          }`}
-        >
-          <label htmlFor="page" className={css.label}>
-            Page number:
-          </label>
-          <input
-            id="page"
-            className={css.input}
-            {...register('page')}
-            placeholder="0"
-          />
+  return (
+    <>
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <legend className={css.formTitle}>Finish page:</legend>
+        <div className={css.fieldWrapper}>
+          <div
+            className={`${css.inputGroup} ${
+              errors.page ? css.hasError : dirtyFields.page ? css.isSuccess : ''
+            }`}
+          >
+            <label htmlFor="page" className={css.label}>
+              Page number:
+            </label>
+            <input
+              id="page"
+              className={css.input}
+              {...register('page')}
+              placeholder="0"
+            />
 
-          {errors.page && <p className={css.error}>{errors.page.message}</p>}
+            {errors.page && <p className={css.error}>{errors.page.message}</p>}
+          </div>
         </div>
-      </div>
-      <div className={css.actions}>
-        <button type="submit" className={css.submitBtn}>
-          {isPending ? 'Stopping...' : 'To stop'}          
-        </button>
-      </div>
-    </form>
-    
+        <div className={css.actions}>
+          <button type="submit" className={css.submitBtn}>
+            {isPending ? 'Stopping...' : 'To stop'}
+          </button>
+        </div>
+      </form>
     </>
   );
 }

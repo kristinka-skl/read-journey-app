@@ -29,7 +29,7 @@ export interface ReadingProgress {
   finishReading: string;
   speed: number;
   status: 'inactive' | 'active';
-  _id?: string
+  _id?: string;
 }
 
 export interface OwnBook {
@@ -52,7 +52,7 @@ export interface ReadingRequest {
   id: string;
   page: number;
 }
-export interface deleteReadingSessionRequest{
-  bookId: string
-  readingId: string
+export interface deleteReadingSessionRequest {
+  bookId: string;
+  readingId: string;
 }

@@ -1,7 +1,7 @@
-'use client'; 
+'use client';
 
 import { useEffect } from 'react';
-import css from './errorPage.module.css'; 
+import css from './errorPage.module.css';
 
 type Props = {
   error: Error & { digest?: string };
@@ -17,13 +17,10 @@ export default function Error({ error, reset }: Props) {
     <div className={css.container}>
       <h2 className={css.title}>Something went wrong</h2>
       <p className={css.text}>
-        {error.message || 'We encountered an unexpected error while trying to load this page.'}
+        {error.message ||
+          'We encountered an unexpected error while trying to load this page.'}
       </p>
-      <button 
-        type="button" 
-        className={css.button} 
-        onClick={() => reset()}
-      >
+      <button type="button" className={css.button} onClick={() => reset()}>
         Try again
       </button>
     </div>

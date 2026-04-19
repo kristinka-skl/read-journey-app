@@ -39,8 +39,9 @@ export default function Modal({ isOpen, onClose, size, children }: ModalProps) {
       <div className={css.backdrop} onClick={handleBackdropClick}>
         <div className={modalClasses}>
           <button className={css.closeBtn} onClick={onClose}>
-            <svg className={css.closeIcon} width={22} height={22}><use href='/sprite.svg#icon-close'></use></svg>
-            
+            <svg className={css.closeIcon} width={22} height={22}>
+              <use href="/sprite.svg#icon-close"></use>
+            </svg>
           </button>
           {children}
         </div>

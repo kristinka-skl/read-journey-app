@@ -9,7 +9,10 @@ export async function GET() {
     const refreshToken = cookieStore.get('refreshToken')?.value;
 
     if (!refreshToken) {
-      return NextResponse.json({ error: 'No refresh token available' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'No refresh token available' },
+        { status: 401 }
+      );
     }
 
     const apiRes = await api.get('/users/current/refresh', {
@@ -18,14 +21,14 @@ export async function GET() {
       },
     });
 
-    const data = apiRes.data; 
+    const data = apiRes.data;
 
     const response = NextResponse.json(data);
 
     const cookieOptions = {
-      httpOnly: true, 
-      secure: process.env.NODE_ENV === 'production', 
-      path: '/', 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
     };
 
     if (data.token) {
@@ -36,7 +39,7 @@ export async function GET() {
         maxAge: 60 * 60,
       });
     }
-    
+
     if (data.refreshToken) {
       response.cookies.set({
         name: 'refreshToken',
@@ -47,14 +50,19 @@ export async function GET() {
     }
 
     return response;
-
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      const errorMessage = error.response?.data?.message ?? error.response?.data?.error ?? error.message;
+      const errorMessage =
+        error.response?.data?.message ??
+        error.response?.data?.error ??
+        error.message;
       const statusCode = error.response?.status || 500;
       return NextResponse.json({ error: errorMessage }, { status: statusCode });
-    } 
-    console.error("Unknown error:", error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+    console.error('Unknown error:', error);
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 }

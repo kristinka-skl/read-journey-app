@@ -2,8 +2,8 @@ import axios, { AxiosError, isAxiosError } from 'axios';
 import { cookies } from 'next/headers';
 import { refreshServerSession } from '../lib/serverApi';
 
-export type ApiError = AxiosError<{ 
-  error?: string; 
+export type ApiError = AxiosError<{
+  error?: string;
   message?: string;
   response?: {
     message: string;
@@ -30,8 +30,8 @@ api.interceptors.response.use(
         if (!refreshToken) throw Error('no refresh token');
         const res = await refreshServerSession(refreshToken);
         if (res.data.token && res.data.refreshToken) {
-          cookieStore.set("accessToken", res.data.token);
-          cookieStore.set("refreshToken", res.data.refreshToken);
+          cookieStore.set('accessToken', res.data.token);
+          cookieStore.set('refreshToken', res.data.refreshToken);
           originalRequest.headers.Authorization = `Bearer ${res.data.token}`;
           return api(originalRequest);
         }
