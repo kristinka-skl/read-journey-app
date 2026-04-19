@@ -15,7 +15,6 @@ export default function Header() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
-  console.log('user:', user);
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {

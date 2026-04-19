@@ -42,7 +42,6 @@ export default function RegisterForm() {
   });
   const onSubmit = async (data: RegisterFormData) => {
     try {
-      console.log(data);
       const res = await registerUser(data);
       if (res) {
         setUser(res);

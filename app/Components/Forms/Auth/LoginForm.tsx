@@ -43,7 +43,6 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      console.log(data);
       const res = await loginUser(data);
       if (res) {
         setUser(res);

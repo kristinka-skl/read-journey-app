@@ -30,7 +30,6 @@ enum Tabs {
 
 export default function ReadingPageClient() {
   const params = useParams();
-  console.log('params:', params);
   const bookId = params.id as string;
   const [openTab, setOpenTab] = useState<Tabs>(Tabs.statistics);
   const [isModalOpen, setIsModalOpen] = useState(false);

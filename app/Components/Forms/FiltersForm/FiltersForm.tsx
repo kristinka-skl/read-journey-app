@@ -35,7 +35,6 @@ export const FiltersForm = () => {
   const onSubmit = async (data: FormInputs) => {
     try {
       const params = new URLSearchParams(searchParams);
-      console.log('Filters to apply:', data);
 
       if (data.title) params.set('title', data.title);
       else params.delete('title');

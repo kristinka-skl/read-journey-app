@@ -47,7 +47,6 @@ export default function Recommended() {
       toast.error('Sorry, something went wrong, please try again');
     }
   }, [isError]);
-  console.log('recommended books data:', data);
   
   if (!isClient || isLoading) {
     return <Loader/>;
