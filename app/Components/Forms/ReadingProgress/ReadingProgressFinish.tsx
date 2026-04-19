@@ -106,6 +106,7 @@ export default function ReadingProgressFinish({
               id="page"
               className={css.input}
               {...register('page')}
+              defaultValue={startPage}
               placeholder="0"
             />
 

@@ -89,6 +89,7 @@ export default function ReadingProgressStart({
           </label>
           <input
             id="page"
+            defaultValue={minPage}
             className={css.input}
             {...register('page')}
             placeholder="0"
