@@ -6,7 +6,7 @@ Read Journey is a responsive web application designed for book lovers. It allows
 
 ## 🚀 Live Demo
 
-[Visit website](https://your-deployed-link.vercel.app/)
+[Visit website](https://read-journey-app-gilt.vercel.app/)
 
 ## Tech Stack
 
@@ -69,8 +69,8 @@ pnpm install
 ```
 
 **4. Add Environment Variables:**
-Create a `.env.local` file in the root directory and add your necessary API variables (e.g., `NEXT_PUBLIC_API_URL=...`). 
-# The base URL for client-side Axios requests (points to your local Next.js server)
+Create a `.env` file in the root directory and add your necessary API variables (e.g., `NEXT_PUBLIC_API_URL=...`). 
+The base URL for client-side Axios requests (points to your local Next.js server)
 For local run: NEXT_PUBLIC_API_URL=http://localhost:3000
 
 **5. Run the development server:**
