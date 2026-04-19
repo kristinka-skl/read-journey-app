@@ -1,67 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { parse } from 'cookie';
-import { refreshServerSession } from './app/lib/serverApi';
+import { api } from './app/api/api';
 
-const privateRoutes = ['/recommended', '/library', '/reading'];
 const publicRoutes = ['/login', '/register'];
 
 export async function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get('accessToken')?.value;
-  const refreshToken = cookieStore.get('refreshToken')?.value;
-
-  const isPublicRoute = publicRoutes.some((route) =>
-    pathname.startsWith(route)
-  );
-  const isPrivateRoute = privateRoutes.some((route) =>
-    pathname.startsWith(route)
-  );
-
-  if (!accessToken) {
-    if (refreshToken) {
-      try {
-        const data = await refreshServerSession(refreshToken);
-        const newToken = data.data.token;
-        const newRefreshToken = data.data.refreshToken;
-
-        if (newToken && newRefreshToken) {
-          cookieStore.set('accessToken', newToken);
-          cookieStore.set('refreshToken', newRefreshToken);
-          if (isPublicRoute) {
-            return NextResponse.redirect(new URL('/recommended', request.url), {
-              headers: {
-                Authorization: `Bearer ${newToken}`,
-              },
-            });
-          }
-          if (isPrivateRoute) {
-            return NextResponse.next({
-              headers: {
-                Authorization: `Bearer ${newToken}`,
-              },
-            });
-          }
-        }
-      } catch {
-        return NextResponse.redirect(new URL('/', request.url), {});
-      }
-    }
-    if (isPublicRoute) {
-      return NextResponse.next();
-    }
-
-    if (isPrivateRoute) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
-  }
-
-  if (isPublicRoute) {
+  const isPublicRoute = publicRoutes.some(route => request.nextUrl.pathname.startsWith(route));
+  const accessToken = await getAccessToken();
+  if (accessToken) {
+    if (!isPublicRoute || !await isValidAccessToken(accessToken)) return NextResponse.next();
     return NextResponse.redirect(new URL('/recommended', request.url));
   }
-  if (isPrivateRoute) {
-    return NextResponse.next();
+  if (isPublicRoute) return NextResponse.next();
+  return NextResponse.redirect(new URL('/login', request.url));
+}
+
+async function getAccessToken() {
+  const cookieStore = await cookies();
+  return cookieStore.get('accessToken')?.value;
+}
+
+async function isValidAccessToken(accessToken: string) {
+  try {
+    const res = await api.get('/users/current', {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return res.data.token !== undefined;
+  } catch {
+    return false;
   }
 }
 

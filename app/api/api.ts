@@ -1,6 +1,5 @@
 import axios, { AxiosError, isAxiosError } from 'axios';
 import { cookies } from 'next/headers';
-import { refreshServerSession } from '../lib/serverApi';
 
 export type ApiError = AxiosError<{
   error?: string;
@@ -16,31 +15,36 @@ export const api = axios.create({
 });
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  response => response,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response?.status === 401 && !originalRequest._isRetry) {
-      originalRequest._isRetry = true;
-
-      try {
-        const cookieStore = await cookies();
-        const refreshToken = cookieStore.get('refreshToken')?.value;
-        if (!refreshToken) throw Error('no refresh token');
-        const res = await refreshServerSession(refreshToken);
-        if (res.data.token && res.data.refreshToken) {
-          cookieStore.set('accessToken', res.data.token);
-          cookieStore.set('refreshToken', res.data.refreshToken);
-          originalRequest.headers.Authorization = `Bearer ${res.data.token}`;
-          return api(originalRequest);
-        }
-      } catch (refreshError) {
-        if (isAxiosError(refreshError)) return refreshError.response;
-        throw refreshError;
-      }
+    if (error.response?.status !== 401 || error.request.path === '/api/users/current/refresh' || originalRequest._isRetry) {
+      return Promise.reject(error);
     }
-
-    return error.response;
+    originalRequest._isRetry = true;
+    const newAccessToken = await refreshServerSession();
+    if (!newAccessToken) {
+      return Promise.reject(error);
+    }
+    originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+    return api(originalRequest);
   }
 );
+
+async function refreshServerSession() {
+  const cookieStore = await cookies();
+  const refreshToken = cookieStore.get('refreshToken')?.value;
+  if (!refreshToken) return null;
+  try {
+    const res = await api.get('/users/current/refresh', {
+      headers: { Authorization: `Bearer ${refreshToken}` },
+    });
+    if (res.data.token && res.data.refreshToken) {
+      cookieStore.set('accessToken', res.data.token);
+      cookieStore.set('refreshToken', res.data.refreshToken);
+      return res.data.token;
+    }
+  } catch {
+  }
+  return null;
+}

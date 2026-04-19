@@ -6,11 +6,10 @@ export const nextServer = axios.create({
 });
 
 nextServer.interceptors.response.use(
-  (response) => response,
+  response => response,
   async (error) => {
     if (error.response?.status === 401) {
       window.location.href = '/login';
-      return error;
     }
     return Promise.reject(error);
   }
