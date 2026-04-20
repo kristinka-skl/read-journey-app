@@ -1,121 +1,138 @@
 .booksGrid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 21px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 21px;
 }
-.bookCard{
-    flex-basis: calc((100% - 21px ) / 2);  
-  max-width: 137px;
+
+.bookCard {
+    flex-basis: calc((100% - 21px) / 2);
+    max-width: 137px;
+    cursor: pointer;
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
+
+.bookCard:hover {
+    transform: scale(1.03);
+}
+
 .header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 14px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 14px;
 }
+
 .selectContainer {
-  position: relative;
-  width: 140px;
+    position: relative;
+    width: 140px;
 }
 
 .dropdownButton {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid var(--hover);
-  border-radius: 12px;
-  padding: 12px 14px;
-  width: 100%;
-  height: 40px;
-  background-color: transparent;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33333;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
-  cursor: pointer;
-  transition: border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--hover);
+    border-radius: 12px;
+    padding: 12px 14px;
+    width: 100%;
+    height: 40px;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33333;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: border-color 0.2s ease;
 }
 
 .dropdownButton:hover {
-  border-color: var(--foreground);
+    border-color: var(--foreground);
 }
 
 .chevron {
-  stroke: var(--foreground);
+    stroke: var(--foreground);
 }
 
 .optionsList {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  width: 100%;
-  background-color: var(--input-background);
-  border-radius: 12px;
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
-  list-style: none;
-  z-index: 10;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background-color: var(--input-background);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    list-style: none;
+    z-index: 10;
 }
 
 .option {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33333;
-  letter-spacing: -0.02em;
-  color: var(--text-accent);
-  cursor: pointer;
-  transition: color 0.2s ease;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33333;
+    letter-spacing: -0.02em;
+    color: var(--text-accent);
+    cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .optionActive {
-  color: var(--foreground);
+    color: var(--foreground);
 }
+
 .emptyList {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 63px 69px;
-}
-.emptyIconWrapper {
-  width: 130px;
-  height: 130px;
-  border-radius: 100%;
-  background-color: var(--input-background);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.emptyList p {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.28571;
-  letter-spacing: -0.02em;
-  text-align: center;
-  color: var(--foreground);
-}
-.accent {
-  color: var(--text-accent);
-}
-@media screen and (min-width: 768px) {
-  .emptyList {
-    padding: 58px 215px;
-  }
-  .booksGrid {
-    gap: 25px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .emptyList {
-    padding: 147px 286px;
-  }
-  .booksGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
-  }
+    padding: 63px 69px;
+}
+
+.emptyIconWrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    background-color: var(--input-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emptyList p {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--foreground);
+}
+
+.accent {
+    color: var(--text-accent);
+}
+
+@media screen and (min-width: 768px) {
+    .emptyList {
+        padding: 58px 215px;
+    }
+
+    .booksGrid {
+        gap: 25px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .emptyList {
+        padding: 147px 286px;
+    }
+
+    .booksGrid {
+        gap: 20px;
+    }
 }

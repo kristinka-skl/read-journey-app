@@ -1,99 +1,116 @@
 .header {
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  justify-content: space-between;
-  margin-bottom: 22px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: space-between;
+    margin-bottom: 22px;
 }
+
 .sectionTitle {
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
 }
+
 .pagination {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
 }
+
 .arrowBtn {
-  width: 32px;
-  height: 32px;
-  border-radius: 100%;
-  border: 1px solid var(--text-accent);
-  background-color: transparent;
-  color: var(--foreground);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s ease-in-out;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    border: 1px solid var(--text-accent);
+    background-color: transparent;
+    color: var(--foreground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
 }
 
 .arrowBtn:not(:disabled):hover {
-  border-color: var(--foreground);
-  color: var(--foreground);
+    border-color: var(--foreground);
+    color: var(--foreground);
 }
 
 .arrowBtn:disabled {
-  border-color: var(--input-background);
-  color: var(--text-accent);
+    border-color: var(--input-background);
+    color: var(--text-accent);
 }
 
 .arrowForward {
-  stroke: var(--foreground);
-  transform: rotate(-90deg);
+    stroke: var(--foreground);
+    transform: rotate(-90deg);
 }
+
 .arrowBack {
-  stroke: var(--foreground);
-  transform: rotate(90deg);
+    stroke: var(--foreground);
+    transform: rotate(90deg);
 }
+
 .arrowBtn:disabled .arrowForward,
 .arrowBtn:disabled .arrowBack {
-  stroke: var(--text-accent);
+    stroke: var(--text-accent);
 }
+
 .booksGrid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 21px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 21px;
 }
+
 .bookCard {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 8px;
-  flex-basis: calc((100% - 21px ) / 2);  
-  max-width: 137px;
-  height: 248px;
-  cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    flex-basis: calc((100% - 21px) / 2);
+    max-width: 137px;
+    height: 248px;
+    cursor: pointer;
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+
+.bookCard:hover {
+    transform: scale(1.03);
 }
 
 @media screen and (min-width: 768px) {
-  .header {
-    margin-bottom: 28px;
-  }
-  .sectionTitle {
-    font-size: 28px;
-  }
-  .arrowBtn {
-    width: 40px;
-    height: 40px;
-  }
-  .arrowForward,
-  .arrowBack {
-    width: 20px;
-    height: 20px;
-  }
-  .booksGrid {
-    gap: 25px;
-  }
+    .header {
+        margin-bottom: 28px;
+    }
+
+    .sectionTitle {
+        font-size: 28px;
+    }
+
+    .arrowBtn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .arrowForward,
+    .arrowBack {
+        width: 20px;
+        height: 20px;
+    }
+
+    .booksGrid {
+        gap: 25px;
+    }
 }
+
 @media screen and (min-width: 1440px) {
-  .booksGrid {
-    gap: 20px;
-  }
+    .booksGrid {
+        gap: 20px;
+    }
 }
