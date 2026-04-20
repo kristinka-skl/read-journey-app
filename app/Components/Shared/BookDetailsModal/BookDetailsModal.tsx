@@ -3,10 +3,15 @@ import { Book, OwnBook } from '@/app/types/book';
 import css from './BookDetailsModal.module.css';
 import Modal from '../Modal/Modal';
 import toast from 'react-hot-toast';
-import { addBookFromRecommended } from '@/app/lib/clientApi';
+import { addBookFromRecommended, getOwnBooks } from '@/app/lib/clientApi';
 import BookCard from '../BookCard/BookCard';
 import Link from 'next/link';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 
 interface BookDetailsModalProps {
   book: Book | OwnBook;
@@ -19,6 +24,16 @@ export default function BookDetailsModal({
   onClose,
   startReading,
 }: BookDetailsModalProps) {
+  const {
+    data: ownBooksList,
+    isError,
+    isLoading,
+  } = useQuery({
+    queryKey: ['books', 'own'],
+    queryFn: () => getOwnBooks(),
+    placeholderData: keepPreviousData,
+  });
+
   const queryClient = useQueryClient();
   const { mutate, isPending } = useMutation({
     mutationFn: async (id: string) => await addBookFromRecommended(id),
@@ -38,6 +53,10 @@ export default function BookDetailsModal({
     mutate(book._id);
   };
 
+  const hasBookInLibrary =
+    ownBooksList &&
+    ownBooksList.findIndex((ownBook) => ownBook.title === book.title && ownBook.author === book.author) !== -1;
+
   return (
     <>
       <Modal isOpen onClose={onClose} size="large">
@@ -51,9 +70,14 @@ export default function BookDetailsModal({
             <button
               type="button"
               onClick={handleAddToLibrary}
+              disabled={hasBookInLibrary}
               className={css.secondaryButton}
             >
-              {isPending ? 'Adding...' : 'Add to library'}
+              {isPending
+                ? 'Adding...'
+                : hasBookInLibrary
+                  ? 'Already in library'
+                  : 'Add to library'}
             </button>
           )}
         </div>

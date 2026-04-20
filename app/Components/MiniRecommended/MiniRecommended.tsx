@@ -5,8 +5,13 @@ import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import BookCard from '../Shared/BookCard/BookCard';
 import { Loader } from '../Shared/Loader/Loader';
+import { Book } from '@/app/types/book';
 
-export default function MiniRecommended() {
+interface MiniRecommendedProps {
+  onBookClick: (book: Book) => void;
+}
+
+export default function MiniRecommended({ onBookClick }: MiniRecommendedProps) {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['books', 'recommended', 'mini'],
     queryFn: () => getBooks(1, 3),
@@ -22,7 +27,11 @@ export default function MiniRecommended() {
 
       <ul className={css.booksGrid}>
         {data?.results?.map((book) => (
-          <li key={book._id} className={css.bookCard}>
+          <li
+            key={book._id}
+            className={css.bookCard}
+            onClick={() => onBookClick(book)}
+          >
             <BookCard book={book} size="small" />
           </li>
         ))}
