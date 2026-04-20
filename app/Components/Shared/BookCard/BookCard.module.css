@@ -129,7 +129,10 @@
   flex-direction: column;
   gap: 2px;
   width: 100%;
-  max-width: 95px;
+  /* max-width: 95px; */
+}
+.titleAndAuthor.delete {
+  width: 107px;
 }
 .trashBtn {
   display: flex;

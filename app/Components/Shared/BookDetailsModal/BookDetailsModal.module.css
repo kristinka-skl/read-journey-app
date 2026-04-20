@@ -12,8 +12,8 @@
   border: 1px solid var(--hover);
   border-radius: 30px;
   background-color: var(--input-background);
-  padding: 10px 6px;
-  width: 116px;
+  padding: 10px 15px;
+  width: fit-content;
   height: 38px;
   font-weight: 700;
   font-size: 14px;
