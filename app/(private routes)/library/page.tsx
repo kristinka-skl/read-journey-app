@@ -1,9 +1,5 @@
-import { PageLayout } from '@/app/Components/Shared/PageLayout/PageLayout';
-import { Dashboard } from '@/app/Components/Shared/Dashboard/Dashboard';
-import AddBookForm from '@/app/Components/Forms/AddBookForm/AddBookForm';
-import MiniRecommended from '@/app/Components/MiniRecommended/MiniRecommended';
-import MyLibrary from '@/app/Components/MyLibrary/MyLibrary';
 import { Metadata } from 'next';
+import LibraryPageClient from './LibraryPage.client';
 
 export const metadata: Metadata = {
   title: 'My Library | Read Journey',
@@ -28,18 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default function Library() {
-  return (
-    <>
-      <PageLayout
-        sidebar={
-          <Dashboard>
-            <AddBookForm />
-            <MiniRecommended />
-          </Dashboard>
-        }
-      >
-        <MyLibrary />
-      </PageLayout>
-    </>
-  );
+  return <LibraryPageClient/>
 }

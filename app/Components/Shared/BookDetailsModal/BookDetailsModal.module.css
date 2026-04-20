@@ -27,6 +27,11 @@
   background-color: var(--foreground);
   color: var(--input-background);
 }
+.secondaryButton:hover:disabled{
+    cursor: default;
+  background-color: var(--input-background);
+  color: var(--hover);
+}
 @media screen and (min-width: 768px) {
   .secondaryButton {
     width: 162px;

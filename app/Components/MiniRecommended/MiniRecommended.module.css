@@ -1,78 +1,95 @@
 .miniRecommendedSection {
-  border-radius: 12px;
-  width: 100%;
-  height: 244px;
-  background-color: var(--input-background);
-  padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    height: 244px;
+    background-color: var(--input-background);
+    padding: 20px;
 }
+
 .miniRecommendedSection h2 {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--foreground);
-  margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--foreground);
+    margin-bottom: 14px;
 }
+
 .booksGrid {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-bottom: 17px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 17px;
 }
+
 .bookCard {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 4px;
-  flex-basis: calc((100% - 20px * 2) / 3);  
-  height: 141px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 4px;
+    flex-basis: calc((100% - 20px * 2) / 3);
+    height: 141px;
+    cursor: pointer;
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+}
+
+.bookCard:hover {
+    transform: scale(1.1);
 }
 
 .bookCover {
-  border-radius: 8px;
+    border-radius: 8px;
 }
+
 .link {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
+
 .link p {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.28571;
-  letter-spacing: -0.02em;
-  text-decoration: underline;
-  text-decoration-skip-ink: none;
-  color: var(--text-accent);
-  transition: all 0.2ms ease-in;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: var(--text-accent);
+    transition: all 0.2ms ease-in;
 }
+
 .link p:hover {
-  color: var(--foreground);
+    color: var(--foreground);
 }
+
 .redirect {
-  stroke: var(--foreground);
-  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
+    stroke: var(--foreground);
+    transition: all cubic-bezier(0.075, 0.82, 0.165, 1) ease-in-out;
 }
+
 .redirect:hover {
-  transform: scale(1.1);
+    transform: scale(1.1);
 }
 
 @media screen and (min-width: 768px) {
-  .miniRecommendedSection {
-    width: 313px;
-    height: 272px;
-  }
-  .miniRecommendedSection h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-  .booksGrid {
-    margin-bottom: 20px;
-  }
+    .miniRecommendedSection {
+        width: 313px;
+        height: 272px;
+    }
+
+    .miniRecommendedSection h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .booksGrid {
+        margin-bottom: 20px;
+    }
 }
+
 @media screen and (min-width: 1440px) {
-  .miniRecommendedSection {
-    margin-top: 60px;
-  }
+    .miniRecommendedSection {
+        margin-top: 60px;
+    }
 }
